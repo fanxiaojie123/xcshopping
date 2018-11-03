@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.axy.xc.xcitemshowprovider.dao.AppliancesMapper">
+  <resultMap id="BaseResultMap" type="cn.axy.xc.xcitemshowprovider.pojo.Appliances">
+    <id column="a_id" jdbcType="VARCHAR" property="aId" />
+    <result column="a_size" jdbcType="DOUBLE" property="aSize" />
+    <result column="a_color" jdbcType="VARCHAR" property="aColor" />
+    <result column="a_price" jdbcType="DOUBLE" property="aPrice" />
+    <result column="a_count" jdbcType="DOUBLE" property="aCount" />
+    <result column="m_id" jdbcType="VARCHAR" property="mId" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    a_id, a_size, a_color, a_price, a_count, m_id
+  </sql>
+  <select id="selectByExample" parameterType="cn.axy.xc.xcitemshowprovider.pojo.AppliancesExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from appliances
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from appliances
+    where a_id = #{aId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from appliances
+    where a_id = #{aId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.axy.xc.xcitemshowprovider.pojo.AppliancesExample">
+    delete from appliances
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.axy.xc.xcitemshowprovider.pojo.Appliances">
+    insert into appliances (a_id, a_size, a_color, 
+      a_price, a_count, m_id)
+    values (#{aId,jdbcType=VARCHAR}, #{aSize,jdbcType=DOUBLE}, #{aColor,jdbcType=VARCHAR}, 
+      #{aPrice,jdbcType=DOUBLE}, #{aCount,jdbcType=DOUBLE}, #{mId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.axy.xc.xcitemshowprovider.pojo.Appliances">
+    insert into appliances
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="aId != null">
+        a_id,
+      </if>
+      <if test="aSize != null">
+        a_size,
+      </if>
+      <if test="aColor != null">
+        a_color,
+      </if>
+      <if test="aPrice != null">
+        a_price,
+      </if>
+      <if test="aCount != null">
+        a_count,
+      </if>
+      <if test="mId != null">
+        m_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="aId != null">
+        #{aId,jdbcType=VARCHAR},
+      </if>
+      <if test="aSize != null">
+        #{aSize,jdbcType=DOUBLE},
+      </if>
+      <if test="aColor != null">
+        #{aColor,jdbcType=VARCHAR},
+      </if>
+      <if test="aPrice != null">
+        #{aPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="aCount != null">
+        #{aCount,jdbcType=DOUBLE},
+      </if>
+      <if test="mId != null">
+        #{mId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cn.axy.xc.xcitemshowprovider.pojo.AppliancesExample" resultType="java.lang.Long">
+    select count(*) from appliances
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update appliances
+    <set>
+      <if test="record.aId != null">
+        a_id = #{record.aId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.aSize != null">
+        a_size = #{record.aSize,jdbcType=DOUBLE},
+      </if>
+      <if test="record.aColor != null">
+        a_color = #{record.aColor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.aPrice != null">
+        a_price = #{record.aPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="record.aCount != null">
+        a_count = #{record.aCount,jdbcType=DOUBLE},
+      </if>
+      <if test="record.mId != null">
+        m_id = #{record.mId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update appliances
+    set a_id = #{record.aId,jdbcType=VARCHAR},
+      a_size = #{record.aSize,jdbcType=DOUBLE},
+      a_color = #{record.aColor,jdbcType=VARCHAR},
+      a_price = #{record.aPrice,jdbcType=DOUBLE},
+      a_count = #{record.aCount,jdbcType=DOUBLE},
+      m_id = #{record.mId,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.axy.xc.xcitemshowprovider.pojo.Appliances">
+    update appliances
+    <set>
+      <if test="aSize != null">
+        a_size = #{aSize,jdbcType=DOUBLE},
+      </if>
+      <if test="aColor != null">
+        a_color = #{aColor,jdbcType=VARCHAR},
+      </if>
+      <if test="aPrice != null">
+        a_price = #{aPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="aCount != null">
+        a_count = #{aCount,jdbcType=DOUBLE},
+      </if>
+      <if test="mId != null">
+        m_id = #{mId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where a_id = #{aId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.axy.xc.xcitemshowprovider.pojo.Appliances">
+    update appliances
+    set a_size = #{aSize,jdbcType=DOUBLE},
+      a_color = #{aColor,jdbcType=VARCHAR},
+      a_price = #{aPrice,jdbcType=DOUBLE},
+      a_count = #{aCount,jdbcType=DOUBLE},
+      m_id = #{mId,jdbcType=VARCHAR}
+    where a_id = #{aId,jdbcType=VARCHAR}
+  </update>
+</mapper>
