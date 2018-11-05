@@ -1,0 +1,12 @@
+server:
+  port: 7002
+spring:
+  application:
+    name: xc-order-provider
+eureka:
+  instance:
+    instance-id: xc-order-provider
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://60.205.207.9:6001/eureka/

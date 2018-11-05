@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/xc-discounts-consumer/xc-discounts-consumer.iml" filepath="$PROJECT_DIR$/xc-discounts-consumer/xc-discounts-consumer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xc-discounts-provider/xc-discounts-provider.iml" filepath="$PROJECT_DIR$/xc-discounts-provider/xc-discounts-provider.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xc-order-consumer/xc-order-consumer.iml" filepath="$PROJECT_DIR$/xc-order-consumer/xc-order-consumer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xc-order-provider/xc-order-provider.iml" filepath="$PROJECT_DIR$/xc-order-provider/xc-order-provider.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/xc-shopping.iml" filepath="$PROJECT_DIR$/.idea/xc-shopping.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xc-shopping-consumer/xc-shopping-consumer.iml" filepath="$PROJECT_DIR$/xc-shopping-consumer/xc-shopping-consumer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xc-shopping-provider/xc-shopping-provider.iml" filepath="$PROJECT_DIR$/xc-shopping-provider/xc-shopping-provider.iml" />
+    </modules>
+  </component>
+</project>

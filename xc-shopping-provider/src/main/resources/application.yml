@@ -1,0 +1,12 @@
+server:
+  port: 7001
+spring:
+  application:
+    name: xc-shopping-provider
+eureka:
+  instance:
+    instance-id: xc-shopping-provider
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://60.205.207.9:6001/eureka/
