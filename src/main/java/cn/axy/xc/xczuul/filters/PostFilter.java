@@ -2,19 +2,15 @@ package cn.axy.xc.xczuul.filters;
 
 import cn.axy.xc.xczuul.jwt.JWTUtil;
 import cn.axy.xc.xczuul.jwt.JwtSecret;
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang.StringUtils;
 import org.springframework.cloud.netflix.zuul.filters.support.FilterConstants;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StreamUtils;
 
 import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.Charset;
@@ -55,17 +51,21 @@ public class PostFilter extends ZuulFilter {
             log.info("post过滤器获取到的userId:" + userId);
             log.info("post过滤器获取到的userName:" + userName);
             String token = JWTUtil.createToken(userName, userId);
-            context.getResponse().addHeader("token",token);
 
+            //token放入tokenmap
+            JwtSecret.tokenMap.put(userId,token);
+            //token放入返回头中
+            context.getResponse().addHeader("token",token);
+            //token放入cookie中
             Cookie cookie = new Cookie("token",token);
             cookie.setMaxAge(JwtSecret.EXPIRE_TIME);
             cookie.setValue(token);
             context.getResponse().addCookie(cookie);
 
             log.info("token的值：" + token);
-
-            System.out.println(body);
+            log.info("返回页面的值" + body);
             context.setResponseBody(body);
+
         } catch (IOException e) {
             log.error("Post过滤器IO异常....");
         }
