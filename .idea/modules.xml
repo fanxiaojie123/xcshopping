@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/xc-item.iml" filepath="$PROJECT_DIR$/.idea/xc-item.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xc-item-detail-consumer/xc-item-detail-consumer.iml" filepath="$PROJECT_DIR$/xc-item-detail-consumer/xc-item-detail-consumer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xc-item-detail-provider/xc-item-detail-provider.iml" filepath="$PROJECT_DIR$/xc-item-detail-provider/xc-item-detail-provider.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xc-item-repertory-consumer/xc-item-repertory-consumer.iml" filepath="$PROJECT_DIR$/xc-item-repertory-consumer/xc-item-repertory-consumer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xc-item-repertory-provider/xc-item-repertory-provider.iml" filepath="$PROJECT_DIR$/xc-item-repertory-provider/xc-item-repertory-provider.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xc-item-show-consumer/xc-item-show-consumer.iml" filepath="$PROJECT_DIR$/xc-item-show-consumer/xc-item-show-consumer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xc-item-show-provider/xc-item-show-provider.iml" filepath="$PROJECT_DIR$/xc-item-show-provider/xc-item-show-provider.iml" />
+    </modules>
+  </component>
+</project>

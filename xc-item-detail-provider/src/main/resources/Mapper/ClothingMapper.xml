@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.axy.xc.xcitemdetailprovider.dao.ClothingMapper">
+  <resultMap id="BaseResultMap" type="cn.axy.xc.xcitemdetailprovider.pojo.Clothing">
+    <id column="c_id" jdbcType="INTEGER" property="cId" />
+    <result column="c_count" jdbcType="DOUBLE" property="cCount" />
+    <result column="c_price" jdbcType="DOUBLE" property="cPrice" />
+    <result column="c_size" jdbcType="VARCHAR" property="cSize" />
+    <result column="c_color" jdbcType="VARCHAR" property="cColor" />
+    <result column="m_id" jdbcType="INTEGER" property="mId" />
+    <result column="c_x" jdbcType="VARCHAR" property="cX" />
+    <result column="c_x1" jdbcType="VARCHAR" property="cX1" />
+    <result column="c_x2" jdbcType="VARCHAR" property="cX2" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    c_id, c_count, c_price, c_size, c_color, m_id, c_x, c_x1, c_x2
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from clothing
+    where c_id = #{cId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from clothing
+    where c_id = #{cId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.axy.xc.xcitemdetailprovider.pojo.Clothing">
+    insert into clothing (c_id, c_count, c_price, 
+      c_size, c_color, m_id, 
+      c_x, c_x1, c_x2)
+    values (#{cId,jdbcType=INTEGER}, #{cCount,jdbcType=DOUBLE}, #{cPrice,jdbcType=DOUBLE}, 
+      #{cSize,jdbcType=VARCHAR}, #{cColor,jdbcType=VARCHAR}, #{mId,jdbcType=INTEGER}, 
+      #{cX,jdbcType=VARCHAR}, #{cX1,jdbcType=VARCHAR}, #{cX2,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.axy.xc.xcitemdetailprovider.pojo.Clothing">
+    insert into clothing
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cId != null">
+        c_id,
+      </if>
+      <if test="cCount != null">
+        c_count,
+      </if>
+      <if test="cPrice != null">
+        c_price,
+      </if>
+      <if test="cSize != null">
+        c_size,
+      </if>
+      <if test="cColor != null">
+        c_color,
+      </if>
+      <if test="mId != null">
+        m_id,
+      </if>
+      <if test="cX != null">
+        c_x,
+      </if>
+      <if test="cX1 != null">
+        c_x1,
+      </if>
+      <if test="cX2 != null">
+        c_x2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cId != null">
+        #{cId,jdbcType=INTEGER},
+      </if>
+      <if test="cCount != null">
+        #{cCount,jdbcType=DOUBLE},
+      </if>
+      <if test="cPrice != null">
+        #{cPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="cSize != null">
+        #{cSize,jdbcType=VARCHAR},
+      </if>
+      <if test="cColor != null">
+        #{cColor,jdbcType=VARCHAR},
+      </if>
+      <if test="mId != null">
+        #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="cX != null">
+        #{cX,jdbcType=VARCHAR},
+      </if>
+      <if test="cX1 != null">
+        #{cX1,jdbcType=VARCHAR},
+      </if>
+      <if test="cX2 != null">
+        #{cX2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.axy.xc.xcitemdetailprovider.pojo.Clothing">
+    update clothing
+    <set>
+      <if test="cCount != null">
+        c_count = #{cCount,jdbcType=DOUBLE},
+      </if>
+      <if test="cPrice != null">
+        c_price = #{cPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="cSize != null">
+        c_size = #{cSize,jdbcType=VARCHAR},
+      </if>
+      <if test="cColor != null">
+        c_color = #{cColor,jdbcType=VARCHAR},
+      </if>
+      <if test="mId != null">
+        m_id = #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="cX != null">
+        c_x = #{cX,jdbcType=VARCHAR},
+      </if>
+      <if test="cX1 != null">
+        c_x1 = #{cX1,jdbcType=VARCHAR},
+      </if>
+      <if test="cX2 != null">
+        c_x2 = #{cX2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where c_id = #{cId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.axy.xc.xcitemdetailprovider.pojo.Clothing">
+    update clothing
+    set c_count = #{cCount,jdbcType=DOUBLE},
+      c_price = #{cPrice,jdbcType=DOUBLE},
+      c_size = #{cSize,jdbcType=VARCHAR},
+      c_color = #{cColor,jdbcType=VARCHAR},
+      m_id = #{mId,jdbcType=INTEGER},
+      c_x = #{cX,jdbcType=VARCHAR},
+      c_x1 = #{cX1,jdbcType=VARCHAR},
+      c_x2 = #{cX2,jdbcType=VARCHAR}
+    where c_id = #{cId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.axy.xc.xcitemdetailprovider.dao.MessageMapper">
+  <resultMap id="BaseResultMap" type="cn.axy.xc.xcitemdetailprovider.pojo.Message">
+    <id column="m_id" jdbcType="INTEGER" property="mId" />
+    <result column="m_name" jdbcType="VARCHAR" property="mName" />
+    <result column="m_picture" jdbcType="VARCHAR" property="mPicture" />
+    <result column="m_particulars" jdbcType="VARCHAR" property="mParticulars" />
+    <result column="m_status" jdbcType="INTEGER" property="mStatus" />
+    <result column="m_points" jdbcType="VARCHAR" property="mPoints" />
+    <result column="m_created" jdbcType="VARCHAR" property="mCreated" />
+    <result column="m_updated" jdbcType="VARCHAR" property="mUpdated" />
+    <result column="s_id" jdbcType="INTEGER" property="sId" />
+    <result column="search_category_id" jdbcType="INTEGER" property="searchCategoryId" />
+    <result column="search_category_parent_id" jdbcType="INTEGER" property="searchCategoryParentId" />
+    <result column="m_price" jdbcType="DOUBLE" property="mPrice" />
+    <result column="m_count" jdbcType="DOUBLE" property="mCount" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    m_id, m_name, m_picture, m_particulars, m_status, m_points, m_created, m_updated, 
+    s_id, search_category_id, search_category_parent_id, m_price, m_count
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from message
+    where m_id = #{mId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from message
+    where m_id = #{mId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.axy.xc.xcitemdetailprovider.pojo.Message">
+    insert into message (m_id, m_name, m_picture, 
+      m_particulars, m_status, m_points, 
+      m_created, m_updated, s_id, 
+      search_category_id, search_category_parent_id, 
+      m_price, m_count)
+    values (#{mId,jdbcType=INTEGER}, #{mName,jdbcType=VARCHAR}, #{mPicture,jdbcType=VARCHAR}, 
+      #{mParticulars,jdbcType=VARCHAR}, #{mStatus,jdbcType=INTEGER}, #{mPoints,jdbcType=VARCHAR}, 
+      #{mCreated,jdbcType=VARCHAR}, #{mUpdated,jdbcType=VARCHAR}, #{sId,jdbcType=INTEGER}, 
+      #{searchCategoryId,jdbcType=INTEGER}, #{searchCategoryParentId,jdbcType=INTEGER}, 
+      #{mPrice,jdbcType=DOUBLE}, #{mCount,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.axy.xc.xcitemdetailprovider.pojo.Message">
+    insert into message
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="mId != null">
+        m_id,
+      </if>
+      <if test="mName != null">
+        m_name,
+      </if>
+      <if test="mPicture != null">
+        m_picture,
+      </if>
+      <if test="mParticulars != null">
+        m_particulars,
+      </if>
+      <if test="mStatus != null">
+        m_status,
+      </if>
+      <if test="mPoints != null">
+        m_points,
+      </if>
+      <if test="mCreated != null">
+        m_created,
+      </if>
+      <if test="mUpdated != null">
+        m_updated,
+      </if>
+      <if test="sId != null">
+        s_id,
+      </if>
+      <if test="searchCategoryId != null">
+        search_category_id,
+      </if>
+      <if test="searchCategoryParentId != null">
+        search_category_parent_id,
+      </if>
+      <if test="mPrice != null">
+        m_price,
+      </if>
+      <if test="mCount != null">
+        m_count,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="mId != null">
+        #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="mName != null">
+        #{mName,jdbcType=VARCHAR},
+      </if>
+      <if test="mPicture != null">
+        #{mPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="mParticulars != null">
+        #{mParticulars,jdbcType=VARCHAR},
+      </if>
+      <if test="mStatus != null">
+        #{mStatus,jdbcType=INTEGER},
+      </if>
+      <if test="mPoints != null">
+        #{mPoints,jdbcType=VARCHAR},
+      </if>
+      <if test="mCreated != null">
+        #{mCreated,jdbcType=VARCHAR},
+      </if>
+      <if test="mUpdated != null">
+        #{mUpdated,jdbcType=VARCHAR},
+      </if>
+      <if test="sId != null">
+        #{sId,jdbcType=INTEGER},
+      </if>
+      <if test="searchCategoryId != null">
+        #{searchCategoryId,jdbcType=INTEGER},
+      </if>
+      <if test="searchCategoryParentId != null">
+        #{searchCategoryParentId,jdbcType=INTEGER},
+      </if>
+      <if test="mPrice != null">
+        #{mPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="mCount != null">
+        #{mCount,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.axy.xc.xcitemdetailprovider.pojo.Message">
+    update message
+    <set>
+      <if test="mName != null">
+        m_name = #{mName,jdbcType=VARCHAR},
+      </if>
+      <if test="mPicture != null">
+        m_picture = #{mPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="mParticulars != null">
+        m_particulars = #{mParticulars,jdbcType=VARCHAR},
+      </if>
+      <if test="mStatus != null">
+        m_status = #{mStatus,jdbcType=INTEGER},
+      </if>
+      <if test="mPoints != null">
+        m_points = #{mPoints,jdbcType=VARCHAR},
+      </if>
+      <if test="mCreated != null">
+        m_created = #{mCreated,jdbcType=VARCHAR},
+      </if>
+      <if test="mUpdated != null">
+        m_updated = #{mUpdated,jdbcType=VARCHAR},
+      </if>
+      <if test="sId != null">
+        s_id = #{sId,jdbcType=INTEGER},
+      </if>
+      <if test="searchCategoryId != null">
+        search_category_id = #{searchCategoryId,jdbcType=INTEGER},
+      </if>
+      <if test="searchCategoryParentId != null">
+        search_category_parent_id = #{searchCategoryParentId,jdbcType=INTEGER},
+      </if>
+      <if test="mPrice != null">
+        m_price = #{mPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="mCount != null">
+        m_count = #{mCount,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where m_id = #{mId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.axy.xc.xcitemdetailprovider.pojo.Message">
+    update message
+    set m_name = #{mName,jdbcType=VARCHAR},
+      m_picture = #{mPicture,jdbcType=VARCHAR},
+      m_particulars = #{mParticulars,jdbcType=VARCHAR},
+      m_status = #{mStatus,jdbcType=INTEGER},
+      m_points = #{mPoints,jdbcType=VARCHAR},
+      m_created = #{mCreated,jdbcType=VARCHAR},
+      m_updated = #{mUpdated,jdbcType=VARCHAR},
+      s_id = #{sId,jdbcType=INTEGER},
+      search_category_id = #{searchCategoryId,jdbcType=INTEGER},
+      search_category_parent_id = #{searchCategoryParentId,jdbcType=INTEGER},
+      m_price = #{mPrice,jdbcType=DOUBLE},
+      m_count = #{mCount,jdbcType=DOUBLE}
+    where m_id = #{mId,jdbcType=INTEGER}
+  </update>
+</mapper>

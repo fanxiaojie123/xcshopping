@@ -1,0 +1,12 @@
+server:
+  port: 7003
+spring:
+  application:
+    name: xc-item-repertory-provider
+eureka:
+  instance:
+    instance-id: xc-item-repertory-provider
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://60.205.207.9:6001/eureka/

@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.axy.xc.xcitemdetailprovider.dao.SearchCategoryMapper">
+  <resultMap id="BaseResultMap" type="cn.axy.xc.xcitemdetailprovider.pojo.SearchCategory">
+    <id column="search_category_id" jdbcType="INTEGER" property="searchCategoryId" />
+    <result column="search_category_parent_id" jdbcType="BIGINT" property="searchCategoryParentId" />
+    <result column="search_category_name" jdbcType="VARCHAR" property="searchCategoryName" />
+    <result column="search_category_status" jdbcType="INTEGER" property="searchCategoryStatus" />
+    <result column="search_category_sort_order" jdbcType="INTEGER" property="searchCategorySortOrder" />
+    <result column="search_category_is_parent" jdbcType="BIT" property="searchCategoryIsParent" />
+    <result column="search_category_created" jdbcType="TIMESTAMP" property="searchCategoryCreated" />
+    <result column="search_category_updated" jdbcType="TIMESTAMP" property="searchCategoryUpdated" />
+    <result column="search_category_details" jdbcType="VARCHAR" property="searchCategoryDetails" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    search_category_id, search_category_parent_id, search_category_name, search_category_status, 
+    search_category_sort_order, search_category_is_parent, search_category_created, search_category_updated, 
+    search_category_details
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from search_category
+    where search_category_id = #{searchCategoryId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from search_category
+    where search_category_id = #{searchCategoryId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.axy.xc.xcitemdetailprovider.pojo.SearchCategory">
+    insert into search_category (search_category_id, search_category_parent_id, 
+      search_category_name, search_category_status, 
+      search_category_sort_order, search_category_is_parent, 
+      search_category_created, search_category_updated, 
+      search_category_details)
+    values (#{searchCategoryId,jdbcType=INTEGER}, #{searchCategoryParentId,jdbcType=BIGINT}, 
+      #{searchCategoryName,jdbcType=VARCHAR}, #{searchCategoryStatus,jdbcType=INTEGER}, 
+      #{searchCategorySortOrder,jdbcType=INTEGER}, #{searchCategoryIsParent,jdbcType=BIT}, 
+      #{searchCategoryCreated,jdbcType=TIMESTAMP}, #{searchCategoryUpdated,jdbcType=TIMESTAMP}, 
+      #{searchCategoryDetails,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.axy.xc.xcitemdetailprovider.pojo.SearchCategory">
+    insert into search_category
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="searchCategoryId != null">
+        search_category_id,
+      </if>
+      <if test="searchCategoryParentId != null">
+        search_category_parent_id,
+      </if>
+      <if test="searchCategoryName != null">
+        search_category_name,
+      </if>
+      <if test="searchCategoryStatus != null">
+        search_category_status,
+      </if>
+      <if test="searchCategorySortOrder != null">
+        search_category_sort_order,
+      </if>
+      <if test="searchCategoryIsParent != null">
+        search_category_is_parent,
+      </if>
+      <if test="searchCategoryCreated != null">
+        search_category_created,
+      </if>
+      <if test="searchCategoryUpdated != null">
+        search_category_updated,
+      </if>
+      <if test="searchCategoryDetails != null">
+        search_category_details,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="searchCategoryId != null">
+        #{searchCategoryId,jdbcType=INTEGER},
+      </if>
+      <if test="searchCategoryParentId != null">
+        #{searchCategoryParentId,jdbcType=BIGINT},
+      </if>
+      <if test="searchCategoryName != null">
+        #{searchCategoryName,jdbcType=VARCHAR},
+      </if>
+      <if test="searchCategoryStatus != null">
+        #{searchCategoryStatus,jdbcType=INTEGER},
+      </if>
+      <if test="searchCategorySortOrder != null">
+        #{searchCategorySortOrder,jdbcType=INTEGER},
+      </if>
+      <if test="searchCategoryIsParent != null">
+        #{searchCategoryIsParent,jdbcType=BIT},
+      </if>
+      <if test="searchCategoryCreated != null">
+        #{searchCategoryCreated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="searchCategoryUpdated != null">
+        #{searchCategoryUpdated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="searchCategoryDetails != null">
+        #{searchCategoryDetails,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.axy.xc.xcitemdetailprovider.pojo.SearchCategory">
+    update search_category
+    <set>
+      <if test="searchCategoryParentId != null">
+        search_category_parent_id = #{searchCategoryParentId,jdbcType=BIGINT},
+      </if>
+      <if test="searchCategoryName != null">
+        search_category_name = #{searchCategoryName,jdbcType=VARCHAR},
+      </if>
+      <if test="searchCategoryStatus != null">
+        search_category_status = #{searchCategoryStatus,jdbcType=INTEGER},
+      </if>
+      <if test="searchCategorySortOrder != null">
+        search_category_sort_order = #{searchCategorySortOrder,jdbcType=INTEGER},
+      </if>
+      <if test="searchCategoryIsParent != null">
+        search_category_is_parent = #{searchCategoryIsParent,jdbcType=BIT},
+      </if>
+      <if test="searchCategoryCreated != null">
+        search_category_created = #{searchCategoryCreated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="searchCategoryUpdated != null">
+        search_category_updated = #{searchCategoryUpdated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="searchCategoryDetails != null">
+        search_category_details = #{searchCategoryDetails,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where search_category_id = #{searchCategoryId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.axy.xc.xcitemdetailprovider.pojo.SearchCategory">
+    update search_category
+    set search_category_parent_id = #{searchCategoryParentId,jdbcType=BIGINT},
+      search_category_name = #{searchCategoryName,jdbcType=VARCHAR},
+      search_category_status = #{searchCategoryStatus,jdbcType=INTEGER},
+      search_category_sort_order = #{searchCategorySortOrder,jdbcType=INTEGER},
+      search_category_is_parent = #{searchCategoryIsParent,jdbcType=BIT},
+      search_category_created = #{searchCategoryCreated,jdbcType=TIMESTAMP},
+      search_category_updated = #{searchCategoryUpdated,jdbcType=TIMESTAMP},
+      search_category_details = #{searchCategoryDetails,jdbcType=VARCHAR}
+    where search_category_id = #{searchCategoryId,jdbcType=INTEGER}
+  </update>
+</mapper>

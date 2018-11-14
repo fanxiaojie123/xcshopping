@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="xc-item-detail-consumer" />
+        <module name="xc-item-detail-provider" />
+        <module name="xc-item-repertory-consumer" />
+        <module name="xc-item-repertory-provider" />
+        <module name="xc-item-show-consumer" />
+        <module name="xc-item-show-provider" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="xc-item-detail-consumer" target="1.8" />
+      <module name="xc-item-detail-provider" target="1.8" />
+      <module name="xc-item-repertory-consumer" target="1.8" />
+      <module name="xc-item-repertory-provider" target="1.8" />
+      <module name="xc-item-show-consumer" target="1.8" />
+      <module name="xc-item-show-provider" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

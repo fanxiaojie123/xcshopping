@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.axy.xc.xcitemdetailprovider.dao.OrnamentsMapper">
+  <resultMap id="BaseResultMap" type="cn.axy.xc.xcitemdetailprovider.pojo.Ornaments">
+    <id column="o_id" jdbcType="INTEGER" property="oId" />
+    <result column="m_id" jdbcType="INTEGER" property="mId" />
+    <result column="o_size" jdbcType="VARCHAR" property="oSize" />
+    <result column="o_color" jdbcType="VARCHAR" property="oColor" />
+    <result column="o_count" jdbcType="DOUBLE" property="oCount" />
+    <result column="o_price" jdbcType="DOUBLE" property="oPrice" />
+    <result column="o_x" jdbcType="VARCHAR" property="oX" />
+    <result column="o_x1" jdbcType="VARCHAR" property="oX1" />
+    <result column="o_x2" jdbcType="VARCHAR" property="oX2" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    o_id, m_id, o_size, o_color, o_count, o_price, o_x, o_x1, o_x2
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ornaments
+    where o_id = #{oId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ornaments
+    where o_id = #{oId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.axy.xc.xcitemdetailprovider.pojo.Ornaments">
+    insert into ornaments (o_id, m_id, o_size, 
+      o_color, o_count, o_price, 
+      o_x, o_x1, o_x2)
+    values (#{oId,jdbcType=INTEGER}, #{mId,jdbcType=INTEGER}, #{oSize,jdbcType=VARCHAR}, 
+      #{oColor,jdbcType=VARCHAR}, #{oCount,jdbcType=DOUBLE}, #{oPrice,jdbcType=DOUBLE}, 
+      #{oX,jdbcType=VARCHAR}, #{oX1,jdbcType=VARCHAR}, #{oX2,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.axy.xc.xcitemdetailprovider.pojo.Ornaments">
+    insert into ornaments
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="oId != null">
+        o_id,
+      </if>
+      <if test="mId != null">
+        m_id,
+      </if>
+      <if test="oSize != null">
+        o_size,
+      </if>
+      <if test="oColor != null">
+        o_color,
+      </if>
+      <if test="oCount != null">
+        o_count,
+      </if>
+      <if test="oPrice != null">
+        o_price,
+      </if>
+      <if test="oX != null">
+        o_x,
+      </if>
+      <if test="oX1 != null">
+        o_x1,
+      </if>
+      <if test="oX2 != null">
+        o_x2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="oId != null">
+        #{oId,jdbcType=INTEGER},
+      </if>
+      <if test="mId != null">
+        #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="oSize != null">
+        #{oSize,jdbcType=VARCHAR},
+      </if>
+      <if test="oColor != null">
+        #{oColor,jdbcType=VARCHAR},
+      </if>
+      <if test="oCount != null">
+        #{oCount,jdbcType=DOUBLE},
+      </if>
+      <if test="oPrice != null">
+        #{oPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="oX != null">
+        #{oX,jdbcType=VARCHAR},
+      </if>
+      <if test="oX1 != null">
+        #{oX1,jdbcType=VARCHAR},
+      </if>
+      <if test="oX2 != null">
+        #{oX2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.axy.xc.xcitemdetailprovider.pojo.Ornaments">
+    update ornaments
+    <set>
+      <if test="mId != null">
+        m_id = #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="oSize != null">
+        o_size = #{oSize,jdbcType=VARCHAR},
+      </if>
+      <if test="oColor != null">
+        o_color = #{oColor,jdbcType=VARCHAR},
+      </if>
+      <if test="oCount != null">
+        o_count = #{oCount,jdbcType=DOUBLE},
+      </if>
+      <if test="oPrice != null">
+        o_price = #{oPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="oX != null">
+        o_x = #{oX,jdbcType=VARCHAR},
+      </if>
+      <if test="oX1 != null">
+        o_x1 = #{oX1,jdbcType=VARCHAR},
+      </if>
+      <if test="oX2 != null">
+        o_x2 = #{oX2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where o_id = #{oId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.axy.xc.xcitemdetailprovider.pojo.Ornaments">
+    update ornaments
+    set m_id = #{mId,jdbcType=INTEGER},
+      o_size = #{oSize,jdbcType=VARCHAR},
+      o_color = #{oColor,jdbcType=VARCHAR},
+      o_count = #{oCount,jdbcType=DOUBLE},
+      o_price = #{oPrice,jdbcType=DOUBLE},
+      o_x = #{oX,jdbcType=VARCHAR},
+      o_x1 = #{oX1,jdbcType=VARCHAR},
+      o_x2 = #{oX2,jdbcType=VARCHAR}
+    where o_id = #{oId,jdbcType=INTEGER}
+  </update>
+</mapper>

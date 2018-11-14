@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.axy.xc.xcitemdetailprovider.dao.SellerMapper">
+  <resultMap id="BaseResultMap" type="cn.axy.xc.xcitemdetailprovider.pojo.Seller">
+    <id column="s_id" jdbcType="INTEGER" property="sId" />
+    <result column="s_pwd" jdbcType="VARCHAR" property="sPwd" />
+    <result column="s_name" jdbcType="VARCHAR" property="sName" />
+    <result column="s_sex" jdbcType="INTEGER" property="sSex" />
+    <result column="s_address" jdbcType="VARCHAR" property="sAddress" />
+    <result column="s_phone" jdbcType="VARCHAR" property="sPhone" />
+    <result column="s_describe" jdbcType="VARCHAR" property="sDescribe" />
+    <result column="s_picture" jdbcType="VARCHAR" property="sPicture" />
+    <result column="s_x" jdbcType="VARCHAR" property="sX" />
+    <result column="s_x1" jdbcType="VARCHAR" property="sX1" />
+    <result column="s_x2" jdbcType="VARCHAR" property="sX2" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    s_id, s_pwd, s_name, s_sex, s_address, s_phone, s_describe, s_picture, s_x, s_x1, 
+    s_x2
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from seller
+    where s_id = #{sId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from seller
+    where s_id = #{sId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.axy.xc.xcitemdetailprovider.pojo.Seller">
+    insert into seller (s_id, s_pwd, s_name, 
+      s_sex, s_address, s_phone, 
+      s_describe, s_picture, s_x, 
+      s_x1, s_x2)
+    values (#{sId,jdbcType=INTEGER}, #{sPwd,jdbcType=VARCHAR}, #{sName,jdbcType=VARCHAR}, 
+      #{sSex,jdbcType=INTEGER}, #{sAddress,jdbcType=VARCHAR}, #{sPhone,jdbcType=VARCHAR}, 
+      #{sDescribe,jdbcType=VARCHAR}, #{sPicture,jdbcType=VARCHAR}, #{sX,jdbcType=VARCHAR}, 
+      #{sX1,jdbcType=VARCHAR}, #{sX2,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.axy.xc.xcitemdetailprovider.pojo.Seller">
+    insert into seller
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="sId != null">
+        s_id,
+      </if>
+      <if test="sPwd != null">
+        s_pwd,
+      </if>
+      <if test="sName != null">
+        s_name,
+      </if>
+      <if test="sSex != null">
+        s_sex,
+      </if>
+      <if test="sAddress != null">
+        s_address,
+      </if>
+      <if test="sPhone != null">
+        s_phone,
+      </if>
+      <if test="sDescribe != null">
+        s_describe,
+      </if>
+      <if test="sPicture != null">
+        s_picture,
+      </if>
+      <if test="sX != null">
+        s_x,
+      </if>
+      <if test="sX1 != null">
+        s_x1,
+      </if>
+      <if test="sX2 != null">
+        s_x2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="sId != null">
+        #{sId,jdbcType=INTEGER},
+      </if>
+      <if test="sPwd != null">
+        #{sPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="sName != null">
+        #{sName,jdbcType=VARCHAR},
+      </if>
+      <if test="sSex != null">
+        #{sSex,jdbcType=INTEGER},
+      </if>
+      <if test="sAddress != null">
+        #{sAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="sPhone != null">
+        #{sPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="sDescribe != null">
+        #{sDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="sPicture != null">
+        #{sPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="sX != null">
+        #{sX,jdbcType=VARCHAR},
+      </if>
+      <if test="sX1 != null">
+        #{sX1,jdbcType=VARCHAR},
+      </if>
+      <if test="sX2 != null">
+        #{sX2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.axy.xc.xcitemdetailprovider.pojo.Seller">
+    update seller
+    <set>
+      <if test="sPwd != null">
+        s_pwd = #{sPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="sName != null">
+        s_name = #{sName,jdbcType=VARCHAR},
+      </if>
+      <if test="sSex != null">
+        s_sex = #{sSex,jdbcType=INTEGER},
+      </if>
+      <if test="sAddress != null">
+        s_address = #{sAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="sPhone != null">
+        s_phone = #{sPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="sDescribe != null">
+        s_describe = #{sDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="sPicture != null">
+        s_picture = #{sPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="sX != null">
+        s_x = #{sX,jdbcType=VARCHAR},
+      </if>
+      <if test="sX1 != null">
+        s_x1 = #{sX1,jdbcType=VARCHAR},
+      </if>
+      <if test="sX2 != null">
+        s_x2 = #{sX2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where s_id = #{sId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.axy.xc.xcitemdetailprovider.pojo.Seller">
+    update seller
+    set s_pwd = #{sPwd,jdbcType=VARCHAR},
+      s_name = #{sName,jdbcType=VARCHAR},
+      s_sex = #{sSex,jdbcType=INTEGER},
+      s_address = #{sAddress,jdbcType=VARCHAR},
+      s_phone = #{sPhone,jdbcType=VARCHAR},
+      s_describe = #{sDescribe,jdbcType=VARCHAR},
+      s_picture = #{sPicture,jdbcType=VARCHAR},
+      s_x = #{sX,jdbcType=VARCHAR},
+      s_x1 = #{sX1,jdbcType=VARCHAR},
+      s_x2 = #{sX2,jdbcType=VARCHAR}
+    where s_id = #{sId,jdbcType=INTEGER}
+  </update>
+</mapper>
