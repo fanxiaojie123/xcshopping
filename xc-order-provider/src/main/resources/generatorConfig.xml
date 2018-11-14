@@ -18,7 +18,7 @@
             <property name="forceBigDecimals"  value="false"/>
         </javaTypeResolver>
         <!--自动生成的实体的存放包路径 -->
-        <javaModelGenerator  targetPackage="cn.axy.xc.xcshoppingprovider.pojo"
+        <javaModelGenerator  targetPackage="cn.axy.xc.xcorderprovider.pojo"
                              targetProject="src/main/java">
             <property  name="enableSubPackages"  value="true"/>
             <property  name="trimStrings"  value="true"/>
@@ -30,7 +30,7 @@
         </sqlMapGenerator>
         <!--自动生成的*Mapper.java存放路径 -->
         <javaClientGenerator type="XMLMAPPER"
-                             targetPackage="cn.axy.xc.xcshoppingprovider.dao"
+                             targetPackage="cn.axy.xc.xcorderprovider.dao"
                              targetProject="src/main/java">
             <property  name="enableSubPackages"  value="true"/>
         </javaClientGenerator>
@@ -39,7 +39,6 @@
         <table tableName="xc_order_shipping" ></table>
         <table tableName="xc_order_o" ></table>
         <table tableName="xc_order_u" ></table>
-
 
     </context>
 </generatorConfiguration>

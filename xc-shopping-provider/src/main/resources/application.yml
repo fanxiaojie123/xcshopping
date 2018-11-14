@@ -36,3 +36,5 @@ eureka:
 mybatis:
   mapperLocations: classpath:mapper/*.xml
   typeAliasesPackage: cn.taoba.taobaspringcloudsearchproducer.pojo
+
+
