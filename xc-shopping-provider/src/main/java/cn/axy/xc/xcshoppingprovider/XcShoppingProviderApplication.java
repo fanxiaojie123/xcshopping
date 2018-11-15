@@ -8,7 +8,6 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-
 @EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class})
 public class XcShoppingProviderApplication {
     public static void main(String[] args) {

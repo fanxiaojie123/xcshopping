@@ -12,7 +12,7 @@ import java.io.IOException;
 @Service
 public interface ShoppingCartChangeService {
     /**
-     * 添加商品到购物车，如果没有登录，添加到cookie中，如果登陆了，添加到redis中
+     * 修改购物车中的商品
      * @param itmeId
      * @param num
      * @return

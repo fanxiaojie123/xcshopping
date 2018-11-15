@@ -2,6 +2,7 @@ package cn.axy.xc.xcshoppingprovider.service.impl;
 
 import cn.axy.xc.xcshoppingprovider.pojo.ShoppingCarts;
 import cn.axy.xc.xcshoppingprovider.service.ShoppingCartDeleteService;
+import cn.axy.xc.xcshoppingprovider.service.ShoppingCartShowService;
 import cn.axy.xc.xcshoppingprovider.util.RedisUtil;
 import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -18,7 +19,7 @@ import java.io.Writer;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ShoppingCartDeleteServiceImpl implements ShoppingCartDeleteService {
+public class ShoppingCartShowServiceImpl implements ShoppingCartShowService {
 
 
     @Autowired
@@ -27,12 +28,11 @@ public class ShoppingCartDeleteServiceImpl implements ShoppingCartDeleteService 
      * 修改商品数量
      * @param request
      * @param response
-     * @param itmeId
      * @return
      * @throws IOException
      */
     @Override
-    public String deleteItemInCard(@RequestParam HttpServletRequest request, @RequestParam HttpServletResponse response, @RequestParam Long itmeId) throws IOException {
+    public String showItemInCard(@RequestParam HttpServletRequest request, @RequestParam HttpServletResponse response ) throws IOException {
         //判断是否登陆
         String code = request.getHeader("code");
         String userId = request.getHeader("userId");
@@ -63,54 +63,13 @@ public class ShoppingCartDeleteServiceImpl implements ShoppingCartDeleteService 
                 shoppingCarts = new ShoppingCarts();
             }
 
-            //删除购物车中的信息
-            if(itmeId != 0 ){
-                boolean b = shoppingCarts.removeItem(itmeId);
-                if(!b){
-                    mapRe.put("code","500");
-                    mapRe.put("info","删除商品失败...");
-                    mapRe.put("result",shoppingCarts);
-                    String string = JSON.toJSONString(mapRe);
-                    return string;
-                }
-            }
-
-            //如果未登陆就加入cookie
-            Writer w = new StringWriter();
-            om.writeValue(w, shoppingCarts);
-            Cookie cookie = new Cookie("BUYCAT", w.toString());
-            //设置path是可以共享cookie
-            cookie.setPath("/");
-            //设置Cookie过期时间: -1 表示关闭浏览器失效  0: 立即失效  >0: 单位是秒, 多少秒后失效
-            //一天失效
-            cookie.setMaxAge(24 * 60 * 60);
-            //Cookie写回浏览器
-            response.addCookie(cookie);
-
-
             mapRe.put("code","200");
             mapRe.put("info","删除商品成功...");
             mapRe.put("result",shoppingCarts);
             String string = JSON.toJSONString(mapRe);
             return string;
         }else{
-
             ShoppingCarts shoppingCarts = (ShoppingCarts) redisUtil.get(userId);
-
-            //删除购物车中的信息
-            if(itmeId != 0 ){
-                boolean b = shoppingCarts.removeItem(itmeId);
-                if(!b){
-                    mapRe.put("code","500");
-                    mapRe.put("info","删除商品失败...");
-                    mapRe.put("result",shoppingCarts);
-                    String string = JSON.toJSONString(mapRe);
-                    return string;
-                }
-            }
-
-            redisUtil.set(userId,shoppingCarts);
-
 
             mapRe.put("code","200");
             mapRe.put("info","删除商品成功...");

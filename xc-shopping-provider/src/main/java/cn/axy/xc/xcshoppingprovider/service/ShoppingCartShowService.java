@@ -9,13 +9,12 @@ import java.io.IOException;
 
 
 @Service
-public interface ShoppingCartDeleteService {
+public interface ShoppingCartShowService {
     /**
-     * 删除购物车中的商品
-     * @param itmeId
+     * 展示购物车商品
      * @return
      */
-    String deleteItemInCard(@RequestParam HttpServletRequest request, @RequestParam HttpServletResponse response, @RequestParam Long itmeId) throws IOException;
+    String showItemInCard(@RequestParam HttpServletRequest request, @RequestParam HttpServletResponse response) throws IOException;
 
 
 }

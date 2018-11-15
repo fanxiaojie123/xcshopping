@@ -69,6 +69,7 @@ public class ShoppingCardAddServiceImpl implements ShoppingCartAddService {
             if (!b){
                 mapRe.put("code","500");
                 mapRe.put("info","添加购物车失败，参数错误...");
+                mapRe.put("result",shoppingCarts);
                 String string = JSON.toJSONString(mapRe);
                 return string;
             }
