@@ -31,7 +31,7 @@ public class FooSolrimpl implements FooSolrdao {
             if(null != skusolr.getSkuid() && !"".equals(skusolr.getSkuid())){
                 solrQuery.set("fq", "mId:" + skusolr.getSkuid());
             }
-            solrQuery.set("fl", "id,fSize,fColor,mId,mPrice,mCount");
+            solrQuery.set("fl", "id,fSize,fColor,fPrice,fCount,mId,mPrice,mCount");
             // 执行查询
             QueryResponse response = client1.query(solrQuery);
             // 文档结果集
@@ -42,6 +42,8 @@ public class FooSolrimpl implements FooSolrdao {
             food.setId(Integer.parseInt((String) doc.get("id")));
             food.setfColor((String) doc.get("fColor"));
             food.setfSize((String) doc.get("fSize"));
+            food.setfPrice(Double.parseDouble((String) doc.get("fPrice")));
+            food.setfCount(Double.parseDouble((String) doc.get("fCount")));
             food.setmId(Integer.parseInt((String) doc.get("mId")));
             food.setmPrice(Double.parseDouble((String) doc.get("mPrice")));
             food.setmCount(Double.parseDouble((String) doc.get("mCount")));

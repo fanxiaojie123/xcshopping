@@ -30,7 +30,7 @@ public class ClothingSolrimpl implements Clothingsolrdao {
         if(null != skusolr.getSkuid() && !"".equals(skusolr.getSkuid())){
             solrQuery.set("fq", "mId:" + skusolr.getSkuid());
         }
-        solrQuery.set("fl", "id,cSize,cColor,mId,mPrice,mCount");
+        solrQuery.set("fl", "id,cSize,cColor,mId,cPrice,cCount,mPrice,mCount");
         // 执行查询
         QueryResponse response = client1.query(solrQuery);
         // 文档结果集
@@ -41,6 +41,8 @@ public class ClothingSolrimpl implements Clothingsolrdao {
             clothing1.setId(Integer.parseInt((String) doc.get("id")) );
             clothing1.setcColor((String) doc.get("cColor"));
             clothing1.setcSize((String) doc.get("cSize"));
+            clothing1.setcPrice(Double.parseDouble((String) doc.get("cPrice")));
+            clothing1.setcCount(Double.parseDouble((String) doc.get("cCount")));
             clothing1.setmId(Integer.parseInt((String) doc.get("mId")));
             clothing1.setmPrice(Double.parseDouble((String) doc.get("mPrice")) );
             clothing1.setmCount(Double.parseDouble((String) doc.get("mCount")));

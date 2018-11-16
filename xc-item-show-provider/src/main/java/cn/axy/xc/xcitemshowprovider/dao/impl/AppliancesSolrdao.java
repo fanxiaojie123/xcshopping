@@ -31,7 +31,7 @@ public class AppliancesSolrdao implements Skusolrdao {
         if(null != skusolr.getSkuid() && !"".equals(skusolr.getSkuid())){
             solrQuery.set("fq", "mId:" + skusolr.getSkuid());
         }
-        solrQuery.set("fl", "id,aSize,aColor,mPrice,mCount,mId");
+        solrQuery.set("fl", "id,aSize,aColor,aPrice,aCount,mPrice,mCount,mId");
         // 执行查询
         QueryResponse response = client1.query(solrQuery);
         // 文档结果集
@@ -42,6 +42,8 @@ public class AppliancesSolrdao implements Skusolrdao {
             appliances1.setId( Integer.parseInt((String) doc.get("id")) );
             appliances1.setaColor((String) doc.get("aColor"));
             appliances1.setaSize((String) doc.get("aSize"));
+            appliances1.setaPrice(Double.parseDouble((String) doc.get("aPrice")));
+            appliances1.setaCount(Double.parseDouble((String) doc.get("aCount")));
             appliances1.setmId(Integer.parseInt((String) doc.get("mId")));
             appliances1.setmPrice(Double.parseDouble((String) doc.get("mPrice")));
             appliances1.setmCount(Double.parseDouble((String) doc.get("mCount")));

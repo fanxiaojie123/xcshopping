@@ -43,7 +43,7 @@ public class Clopricesolrimpl implements Clopricedao {
         for (SolrDocument doc : docs) {
             Clothing clothing1 = new Clothing();
             clothing1.setId( Integer.parseInt((String) doc.get("id")) );
-            clothing1.setmPrice(Double.parseDouble((String) doc.get("aPrice")));
+            clothing1.setmPrice(Double.parseDouble((String) doc.get("cPrice")));
             clothing1.setmCount(Double.parseDouble((String) doc.get("cCount")));
             clothing1.setmId(Integer.parseInt((String) doc.get("mId")));
             clothing.add(clothing1);

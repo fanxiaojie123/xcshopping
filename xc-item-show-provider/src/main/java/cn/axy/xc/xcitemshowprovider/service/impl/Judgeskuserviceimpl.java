@@ -3,6 +3,7 @@ package cn.axy.xc.xcitemshowprovider.service.impl;
 import cn.axy.xc.xcitemshowprovider.dao.MessageSolrMapper;
 import cn.axy.xc.xcitemshowprovider.pojo.*;
 import cn.axy.xc.xcitemshowprovider.service.*;
+import cn.axy.xc.xcitemshowprovider.util.SkuList;
 import com.alibaba.fastjson.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,15 +15,7 @@ public class Judgeskuserviceimpl implements Judgeskuservice {
     @Autowired
     private MessageSolrMapper messageSolrMapper;
     @Autowired
-    private Closervicesolr closervicesolr;
-    @Autowired
-    private Skusolrservice skusolrservice;
-    @Autowired
-    private Cossolrservice cossolrservice;
-    @Autowired
-    private Foosolrservice foosolrservice;
-    @Autowired
-    private Ornsolrservice ornsolrservice;
+    private SkuList skuList;
     Skusolr ss = new Skusolr();
     @Override
     public String scid(Integer mid) throws Exception {
@@ -33,20 +26,15 @@ public class Judgeskuserviceimpl implements Judgeskuservice {
             Integer scid = messageSolrMapper.scid(mid);
             if (scid != null){
                 if (scid == 1){
-                    List<Clothing> clo = closervicesolr.clo(ss);
-                    count = JSON.toJSONString(clo);
+                    skuList.closolr(ss);
                 }else if (scid == 2){
-                    List<Appliances> appliances = skusolrservice.searchProduct1(ss);
-                    count = JSON.toJSONString(appliances);
+                    skuList.appsolr(ss);
                 }else if (scid == 3){
-                    List<Food> foo = foosolrservice.foo(ss);
-                    count = JSON.toJSONString(foo);
+                    skuList.foosolr(ss);
                 }else if (scid == 4){
-                    List<Ornaments> orn = ornsolrservice.orn(ss);
-                    count = JSON.toJSONString(orn);
+                    skuList.ornsolr(ss);
                 }else if (scid == 5){
-                    List<Cosmetics> cos = cossolrservice.cos(ss);
-                    count = JSON.toJSONString(cos);
+                    skuList.cossolr(ss);
                 }else{
                     count = "500";
                 }

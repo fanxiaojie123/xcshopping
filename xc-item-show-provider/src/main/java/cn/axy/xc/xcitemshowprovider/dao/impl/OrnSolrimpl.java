@@ -32,7 +32,7 @@ public class OrnSolrimpl implements OrnSolrdao {
         if (null != skusolr.getSkuid() && !"".equals(skusolr.getSkuid())) {
             solrQuery.set("fq", "mId:" + skusolr.getSkuid());
         }
-        solrQuery.set("fl", "id,oSize,oColor,mId,mPrice,mCount");
+        solrQuery.set("fl", "id,oSize,oColor,mId,oPrice,oCount,mPrice,mCount");
         // 执行查询
         QueryResponse response = client1.query(solrQuery);
         // 文档结果集
@@ -44,6 +44,8 @@ public class OrnSolrimpl implements OrnSolrdao {
             ornaments1.setoColor((String) doc.get("oColor"));
             ornaments1.setoSize((String) doc.get("oSize"));
             ornaments1.setmId((Integer) doc.get("mId"));
+            ornaments1.setoPrice(Double.parseDouble((String) doc.get("oPrice")));
+            ornaments1.setoCount(Double.parseDouble((String) doc.get("oCount")));
             ornaments1.setmPrice(Double.parseDouble((String) doc.get("mPrice")));
             ornaments1.setmCount(Double.parseDouble((String) doc.get("mCount")));
             ornaments.add(ornaments1);

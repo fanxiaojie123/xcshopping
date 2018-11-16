@@ -5,6 +5,7 @@ import cn.axy.xc.xcitemshowprovider.dao.impl.ClothingSolrimpl;
 import cn.axy.xc.xcitemshowprovider.dao.impl.MessageSolrimpl;
 import cn.axy.xc.xcitemshowprovider.pojo.*;
 import cn.axy.xc.xcitemshowprovider.service.Closervicesolr;
+import cn.axy.xc.xcitemshowprovider.util.SkuList;
 import com.alibaba.fastjson.JSON;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,6 +25,8 @@ public class XcItemShowProviderApplicationTests {
     private AppliancesSolrdao as;
     @Autowired
     private ClothingSolrimpl clothingSolrimpl;
+    @Autowired
+    private SkuList skuList;
 
 
     @Test
@@ -43,10 +46,15 @@ public class XcItemShowProviderApplicationTests {
 //        }
         Skusolr ss = new Skusolr();
         ss.setSkuid("2");
+//        try {
+//            List<Clothing> clo = clothingSolrimpl.clo(ss);
+//            System.out.println(JSON.toJSONString(clo));
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
         try {
-            List<Clothing> clo = clothingSolrimpl.clo(ss);
-            System.out.println(JSON.toJSONString(clo));
-
+            String skulist = skuList.closolr(ss);
         } catch (Exception e) {
             e.printStackTrace();
         }

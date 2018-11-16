@@ -26,6 +26,8 @@ public class Appsolrpriceimpl implements Apppricedao {
         SolrQuery solrQuery = new SolrQuery();
         //设置关键字
         solrQuery.setQuery(skupricesolr.getmId());
+        solrQuery.setQuery(skupricesolr.getmColor());
+        solrQuery.setQuery(skupricesolr.getmSize());
         //设置默认搜索域
         solrQuery.set("df", "product_keywords");
         //设置过滤条件
@@ -42,7 +44,7 @@ public class Appsolrpriceimpl implements Apppricedao {
         List<Appliances> appliances = new ArrayList<Appliances>();
         for (SolrDocument doc : docs) {
         Appliances appliances1 = new Appliances();
-        appliances1.setId( Integer.parseInt((String) doc.get("id")) );
+        appliances1.setId( Integer.parseInt((String) doc.get("id")));
         appliances1.setaPrice(Double.parseDouble((String) doc.get("aPrice")));
         appliances1.setaCount(Double.parseDouble((String) doc.get("aCount")));
         appliances1.setmId(Integer.parseInt((String) doc.get("mId")));
