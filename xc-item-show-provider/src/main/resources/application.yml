@@ -9,7 +9,7 @@ eureka:
     prefer-ip-address: true
   client:
     service-url:
-      defaultZone: http://60.205.207.9:6001/eureka/\
+      defaultZone: http://60.205.207.9:6001/eureka/
 ---
 spring:
   zipkin:
@@ -17,11 +17,33 @@ spring:
   sleuth:
     sampler:
        percentage: 1.0
+  datasource:
+      url: jdbc:mysql://localhost:3306/vip?charecterEncoding=UTF-8&useSSL=false
+      username: root
+      password: root
+      # 使用druid数据源
+      type: com.alibaba.druid.pool.DruidDataSource
+      driver-class-name: com.mysql.jdbc.Driver
+
+      filters: stat
+      maxActive: 20
+      initialSize: 1
+      maxWait: 60000
+      minIdle: 1
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: select 'x'
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      maxOpenPreparedStatements: 20
 logging:
     level: info
 ---
 mybatis:
   mapperLocations: classpath:mapper/*Mapper.xml
+---
 spring:
  mvc:
   view:

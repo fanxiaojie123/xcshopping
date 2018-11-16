@@ -1,7 +1,7 @@
 package cn.axy.xc.xcitemshowprovider.pojo;
 
 public class Clothing {
-    private Integer cId;
+    private Integer id;
 
     private Double cCount;
 
@@ -19,12 +19,32 @@ public class Clothing {
 
     private String cX2;
 
-    public Integer getcId() {
-        return cId;
+    private Double mPrice;
+
+    public Double getmPrice() {
+        return mPrice;
     }
 
-    public void setcId(Integer cId) {
-        this.cId = cId;
+    public void setmPrice(Double mPrice) {
+        this.mPrice = mPrice;
+    }
+
+    public Double getmCount() {
+        return mCount;
+    }
+
+    public void setmCount(Double mCount) {
+        this.mCount = mCount;
+    }
+
+    private Double mCount;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Double getcCount() {

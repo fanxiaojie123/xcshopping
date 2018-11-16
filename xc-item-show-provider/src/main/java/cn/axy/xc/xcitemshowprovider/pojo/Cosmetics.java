@@ -1,7 +1,7 @@
 package cn.axy.xc.xcitemshowprovider.pojo;
 
 public class Cosmetics {
-    private Integer coId;
+    private Integer id;
 
     private String coSize;
 
@@ -19,12 +19,32 @@ public class Cosmetics {
 
     private String coX2;
 
-    public Integer getCoId() {
-        return coId;
+    private Double mPrice;
+
+    public Double getmPrice() {
+        return mPrice;
     }
 
-    public void setCoId(Integer coId) {
-        this.coId = coId;
+    public void setmPrice(Double mPrice) {
+        this.mPrice = mPrice;
+    }
+
+    public Double getmCount() {
+        return mCount;
+    }
+
+    public void setmCount(Double mCount) {
+        this.mCount = mCount;
+    }
+
+    private Double mCount;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getCoSize() {

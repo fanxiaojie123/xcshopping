@@ -1,7 +1,7 @@
 package cn.axy.xc.xcitemshowprovider.pojo;
 
 public class Ornaments {
-    private Integer oId;
+    private Integer id;
 
     private Integer mId;
 
@@ -19,12 +19,32 @@ public class Ornaments {
 
     private String oX2;
 
-    public Integer getoId() {
-        return oId;
+    private Double mPrice;
+
+    public Double getmPrice() {
+        return mPrice;
     }
 
-    public void setoId(Integer oId) {
-        this.oId = oId;
+    public void setmPrice(Double mPrice) {
+        this.mPrice = mPrice;
+    }
+
+    public Double getmCount() {
+        return mCount;
+    }
+
+    public void setmCount(Double mCount) {
+        this.mCount = mCount;
+    }
+
+    private Double mCount;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Integer getmId() {

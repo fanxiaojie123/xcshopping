@@ -1,7 +1,7 @@
 package cn.axy.xc.xcitemshowprovider.pojo;
 
 public class Food {
-    private Integer fId;
+    private Integer id;
 
     private String fSize;
 
@@ -19,12 +19,32 @@ public class Food {
 
     private String fX2;
 
-    public Integer getfId() {
-        return fId;
+    private Double mPrice;
+
+    public Double getmPrice() {
+        return mPrice;
     }
 
-    public void setfId(Integer fId) {
-        this.fId = fId;
+    public void setmPrice(Double mPrice) {
+        this.mPrice = mPrice;
+    }
+
+    public Double getmCount() {
+        return mCount;
+    }
+
+    public void setmCount(Double mCount) {
+        this.mCount = mCount;
+    }
+
+    private Double mCount;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getfSize() {

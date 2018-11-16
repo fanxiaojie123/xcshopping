@@ -1,7 +1,7 @@
 package cn.axy.xc.xcitemshowprovider.pojo;
 
 public class Appliances {
-    private Integer aId;
+    private Integer id;
 
     private String aSize;
 
@@ -13,18 +13,34 @@ public class Appliances {
 
     private Integer mId;
 
-    private String aX;
+    private Double mPrice;
 
-    private String aX1;
+    public Double getmPrice() {
+        return mPrice;
+    }
+
+    public void setmPrice(Double mPrice) {
+        this.mPrice = mPrice;
+    }
+
+    public Double getmCount() {
+        return mCount;
+    }
+
+    public void setmCount(Double mCount) {
+        this.mCount = mCount;
+    }
+
+    private Double mCount;
 
     private String aX2;
 
-    public Integer getaId() {
-        return aId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setaId(Integer aId) {
-        this.aId = aId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getaSize() {
@@ -67,22 +83,6 @@ public class Appliances {
         this.mId = mId;
     }
 
-    public String getaX() {
-        return aX;
-    }
-
-    public void setaX(String aX) {
-        this.aX = aX;
-    }
-
-    public String getaX1() {
-        return aX1;
-    }
-
-    public void setaX1(String aX1) {
-        this.aX1 = aX1;
-    }
-
     public String getaX2() {
         return aX2;
     }
@@ -90,4 +90,5 @@ public class Appliances {
     public void setaX2(String aX2) {
         this.aX2 = aX2;
     }
+
 }
