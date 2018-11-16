@@ -7,6 +7,8 @@ import cn.axy.xc.xcshoppingprovider.util.PutRedis;
 import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,11 +19,19 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.io.Writer;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
+
+@Slf4j
 @Service
 public class ShoppingCardAddServiceImpl implements ShoppingCartAddService {
+
+    @Autowired
+    private PutRedis putRedis;
+
 
     /**
      * 根据登陆状态进行不同的添加，如果未登陆添加进入cookie,如果登陆了添加进入redis
@@ -31,7 +41,7 @@ public class ShoppingCardAddServiceImpl implements ShoppingCartAddService {
      * @return
      */
     @Override
-    public String addItemInCard(@RequestParam HttpServletRequest request,@RequestParam HttpServletResponse response,@RequestBody ShoppingCart shoppingCart, @RequestParam Long itemId) throws IOException {
+    public String addItemInCard(@RequestParam HttpServletRequest request,@RequestParam HttpServletResponse response, ShoppingCart shoppingCart, @RequestParam Long itemId) throws IOException {
 
         //判断是否登陆
         String code = request.getHeader("code");
@@ -39,6 +49,13 @@ public class ShoppingCardAddServiceImpl implements ShoppingCartAddService {
 
         //返回值map
         Map<String,Object> mapRe = new HashMap<>();
+
+        if (code == null || userId == null){
+            mapRe.put("code","400");
+            mapRe.put("info","找不到header信息...");
+            String string = JSON.toJSONString(mapRe);
+            return string;
+        }
 
         //获取cookie中购物车信息
         Cookie[] cookies = request.getCookies();
@@ -49,8 +66,11 @@ public class ShoppingCardAddServiceImpl implements ShoppingCartAddService {
         if (null != cookies && cookies.length > 0) {
             for (Cookie cookie : cookies) {
                 if ("BUYCAT".equals(cookie.getName())) {
+                    String value = cookie.getValue();
+                    String decode = URLDecoder.decode(value, "utf-8");
+
                     // 购物车 对象 与json字符串互转
-                    shoppingCarts = om.readValue(cookie.getValue(), ShoppingCarts.class);
+                    shoppingCarts = om.readValue(decode, ShoppingCarts.class);
                     break;
                 }
             }
@@ -61,8 +81,11 @@ public class ShoppingCardAddServiceImpl implements ShoppingCartAddService {
             shoppingCarts = new ShoppingCarts();
         }
 
+        Long itemId1 = shoppingCart.getItemId();
+        Integer itemNum = shoppingCart.getItemNum();
+
         //将当前商品添加到购物车
-        if((shoppingCart.getItemId() != 0 ) && shoppingCart.getItemNum() > 0){
+        if(itemId1 != 0  && itemNum > 0){
 
             boolean b = shoppingCarts.addItemInCard(itemId, shoppingCart.getItemNum(), shoppingCart);
 
@@ -77,19 +100,29 @@ public class ShoppingCardAddServiceImpl implements ShoppingCartAddService {
 
         if(code.equals("200")){
             //已登录，将cookie中的数据存到redis中，并删除cookie中的信息
-            PutRedis.insertBuyerCartToRedis(shoppingCarts,userId);
+            putRedis.insertBuyerCartToRedis(shoppingCarts,userId);
             //清空reids
             Cookie cookie = new Cookie("BUYCAT", null);
             cookie.setPath("/");
             cookie.setMaxAge(-0);
             response.addCookie(cookie);
+
+            ShoppingCarts shoppingCarts1 = putRedis.get(userId);
+            mapRe.put("result",shoppingCarts1);
+
         }else{
             //未登录，将信息存到cookie中
 
             //如果登陆就加入cookie
             Writer w = new StringWriter();
             om.writeValue(w, shoppingCarts);
-            Cookie cookie = new Cookie("BUYCAT", w.toString());
+
+            log.info("写入cookie的信息：" + w.toString());
+            String cookieString = w.toString();
+            //url
+            String encode = URLEncoder.encode(cookieString, "utf-8");
+
+            Cookie cookie = new Cookie("BUYCAT", encode);
             //设置path是可以共享cookie
             cookie.setPath("/");
             //设置Cookie过期时间: -1 表示关闭浏览器失效  0: 立即失效  >0: 单位是秒, 多少秒后失效
@@ -97,11 +130,12 @@ public class ShoppingCardAddServiceImpl implements ShoppingCartAddService {
             cookie.setMaxAge(24 * 60 * 60);
             //Cookie写回浏览器
             response.addCookie(cookie);
+            mapRe.put("result",shoppingCarts);
         }
 
         mapRe.put("code","200");
         mapRe.put("info","添加成功");
-        mapRe.put("result",shoppingCarts);
+
         String string = JSON.toJSONString(mapRe);
         return string;
     }

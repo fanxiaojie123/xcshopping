@@ -7,5 +7,6 @@
     <file url="file://$PROJECT_DIR$/xc-order-provider" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/xc-shopping-consumer" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/xc-shopping-provider" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xc-shopping-swagger" charset="UTF-8" />
   </component>
 </project>

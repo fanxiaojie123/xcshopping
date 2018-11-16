@@ -12,15 +12,17 @@
         <module name="xc-order-provider" />
         <module name="xc-shopping-consumer" />
         <module name="xc-shopping-provider" />
+        <module name="xc-shopping-swagger" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
+    <bytecodeTargetLevel target="8">
       <module name="xc-discounts-consumer" target="1.8" />
       <module name="xc-discounts-provider" target="1.8" />
       <module name="xc-order-consumer" target="1.8" />
       <module name="xc-order-provider" target="1.8" />
       <module name="xc-shopping-consumer" target="1.8" />
       <module name="xc-shopping-provider" target="1.8" />
+      <module name="xc-shopping-swagger" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

@@ -1,5 +1,6 @@
 package cn.axy.xc.xcshoppingprovider.service;
 
+
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -14,7 +15,5 @@ public interface ShoppingCartShowService {
      * 展示购物车商品
      * @return
      */
-    String showItemInCard(@RequestParam HttpServletRequest request, @RequestParam HttpServletResponse response) throws IOException;
-
-
+    String showItemInCard( HttpServletRequest request,  HttpServletResponse response) throws IOException;
 }

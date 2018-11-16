@@ -4,11 +4,12 @@ import cn.axy.xc.xcshoppingprovider.pojo.ShoppingCart;
 import cn.axy.xc.xcshoppingprovider.pojo.ShoppingCarts;
 import cn.axy.xc.xcshoppingprovider.service.ShoppingCartChangeService;
 import cn.axy.xc.xcshoppingprovider.util.PutRedis;
-import cn.axy.xc.xcshoppingprovider.util.RedisUtil;
 import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -16,13 +17,16 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.io.Writer;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
-
+@Slf4j
+@Service
 public class ShoppingCartChangeServiceImpl implements ShoppingCartChangeService {
 
     @Autowired
-    private  RedisUtil redisUtil;
+    private PutRedis putRedis;
 
 
     /**
@@ -42,6 +46,13 @@ public class ShoppingCartChangeServiceImpl implements ShoppingCartChangeService 
 
         Map<String,Object> mapRe = new HashMap<>();
 
+        if (code == null || userId == null){
+            mapRe.put("code","400");
+            mapRe.put("info","找不到header信息...");
+            String string = JSON.toJSONString(mapRe);
+            return string;
+        }
+
         if(!code.equals("200")){
             //未登录，将信息存到cookie中
 
@@ -54,8 +65,11 @@ public class ShoppingCartChangeServiceImpl implements ShoppingCartChangeService 
             if (null != cookies && cookies.length > 0) {
                 for (Cookie cookie : cookies) {
                     if ("BUYCAT".equals(cookie.getName())) {
+                        String value = cookie.getValue();
+                        String decode = URLDecoder.decode(value, "utf-8");
+
                         // 购物车 对象 与json字符串互转
-                        shoppingCarts = om.readValue(cookie.getValue(), ShoppingCarts.class);
+                        shoppingCarts = om.readValue(decode, ShoppingCarts.class);
                         break;
                     }
                 }
@@ -80,6 +94,7 @@ public class ShoppingCartChangeServiceImpl implements ShoppingCartChangeService 
                 } else if(num < 0 ){
                     num = num*(-1);
                     boolean b = shoppingCarts.reduceItem(itmeId, num);
+
                     if (!b) {
                         mapRe.put("code","500");
                         mapRe.put("info","减少商品数量失败");
@@ -87,13 +102,25 @@ public class ShoppingCartChangeServiceImpl implements ShoppingCartChangeService 
                         String string = JSON.toJSONString(mapRe);
                         return string;
                     }
+
+                    Map<Long, ShoppingCart> cartMap = shoppingCarts.getShoppingCartMap();
+                    if(cartMap.get(itmeId).getItemNum() == 0){
+                        cartMap.remove(itmeId);
+                        shoppingCarts.setShoppingCartMap(cartMap);
+                    }
                 }
             }
 
             //如果登陆就加入cookie
             Writer w = new StringWriter();
             om.writeValue(w, shoppingCarts);
-            Cookie cookie = new Cookie("BUYCAT", w.toString());
+
+            log.info("写入cookie的信息：" + w.toString());
+            String cookieString = w.toString();
+            //url
+            String encode = URLEncoder.encode(cookieString, "utf-8");
+
+            Cookie cookie = new Cookie("BUYCAT", encode);
             //设置path是可以共享cookie
             cookie.setPath("/");
             //设置Cookie过期时间: -1 表示关闭浏览器失效  0: 立即失效  >0: 单位是秒, 多少秒后失效
@@ -113,7 +140,7 @@ public class ShoppingCartChangeServiceImpl implements ShoppingCartChangeService 
             //已登录
 
             //修改
-            ShoppingCarts shoppingCarts = (ShoppingCarts) redisUtil.get(userId);
+            ShoppingCarts shoppingCarts = putRedis.get(userId);
 
             //将当前商品添加到购物车
             if(itmeId != 0 ){
@@ -136,10 +163,16 @@ public class ShoppingCartChangeServiceImpl implements ShoppingCartChangeService 
                         String string = JSON.toJSONString(mapRe);
                         return string;
                     }
+
+                    Map<Long, ShoppingCart> cartMap = shoppingCarts.getShoppingCartMap();
+                    if(cartMap.get(itmeId).getItemNum() == 0){
+                        cartMap.remove(itmeId);
+                        shoppingCarts.setShoppingCartMap(cartMap);
+                    }
                 }
             }
 
-            redisUtil.set(userId, shoppingCarts);
+            putRedis.set(userId, shoppingCarts);
 
             mapRe.put("code","200");
             mapRe.put("info","修改数量成功...");

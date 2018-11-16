@@ -1,7 +1,9 @@
 package cn.axy.xc.xcorderprovider;
 
+import cn.axy.xc.xcorderprovider.dao.XcOrderO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -9,8 +11,16 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 public class XcOrderProviderApplicationTests {
 
+    @Autowired
+    private XcOrderO xcOrderO;
     @Test
     public void contextLoads() {
+        int i = xcOrderO.selectAll();
+        System.out.println("===================");
+        System.out.println(i);
+        System.out.println("===================");
     }
+
+
 
 }

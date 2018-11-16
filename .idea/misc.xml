@@ -12,6 +12,7 @@
         <option value="$PROJECT_DIR$/xc-order-consumer/pom.xml" />
         <option value="$PROJECT_DIR$/xc-discounts-provider/pom.xml" />
         <option value="$PROJECT_DIR$/xc-discounts-consumer/pom.xml" />
+        <option value="$PROJECT_DIR$/xc-shopping-swagger/pom.xml" />
       </list>
     </option>
   </component>

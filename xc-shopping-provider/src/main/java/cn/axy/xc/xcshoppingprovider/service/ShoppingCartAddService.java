@@ -2,6 +2,7 @@ package cn.axy.xc.xcshoppingprovider.service;
 
 import cn.axy.xc.xcshoppingprovider.pojo.ShoppingCart;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,7 +23,7 @@ public interface ShoppingCartAddService {
      * @return
      * @throws IOException
      */
-    String addItemInCard(@RequestParam HttpServletRequest request, @RequestParam HttpServletResponse response, @RequestBody ShoppingCart shoppingCart, @RequestParam Long itemId) throws IOException;
+    String addItemInCard(@RequestParam HttpServletRequest request, @RequestParam HttpServletResponse response, @Param("shoppingCart") ShoppingCart shoppingCart, @RequestParam Long itemId) throws IOException;
 
 
 }

@@ -13,3 +13,12 @@ eureka:
 feign:
   hystrix:
     enabled: true
+---
+spring:
+  zipkin:
+    base-url: http://60.205.207.9:7777
+  sleuth:
+    sampler:
+       percentage: 1.0
+logging:
+    level: info

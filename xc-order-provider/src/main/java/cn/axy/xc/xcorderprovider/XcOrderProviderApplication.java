@@ -1,11 +1,16 @@
 package cn.axy.xc.xcorderprovider;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @SpringBootApplication
 @EnableDiscoveryClient
+@EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class})
+@MapperScan("cn.axy.xc.xcorderprovider.dao")
 public class XcOrderProviderApplication {
 
     public static void main(String[] args) {

@@ -14,13 +14,13 @@ import java.util.List;
 @SpringBootTest
 public class XcShoppingProviderApplicationTests {
 
-    @Autowired
-    private RedisUtil redisUtil;
+    //@Autowired
+    //private RedisUtil redisUtil;
 
     @Test
     public void contextLoads() {
 
-        List<String> list =  new ArrayList<>();
+       /* List<String> list =  new ArrayList<>();
         list.add("123");
         redisUtil.lSet("123",list);
 
@@ -31,7 +31,7 @@ public class XcShoppingProviderApplicationTests {
 
             System.out.println(s);
 
-        }
+        }*/
 
 
     }

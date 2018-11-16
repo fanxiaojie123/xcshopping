@@ -9,6 +9,7 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/xc-shopping.iml" filepath="$PROJECT_DIR$/.idea/xc-shopping.iml" />
       <module fileurl="file://$PROJECT_DIR$/xc-shopping-consumer/xc-shopping-consumer.iml" filepath="$PROJECT_DIR$/xc-shopping-consumer/xc-shopping-consumer.iml" />
       <module fileurl="file://$PROJECT_DIR$/xc-shopping-provider/xc-shopping-provider.iml" filepath="$PROJECT_DIR$/xc-shopping-provider/xc-shopping-provider.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xc-shopping-swagger/xc-shopping-swagger.iml" filepath="$PROJECT_DIR$/xc-shopping-swagger/xc-shopping-swagger.iml" />
     </modules>
   </component>
 </project>

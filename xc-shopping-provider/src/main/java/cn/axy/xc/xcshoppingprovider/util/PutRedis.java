@@ -3,22 +3,23 @@ package cn.axy.xc.xcshoppingprovider.util;
 
 import cn.axy.xc.xcshoppingprovider.pojo.ShoppingCart;
 import cn.axy.xc.xcshoppingprovider.pojo.ShoppingCarts;
-import com.sun.tools.javac.util.Log;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.Resource;
 import java.util.*;
 
 
 /**
  * redis中的集合（用户id，skuid，值）
  */
-@Component
 @Slf4j
+@Component
 public class PutRedis {
-    @Resource
-    private static RedisUtil redisUtil;
+
+    @Autowired
+    private RedisUtil redisUtil;
+
 
 
     /**
@@ -26,14 +27,22 @@ public class PutRedis {
      * @param shoppingCarts
      * @param userId
      */
-    public static void insertBuyerCartToRedis(ShoppingCarts shoppingCarts, String userId) {
+    public  void insertBuyerCartToRedis(ShoppingCarts shoppingCarts, String userId) {
         //获取购物车中的数据
         Map<Long, ShoppingCart> shoppingCartMap = shoppingCarts.getShoppingCartMap();
 
-        boolean have = true;
         if (shoppingCartMap.size() > 0) {
+
             //根据用户id获取对象
             ShoppingCarts shoppingCartsRedis = (ShoppingCarts) redisUtil.get(userId);//reids中 shoppingcards 对象
+
+            if (shoppingCartsRedis == null){
+
+                log.info("redis中没有数据....新建购物车对象.....");
+
+                shoppingCartsRedis =  new ShoppingCarts();
+            }
+
             Map<Long, ShoppingCart> redisUser = shoppingCartsRedis.getShoppingCartMap();//reids中 shoppingcards 集合
             Set<Long> itemids = shoppingCartMap.keySet();//内存中的键的集合（商品id）
             for (Long itemid : itemids) {//内存中的
@@ -47,11 +56,8 @@ public class PutRedis {
 
                     //修改数量(商品对象)
                     shoppingCartRedis.setItemNum(shoppingCart.getItemNum());
-
                     //修改购物车对象
                     redisUser.put(itemid,shoppingCartRedis);
-
-
                 }else{
                     //redis中不存在这个对象
 
@@ -72,7 +78,7 @@ public class PutRedis {
      * @param userId
      * @return
      */
-    public static List<ShoppingCart> selectBuyerCartFromRedis(String userId){
+    public  List<ShoppingCart> selectBuyerCartFromRedis(String userId){
         ShoppingCarts ShoppingCarts = (ShoppingCarts) redisUtil.get(userId);
         Map<Long, ShoppingCart> shoppingCartMap = ShoppingCarts.getShoppingCartMap();
         List<ShoppingCart> blist = new ArrayList<ShoppingCart>();
@@ -89,7 +95,7 @@ public class PutRedis {
      * @param userId
      * @return
      */
-    public static  Map<Long, ShoppingCart> selectBuyerCartMap(String userId){
+    public   Map<Long, ShoppingCart> selectBuyerCartMap(String userId){
         ShoppingCarts shoppingCarts = (ShoppingCarts) redisUtil.get(userId);
 
         Map<Long, ShoppingCart> shoppingCartMap = shoppingCarts.getShoppingCartMap();
@@ -97,7 +103,7 @@ public class PutRedis {
     }
 
 
-    public static  Map<String,Object> deleteBuyerCardMap(String userId,Long itemId){
+    public   Map<String,Object> deleteBuyerCardMap(String userId,Long itemId){
 
         Map<String,Object> mapRe = new HashMap<>();
         ShoppingCarts shoppingCarts = (ShoppingCarts) redisUtil.get(userId);
@@ -115,5 +121,20 @@ public class PutRedis {
         mapRe.put("result",shoppingCartMap);
         return mapRe;
     }
+
+    public   boolean set(String string,Object object){
+
+        return redisUtil.set(string,object);
+    }
+
+
+    public   ShoppingCarts get(String string){
+
+
+
+        ShoppingCarts shoppingCarts = (ShoppingCarts) redisUtil.get(string);
+        return shoppingCarts;
+    }
+
 
 }

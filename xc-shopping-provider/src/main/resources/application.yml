@@ -37,4 +37,13 @@ mybatis:
   mapperLocations: classpath:mapper/*.xml
   typeAliasesPackage: cn.taoba.taobaspringcloudsearchproducer.pojo
 
+---
+spring:
+  zipkin:
+    base-url: http://60.205.207.9:7777
+  sleuth:
+    sampler:
+       percentage: 1.0
+logging:
+    level: info
 
