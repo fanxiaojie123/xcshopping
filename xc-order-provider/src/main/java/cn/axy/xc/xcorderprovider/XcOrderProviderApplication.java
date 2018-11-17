@@ -9,10 +9,8 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-@EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class})
 @MapperScan("cn.axy.xc.xcorderprovider.dao")
 public class XcOrderProviderApplication {
-
     public static void main(String[] args) {
         SpringApplication.run(XcOrderProviderApplication.class, args);
     }

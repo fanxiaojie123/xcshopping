@@ -1,24 +1,38 @@
 package cn.axy.xc.xcorderprovider.pojo;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel(value = "XcOrderItem",description = "订单商品表，记录该订单的商品信息")
 public class XcOrderItem {
+    @ApiModelProperty(value = "商品id",dataType = "String")
     private String itemId;
 
+    @ApiModelProperty(value = "订单id",dataType = "String")
     private String orderId;
 
+    @ApiModelProperty(value = "商品购买数量",dataType = "Integer")
     private Integer num;
 
+    @ApiModelProperty(value = "商品标题",dataType = "String")
     private String title;
 
+    @ApiModelProperty(value = "商品单价",dataType = "Long")
     private Long price;
 
+    @ApiModelProperty(value = "商品总金额",dataType = "Long")
     private Long totalFee;
 
+    @ApiModelProperty(value = "商品图片地址",dataType = "String")
     private String picPath;
 
+    @ApiModelProperty(value = "冗余列1",dataType = "String")
     private String extend1;
 
+    @ApiModelProperty(value = "冗余列2",dataType = "String")
     private String extend2;
 
+    @ApiModelProperty(value = "冗余列3",dataType = "String")
     private String extend3;
 
     public String getItemId() {

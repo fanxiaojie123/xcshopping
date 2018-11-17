@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+
+    <properties  resource="dbcp1.properties"/>
+
+    <context  id="mysqlTables"   targetRuntime="MyBatis3">
+        <commentGenerator>
+            <property name="suppressDate" value="true"/>
+            <property name="suppressAllComments" value="true" />
+        </commentGenerator>
+        <jdbcConnection  driverClass="com.mysql.jdbc.Driver"
+                         connectionURL="${url}"
+                         userId="${user}"
+                         password="${password}"/>
+        <!--指定生成的类型为java类型，避免数据库中number等类型字段 -->
+        <javaTypeResolver>
+            <property name="forceBigDecimals"  value="false"/>
+        </javaTypeResolver>
+        <!--自动生成的实体的存放包路径 -->
+        <javaModelGenerator  targetPackage="cn.axy.xc.xcorderprovider.pojo"
+                             targetProject="src/main/java">
+            <property  name="enableSubPackages"  value="true"/>
+            <property  name="trimStrings"  value="true"/>
+        </javaModelGenerator>
+        <!--自动生成的*Mapper.xml文件存放路径 -->
+        <sqlMapGenerator  targetPackage="mapper"
+                          targetProject="src/main/resources">
+            <property  name="enableSubPackages"  value="true"/>
+        </sqlMapGenerator>
+        <!--自动生成的*Mapper.java存放路径 -->
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="cn.axy.xc.xcorderprovider.dao"
+                             targetProject="src/main/java">
+            <property  name="enableSubPackages"  value="true"/>
+        </javaClientGenerator>
+
+        <table tableName="xc_order_item" ></table>
+        <table tableName="xc_order_shipping" ></table>
+        <table tableName="xc_order_o" ></table>
+        <table tableName="xc_order_u" ></table>
+
+    </context>
+</generatorConfiguration>

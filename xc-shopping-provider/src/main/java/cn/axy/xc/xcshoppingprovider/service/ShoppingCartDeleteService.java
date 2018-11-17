@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 
 @Service
@@ -15,7 +16,7 @@ public interface ShoppingCartDeleteService {
      * @param itmeId
      * @return
      */
-    String deleteItemInCard(@RequestParam HttpServletRequest request, @RequestParam HttpServletResponse response, @RequestParam Long itmeId) throws IOException;
+    String deleteItemInCard( HttpServletRequest request,  HttpServletResponse response, List<Long> itmeIds) throws IOException;
 
 
 }

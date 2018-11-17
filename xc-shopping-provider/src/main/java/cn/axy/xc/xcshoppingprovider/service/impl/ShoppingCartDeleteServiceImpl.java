@@ -7,6 +7,7 @@ import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.catalina.LifecycleState;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,6 +21,7 @@ import java.io.Writer;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Slf4j
@@ -34,12 +36,12 @@ public class ShoppingCartDeleteServiceImpl implements ShoppingCartDeleteService 
      * 修改商品数量
      * @param request
      * @param response
-     * @param itmeId
+     * @param itmeIds
      * @return
      * @throws IOException
      */
     @Override
-    public String deleteItemInCard(@RequestParam HttpServletRequest request, @RequestParam HttpServletResponse response, @RequestParam Long itmeId) throws IOException {
+    public String deleteItemInCard( HttpServletRequest request,  HttpServletResponse response,  List<Long> itmeIds) throws IOException {
         //判断是否登陆
         String code = request.getHeader("code");
         String userId = request.getHeader("userId");
@@ -83,12 +85,16 @@ public class ShoppingCartDeleteServiceImpl implements ShoppingCartDeleteService 
             }
 
             //删除购物车中的信息
-            if(itmeId != 0 ){
+
+
+
+            for (Long itmeId : itmeIds){
                 boolean b = shoppingCarts.removeItem(itmeId);
                 if(!b){
                     mapRe.put("code","500");
-                    mapRe.put("info","删除商品失败...");
+                    mapRe.put("info","删除商品列表失败...");
                     mapRe.put("result",shoppingCarts);
+                    log.error("删除商品列表失败，失败id" + itmeId);
                     String string = JSON.toJSONString(mapRe);
                     return string;
                 }
@@ -123,13 +129,14 @@ public class ShoppingCartDeleteServiceImpl implements ShoppingCartDeleteService 
             ShoppingCarts shoppingCarts = putRedis.get(userId);
 
             //删除购物车中的信息
-            if(itmeId != 0 ){
+            for (Long itmeId : itmeIds){
                 boolean b = shoppingCarts.removeItem(itmeId);
                 if(!b){
                     mapRe.put("code","500");
-                    mapRe.put("info","删除商品失败...");
+                    mapRe.put("info","删除商品列表失败...");
                     mapRe.put("result",shoppingCarts);
                     String string = JSON.toJSONString(mapRe);
+                    log.error("删除商品列表失败，失败id" + itmeId);
                     return string;
                 }
             }

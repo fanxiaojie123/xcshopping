@@ -6,10 +6,7 @@ import cn.axy.xc.xcshoppingprovider.service.ShoppingCartChangeService;
 import cn.axy.xc.xcshoppingprovider.service.ShoppingCartDeleteService;
 import cn.axy.xc.xcshoppingprovider.service.ShoppingCartShowService;
 import com.alibaba.fastjson.JSON;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.*;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 @Slf4j
 @Api(value="/shopping", tags="购物车provider接口")
@@ -43,15 +41,16 @@ public class ShoppingController {
      */
     @ApiOperation(value="增加购物车商品", notes = "增加购物车商品")
 
-    @ApiImplicitParams({
+    /*@ApiImplicitParams({
             @ApiImplicitParam(name="shoppingCart", value="shoppingCart", dataType = "ShoppingCart")
             ,@ApiImplicitParam(name="itemIdKey", value="itemIdKey", dataType = "java.lang.Long")
-    })
+    })*/
     @RequestMapping(value = "/addShopping",method = RequestMethod.POST)
     public String addShopping(@Param("request") HttpServletRequest request,
                               @Param("response") HttpServletResponse response,
-                              @Param("shoppingCart") ShoppingCart shoppingCart,
-                              @Param("itemIdKey") Long itemIdKey)  {
+                              @ApiParam(name = "shoppingCart",value = "购物车对象") ShoppingCart shoppingCart,
+
+                              @ApiParam(name = "itemIdKey",value = "商品ID",required = true) Long itemIdKey)  {
         String re = null;
         log.info(JSON.toJSONString(shoppingCart));
         try {
@@ -70,12 +69,12 @@ public class ShoppingController {
     @ApiOperation(value="删除购物车商品", notes = "删除购物车商品")
 
     @ApiImplicitParams({
-            @ApiImplicitParam(name="itmeId", value="itmeId", dataType = "Long")
+            @ApiImplicitParam(name="itmeId", value="itmeId", dataType = "List")
     })
     @RequestMapping(value = "/deleteShopping",method = RequestMethod.POST)
     public String deleteShopping(@Param("request") HttpServletRequest request,
                                  @Param("response") HttpServletResponse response,
-                               @RequestParam Long itmeId)  {
+                               @RequestBody List<Long> itmeId)  {
         String re = null;
         try {
             re = shoppingCartDeleteService.deleteItemInCard(request,response,itmeId);
