@@ -1,26 +1,31 @@
 package cn.axy.xc.xcitemshowprovider.pojo;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel(value = "Seller",description = "商家实体类")
 public class Seller {
+    @ApiModelProperty(value = "商家ID",dataType = "Integer")
     private Integer sId;
-
+    @ApiModelProperty(value = "商家密码",dataType = "String")
     private String sPwd;
-
+    @ApiModelProperty(value = "商家名称",dataType = "String")
     private String sName;
-
+    @ApiModelProperty(value = "商家性别",dataType = "Integer")
     private Integer sSex;
-
+    @ApiModelProperty(value = "商家地址",dataType = "String")
     private String sAddress;
-
+    @ApiModelProperty(value = "商家图片",dataType = "String")
     private String sPhone;
-
+    @ApiModelProperty(value = "商家描述",dataType = "String")
     private String sDescribe;
-
+    @ApiModelProperty(value = "商家图片",dataType = "String")
     private String sPicture;
-
+    @ApiModelProperty(value = "冗余",dataType = "String")
     private String sX;
-
+    @ApiModelProperty(value = "冗余",dataType = "String")
     private String sX1;
-
+    @ApiModelProperty(value = "冗余",dataType = "String")
     private String sX2;
 
     public Integer getsId() {

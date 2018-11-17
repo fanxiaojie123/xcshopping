@@ -1,18 +1,35 @@
 package cn.axy.xc.xcitemshowprovider.pojo;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel(value = "Messagesolrpojo",description = "商品详情实体类")
 public class Messagesolrpojo {
+    @ApiModelProperty(value = "商品ID",dataType = "String")
     private String id;
+    @ApiModelProperty(value = "商品名称",dataType = "String")
     private String mName;
+    @ApiModelProperty(value = "商品图片",dataType = "String")
     private String mPicture;
+    @ApiModelProperty(value = "商品参数",dataType = "String")
     private String mParticulars;
+    @ApiModelProperty(value = "商品买点",dataType = "String")
     private String mPoints;
+    @ApiModelProperty(value = "商品价格",dataType = "String")
     private String mPrice;
+    @ApiModelProperty(value = "商品总库存",dataType = "String")
     private String mCount;
+    @ApiModelProperty(value = "商品商品类别",dataType = "String")
     private String searchCategoryName;
+    @ApiModelProperty(value = "商家名称",dataType = "String")
     private String sName;
+    @ApiModelProperty(value = "商家地址",dataType = "String")
     private String sAddress;
+    @ApiModelProperty(value = "商家图片",dataType = "String")
     private String sPhone;
+    @ApiModelProperty(value = "商家详情",dataType = "String")
     private String sDescribe;
+    @ApiModelProperty(value = "商家图片",dataType = "String")
     private String sPicture;
 
     public String getsAddress() {

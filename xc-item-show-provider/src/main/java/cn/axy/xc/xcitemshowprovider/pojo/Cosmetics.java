@@ -1,24 +1,29 @@
 package cn.axy.xc.xcitemshowprovider.pojo;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel(value = "Cosmetics",description = "化妆品的SKU表")
 public class Cosmetics {
+    @ApiModelProperty(value = "化妆品SKUID",dataType = "Integer")
     private Integer id;
-
+    @ApiModelProperty(value = "化妆品SKU容量",dataType = "String")
     private String coSize;
-
+    @ApiModelProperty(value = "化妆品SKU颜色",dataType = "String")
     private String coColor;
-
+    @ApiModelProperty(value = "化妆品SKU库存",dataType = "Double")
     private Double coCount;
-
+    @ApiModelProperty(value = "化妆品SKU单价",dataType = "Double")
     private Double coPrice;
-
+    @ApiModelProperty(value = "商品SKUID",dataType = "Integer")
     private Integer mId;
-
+    @ApiModelProperty(value = "冗余",dataType = "String")
     private String coX;
-
+    @ApiModelProperty(value = "冗余",dataType = "String")
     private String coX1;
-
+    @ApiModelProperty(value = "冗余",dataType = "String")
     private String coX2;
-
+    @ApiModelProperty(value = "商品SKU价格",dataType = "Double")
     private Double mPrice;
 
     public Double getmPrice() {
@@ -36,7 +41,7 @@ public class Cosmetics {
     public void setmCount(Double mCount) {
         this.mCount = mCount;
     }
-
+    @ApiModelProperty(value = "商品SKU总库存",dataType = "Double")
     private Double mCount;
 
     public Integer getId() {

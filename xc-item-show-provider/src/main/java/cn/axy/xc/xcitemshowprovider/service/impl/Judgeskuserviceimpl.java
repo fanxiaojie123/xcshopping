@@ -26,15 +26,15 @@ public class Judgeskuserviceimpl implements Judgeskuservice {
             Integer scid = messageSolrMapper.scid(mid);
             if (scid != null){
                 if (scid == 1){
-                    skuList.closolr(ss);
+                    count = skuList.closolr(ss);
                 }else if (scid == 2){
-                    skuList.appsolr(ss);
+                    count = skuList.appsolr(ss);
                 }else if (scid == 3){
-                    skuList.foosolr(ss);
+                    count = skuList.foosolr(ss);
                 }else if (scid == 4){
-                    skuList.ornsolr(ss);
+                    count = skuList.ornsolr(ss);
                 }else if (scid == 5){
-                    skuList.cossolr(ss);
+                    count = skuList.cossolr(ss);
                 }else{
                     count = "500";
                 }

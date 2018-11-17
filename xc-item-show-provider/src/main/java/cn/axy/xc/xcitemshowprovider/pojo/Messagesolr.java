@@ -1,12 +1,23 @@
 package cn.axy.xc.xcitemshowprovider.pojo;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel(value = "Messagesolr",description = "搜索商品实体类")
 public class Messagesolr {
+    @ApiModelProperty(value = "商品名称",dataType = "String")
     private String catalog_name; //商品名称
+    @ApiModelProperty(value = "价格",dataType = "String")
     private String price;  //价格
+    @ApiModelProperty(value = "排序类型",dataType = "String")
     private String sort;  //排序类型
+    @ApiModelProperty(value = "关键字",dataType = "String")
     private String queryString;  //关键字
+    @ApiModelProperty(value = "商品类型",dataType = "String")
     private String type; //商品类型
+    @ApiModelProperty(value = "商家",dataType = "String")
     private String seller; //商家
+    @ApiModelProperty(value = "买点",dataType = "String")
     private String points; //买点
 
 

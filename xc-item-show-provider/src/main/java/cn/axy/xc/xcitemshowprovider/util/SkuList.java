@@ -28,6 +28,13 @@ public class SkuList {
     List<String> skusizelist = new ArrayList<String>();
     List<String> skumlist = new ArrayList<>();
     List<String> skualist = new ArrayList<>();
+
+    /**
+     * 家电
+     * @param skusolr
+     * @return
+     * @throws Exception
+     */
     public String appsolr(Skusolr skusolr) throws Exception {
         List<Appliances> appliances = appliancesSolrdao.searchProduct(skusolr);
         for (Appliances app:appliances) {
@@ -49,23 +56,38 @@ public class SkuList {
                     }
                 }
             }
-            String mcount = String.valueOf(app.getmCount());
-            String mprice = String.valueOf(app.getmPrice());
-            skumlist.add(mcount);
-            skumlist.add(mprice);
+            String mcountapp = String.valueOf(app.getmCount());
+            System.out.println(mcountapp);
+            String mpriceapp = String.valueOf(app.getmPrice());
+            System.out.println(mpriceapp);
+            skumlist.add(mcountapp);
+            skumlist.add(mpriceapp);
+            for  ( int  i = 0 ; i < skumlist.size() - 1 ; i ++ )  {
+                for  ( int j = skumlist.size() - 1 ; j > i; j -- )  {
+                    if  (skumlist.get(j).equals(skumlist.get(i)))  {
+                        skumlist.remove(j);
+                    }
+                }
+            }
             String acount = String.valueOf(app.getaCount());
             String aprice = String.valueOf(app.getaPrice());
             skualist.add(acount);
             skualist.add(aprice);
 
         }
-        skumap.put("color",skucolorlist);
-        skumap.put("size",skusizelist);
+        skumap.put("acolor",skucolorlist);
+        skumap.put("asize",skusizelist);
         skumap.put("mcoandpr",skumlist);
         skumap.put("acoandpr",skualist);
-
         return JSON.toJSONString(skumap);
     }
+
+    /**
+     * 服装
+     * @param skusolr
+     * @return
+     * @throws Exception
+     */
     public String closolr(Skusolr skusolr) throws Exception {
         List<Clothing> clo = clothingSolrimpl.clo(skusolr);
         for (Clothing c:clo) {
@@ -87,21 +109,37 @@ public class SkuList {
                     }
                 }
             }
-            String mcount = String.valueOf(c.getmCount());
-            String mprice = String.valueOf(c.getmPrice());
-            skumlist.add(mcount);
-            skumlist.add(mprice);
-            String acount = String.valueOf(c.getcCount());
-            String aprice = String.valueOf(c.getcPrice());
-            skualist.add(acount);
-            skualist.add(aprice);
+            String mcountclo = String.valueOf(c.getmCount());
+            System.out.println(mcountclo);
+            String mpriceclo = String.valueOf(c.getmPrice());
+            System.out.println(mpriceclo);
+            skumlist.add(mcountclo);
+            skumlist.add(mpriceclo);
+            for( int i = 0 ; i < skumlist.size() - 1 ; i ++ )  {
+                for( int j = skumlist.size() - 1 ; j > i; j -- )  {
+                    if  (skumlist.get(j).equals(skumlist.get(i)))  {
+                        skumlist.remove(j);
+                    }
+                }
+            }
+            String ccount = String.valueOf(c.getcCount());
+            String cprice = String.valueOf(c.getcPrice());
+            skualist.add(ccount);
+            skualist.add(cprice);
         }
-        skumap.put("color",skucolorlist);
-        skumap.put("size",skusizelist);
+        skumap.put("ccolor",skucolorlist);
+        skumap.put("csize",skusizelist);
         skumap.put("mcoandpr",skumlist);
-        skumap.put("acoandpr",skualist);
+        skumap.put("ccoandpr",skualist);
         return JSON.toJSONString(skumap);
     }
+
+    /**
+     * 化妆品
+     * @param skusolr
+     * @return
+     * @throws Exception
+     */
     public String cossolr(Skusolr skusolr) throws Exception {
         List<Cosmetics> cos = cossolrimpl.cos(skusolr);
         for (Cosmetics co:cos) {
@@ -123,21 +161,35 @@ public class SkuList {
                     }
                 }
             }
-            String mcount = String.valueOf(co.getmCount());
-            String mprice = String.valueOf(co.getmPrice());
-            skumlist.add(mcount);
-            skumlist.add(mprice);
-            String acount = String.valueOf(co.getCoColor());
-            String aprice = String.valueOf(co.getCoPrice());
-            skualist.add(acount);
-            skualist.add(aprice);
+            String mcountcos = String.valueOf(co.getmCount());
+            String mpricecos = String.valueOf(co.getmPrice());
+            skumlist.add(mcountcos);
+            skumlist.add(mpricecos);
+            for( int i = 0 ; i < skumlist.size() - 1 ; i ++ )  {
+                for( int j = skumlist.size() - 1 ; j > i; j -- )  {
+                    if  (skumlist.get(j).equals(skumlist.get(i)))  {
+                        skumlist.remove(j);
+                    }
+                }
+            }
+            String cocount = String.valueOf(co.getCoColor());
+            String coprice = String.valueOf(co.getCoPrice());
+            skualist.add(cocount);
+            skualist.add(coprice);
         }
-        skumap.put("color",skucolorlist);
-        skumap.put("size",skusizelist);
+        skumap.put("cocolor",skucolorlist);
+        skumap.put("cosize",skusizelist);
         skumap.put("mcoandpr",skumlist);
-        skumap.put("acoandpr",skualist);
+        skumap.put("cocoandpr",skualist);
         return JSON.toJSONString(skumap);
     }
+
+    /**
+     * 首饰
+     * @param skusolr
+     * @return
+     * @throws Exception
+     */
     public String ornsolr(Skusolr skusolr) throws Exception {
         List<Ornaments> orn = ornSolrimpl.orn(skusolr);
         for (Ornaments or:orn) {
@@ -159,21 +211,35 @@ public class SkuList {
                     }
                 }
             }
-            String mcount = String.valueOf(or.getmCount());
-            String mprice = String.valueOf(or.getmPrice());
-            skumlist.add(mcount);
-            skumlist.add(mprice);
-            String acount = String.valueOf(or.getoCount());
-            String aprice = String.valueOf(or.getoPrice());
-            skualist.add(acount);
-            skualist.add(aprice);
+            String mcountorn = String.valueOf(or.getmCount());
+            String mpriceorn = String.valueOf(or.getmPrice());
+            skumlist.add(mcountorn);
+            skumlist.add(mpriceorn);
+            for( int i = 0 ; i < skumlist.size() - 1 ; i ++ )  {
+                for( int j = skumlist.size() - 1 ; j > i; j -- )  {
+                    if  (skumlist.get(j).equals(skumlist.get(i)))  {
+                        skumlist.remove(j);
+                    }
+                }
+            }
+            String ocount = String.valueOf(or.getoCount());
+            String oprice = String.valueOf(or.getoPrice());
+            skualist.add(ocount);
+            skualist.add(oprice);
         }
-        skumap.put("color",skucolorlist);
-        skumap.put("size",skusizelist);
+        skumap.put("ocolor",skucolorlist);
+        skumap.put("osize",skusizelist);
         skumap.put("mcoandpr",skumlist);
-        skumap.put("acoandpr",skualist);
+        skumap.put("ocoandpr",skualist);
         return JSON.toJSONString(skumap);
     }
+
+    /**
+     * 食品
+     * @param skusolr
+     * @return
+     * @throws Exception
+     */
     public String foosolr(Skusolr skusolr) throws Exception {
         List<Food> foo = fooSolrimpl.foo(skusolr);
         for (Food fo:foo) {
@@ -195,22 +261,29 @@ public class SkuList {
                     }
                 }
             }
-            String mcount = String.valueOf(fo.getmCount());
-            String mprice = String.valueOf(fo.getmPrice());
-            skumlist.add(mcount);
-            skumlist.add(mprice);
-            String acount = String.valueOf(fo.getfCount());
-            String aprice = String.valueOf(fo.getfPrice());
-            skualist.add(acount);
-            skualist.add(aprice);
+            String mcountfoo = String.valueOf(fo.getmCount());
+            String mpricefoo = String.valueOf(fo.getmPrice());
+            skumlist.add(mcountfoo);
+            skumlist.add(mpricefoo);
+            for( int i = 0 ; i < skumlist.size() - 1 ; i ++ )  {
+                for( int j = skumlist.size() - 1 ; j > i; j -- )  {
+                    if  (skumlist.get(j).equals(skumlist.get(i)))  {
+                        skumlist.remove(j);
+                    }
+                }
+            }
+            String fcount = String.valueOf(fo.getfCount());
+            String fprice = String.valueOf(fo.getfPrice());
+            skualist.add(fcount);
+            skualist.add(fprice);
         }
-        skumap.put("color",skucolorlist);
-        skumap.put("size",skusizelist);
+        skumap.put("fcolor",skucolorlist);
+        skumap.put("fsize",skusizelist);
         skumap.put("mcoandpr",skumlist);
-        skumap.put("acoandpr",skualist);
+        skumap.put("fcoandpr",skualist);
         return JSON.toJSONString(skumap);
     }
-
+//    集合排重
 //    public   static   List  removeDuplicate(List list)  {
 //        for ( int i = 0 ; i < list.size() -  1 ; i ++ )  {
 //

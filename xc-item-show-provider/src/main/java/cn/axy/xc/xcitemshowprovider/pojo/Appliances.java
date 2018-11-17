@@ -1,18 +1,23 @@
 package cn.axy.xc.xcitemshowprovider.pojo;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel(value = "Appliances",description = "家电的SKU表")
 public class Appliances {
+    @ApiModelProperty(value = "家电SKUID",dataType = "Integer")
     private Integer id;
-
+    @ApiModelProperty(value = "家电SKU型号",dataType = "String")
     private String aSize;
-
+    @ApiModelProperty(value = "家电SKU颜色",dataType = "String")
     private String aColor;
-
+    @ApiModelProperty(value = "家电SKU价格",dataType = "Double")
     private Double aPrice;
-
+    @ApiModelProperty(value = "家电SKU数量",dataType = "Double")
     private Double aCount;
-
+    @ApiModelProperty(value = "商品ID",dataType = "Integer")
     private Integer mId;
-
+    @ApiModelProperty(value = "商品价格ID",dataType = "Double")
     private Double mPrice;
 
     public Double getmPrice() {
@@ -30,7 +35,7 @@ public class Appliances {
     public void setmCount(Double mCount) {
         this.mCount = mCount;
     }
-
+    @ApiModelProperty(value = "商品总库存ID",dataType = "Double")
     private Double mCount;
 
     private String aX2;

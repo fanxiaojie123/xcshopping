@@ -10,7 +10,7 @@ import java.util.List;
 
 @Mapper
 public interface SkusolrMapper {
-    @Select("select c.c_id,c.c_size,c.c_color,c.m_id,m.m_price,m.m_count from clothing c LEFT JOIN message m ON c.m_id = m.m_id")
+    @Select("select c.c_id,c.c_size,c.c_price,c.c_count,c.c_color,c.m_id,m.m_price,m.m_count from clothing c LEFT JOIN message m ON c.m_id = m.m_id")
     @Results({
             @Result(property = "id" , column = "c_id"),
             @Result(property = "cSize" , column = "c_size"),
@@ -35,7 +35,7 @@ public interface SkusolrMapper {
             @Result(property = "mCount" , column = "m_count")
     })
     List<Cosmetics> cosall();
-    @Select("select f.f_id,f.f_size,f.f_color,f.f_price,f.f_price,f.m_id,m.m_price,m.m_count from food f LEFT JOIN message m ON f.m_id = m.m_id")
+    @Select("select f.f_id,f.f_size,f.f_color,f.f_count,f.f_price,f.m_id,m.m_price,m.m_count from food f LEFT JOIN message m ON f.m_id = m.m_id")
     @Results({
             @Result(property = "id" , column = "f_id"),
             @Result(property = "fSize" , column = "f_size"),
