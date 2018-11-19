@@ -16,8 +16,14 @@ import java.io.IOException;
 public class Closelcontroller {
     @Autowired
     private Closelservice closelservice;
+    /**
+     * 更新服装SOLR
+     * @return
+     * @throws IOException
+     * @throws SolrServerException
+     */
     @ApiOperation(value="更新服装solr接口", notes = "更新服装solr接口")
-    @RequestMapping(value = "upsolrclo",method = RequestMethod.POST)
+    @RequestMapping(value = "/upsolrclo",method = RequestMethod.POST)
     private String upsolrclo() throws IOException, SolrServerException {
         String upsolr = closelservice.upsolrclo();
         return upsolr;

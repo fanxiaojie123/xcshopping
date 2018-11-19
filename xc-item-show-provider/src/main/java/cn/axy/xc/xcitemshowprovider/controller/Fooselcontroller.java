@@ -15,6 +15,12 @@ import java.io.IOException;
 public class Fooselcontroller {
     @Autowired
     private Fooselservice fooselservice;
+    /**
+     *更新食品SOLR
+     * @return
+     * @throws IOException
+     * @throws SolrServerException
+     */
     @ApiOperation(value="更新食品solr接口", notes = "更新食品solr接口")
     @RequestMapping(value = "/upsolrfoo",method = RequestMethod.POST)
     public String upsolrfoo() throws IOException, SolrServerException {

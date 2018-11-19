@@ -23,6 +23,15 @@ import java.util.List;
 public class Messagesolrcontroller {
     @Autowired
     private Messagesolrservice messagesolrservice;
+    /**
+     * 全文检索
+     * @param request
+     * @param response
+     * @param messagesolr
+     * @param model
+     * @return
+     * @throws Exception
+     */
     @ApiOperation(value="查询商品详情", notes = "查询商品详情")
     @RequestMapping(value="/list",method = RequestMethod.POST)
     public String searchProduct(@Param("request") HttpServletRequest request,

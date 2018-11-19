@@ -15,9 +15,15 @@ import java.io.IOException;
 public class Messageselcontroller {
     @Autowired
     private Messageselservice messageselservice;
+    /**
+     *更新商品SOLR
+     * @return
+     * @throws IOException
+     * @throws SolrServerException
+     */
     @ApiOperation(value="更新商品详情solr接口", notes = "更新商品详情solr接口")
-    @RequestMapping(value = "solr",method = RequestMethod.POST)
-    public String upsolr() throws IOException, SolrServerException {
+    @RequestMapping(value = "/solrmes",method = RequestMethod.POST)
+    public String upsolrmes() throws IOException, SolrServerException {
         String upsolr = messageselservice.upsolr();
         return upsolr;
     }

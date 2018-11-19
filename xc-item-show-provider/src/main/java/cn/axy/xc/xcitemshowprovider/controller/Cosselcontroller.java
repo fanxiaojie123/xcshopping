@@ -1,6 +1,5 @@
 package cn.axy.xc.xcitemshowprovider.controller;
 
-import cn.axy.xc.xcitemshowprovider.service.Closelservice;
 import cn.axy.xc.xcitemshowprovider.service.Cosselservice;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -16,8 +15,14 @@ import java.io.IOException;
 public class Cosselcontroller {
     @Autowired
     private Cosselservice cosselservice;
+    /**
+     *更新化妆品SOLR
+     * @return
+     * @throws IOException
+     * @throws SolrServerException
+     */
     @ApiOperation(value="更新化妆品solr接口", notes = "更新化妆品solr接口")
-    @RequestMapping(value = "/upsolr1",method = RequestMethod.POST)
+    @RequestMapping(value = "/upsolrcos",method = RequestMethod.POST)
     public String upsolrcos() throws IOException, SolrServerException {
         String upsolr = cosselservice.upsolrcos();
         return upsolr;

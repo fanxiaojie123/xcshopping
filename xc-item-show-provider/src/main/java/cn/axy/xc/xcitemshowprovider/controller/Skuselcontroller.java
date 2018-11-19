@@ -15,9 +15,15 @@ import java.io.IOException;
 public class Skuselcontroller {
     @Autowired
     private Skuselservice skuselservice;
+    /**
+     * 更新SKU SOLR
+     * @return
+     * @throws IOException
+     * @throws SolrServerException
+     */
     @ApiOperation(value="更新SKU接口", notes = "更新SKU接口")
-    @RequestMapping(value = "solr1",method = RequestMethod.POST)
-    public String upsolr1() throws IOException, SolrServerException {
+    @RequestMapping(value = "/solrSKU",method = RequestMethod.POST)
+    public String upsolrSKU() throws IOException, SolrServerException {
         String upsolr = skuselservice.upsolr1();
         return upsolr;
     }

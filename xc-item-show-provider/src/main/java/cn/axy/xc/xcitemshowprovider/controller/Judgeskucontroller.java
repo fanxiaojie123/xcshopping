@@ -13,11 +13,19 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@Api(value="/upsolrfoo", tags="查询SKU")
+@Api(value="/upsolrsku", tags="查询SKU")
 @RestController
 public class Judgeskucontroller {
     @Autowired
     private Judgeskuservice judgeskuservice;
+    /**
+     * 商品SKU
+     * @param request
+     * @param response
+     * @param mid
+     * @return
+     * @throws Exception
+     */
     @ApiOperation(value="查询SKU", notes = "查询SKU")
     @RequestMapping(value = "/scid",method = RequestMethod.POST)
     public String scid(@Param("request") HttpServletRequest request,

@@ -15,6 +15,12 @@ import java.io.IOException;
 public class Ornselcontroller {
     @Autowired
     private Ornselservice ornselservice;
+    /**
+     *更新首饰SOLR
+     * @return
+     * @throws IOException
+     * @throws SolrServerException
+     */
     @ApiOperation(value="更新首饰solr接口", notes = "更新首饰solr接口")
     @RequestMapping(value = "/upsolrorn",method = RequestMethod.POST)
     public String upsolrorn() throws IOException, SolrServerException {
