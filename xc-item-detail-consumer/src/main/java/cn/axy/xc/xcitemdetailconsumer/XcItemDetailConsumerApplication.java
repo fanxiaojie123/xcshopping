@@ -13,7 +13,6 @@ import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboar
 @EnableHystrixDashboard
 @EnableCircuitBreaker
 public class XcItemDetailConsumerApplication {
-
 	public static void main(String[] args) {
 		SpringApplication.run(XcItemDetailConsumerApplication.class, args);
 	}
