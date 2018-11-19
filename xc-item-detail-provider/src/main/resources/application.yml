@@ -7,7 +7,7 @@ spring:
     url: jdbc:mysql://localhost:3306/vip?charecterEncoding=UTF-8&useSSL=false
     username: root
     password: root
-         # 使用druid数据源
+    # 使用druid数据源
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.jdbc.Driver
     filters: stat
@@ -29,6 +29,6 @@ eureka:
     prefer-ip-address: true
   client:
     service-url:
-      defaultZone: http://60.205.207.9:6001/eureka/
+      defaultZone: http://101.132.139.58:6001/eureka/
 mybatis:
   mapper-locations: classpath:Mapper/*.xml

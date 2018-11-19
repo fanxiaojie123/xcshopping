@@ -35,4 +35,9 @@ public interface MessageMapper {
     Integer midorn(@Param("mid") Integer mid);
     @Update("update message set m_status=0 where m_id=#{mid}")
     int delmessage(@Param("mid") Integer mid);
+//    @Update("update message set m_updated=#{time} where m_id=#{mid}")
+//    @Results({
+//            @Result(property = "mUpdated" , column = "m_updated")
+//    })
+//    int upddata(@Param("time") String time);
 }

@@ -1,22 +1,27 @@
 package cn.axy.xc.xcitemdetailprovider.pojo;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel(value = "Food",description = "食品的SKU表")
 public class Food {
+    @ApiModelProperty(value = "食品SKUID",dataType = "Integer")
     private Integer fId;
-
+    @ApiModelProperty(value = "食品SKU大小",dataType = "String")
     private String fSize;
-
+    @ApiModelProperty(value = "食品SKU颜色",dataType = "String")
     private String fColor;
-
+    @ApiModelProperty(value = "食品SKU库存",dataType = "Double")
     private Double fCount;
-
+    @ApiModelProperty(value = "食品SKU价格",dataType = "Double")
     private Double fPrice;
-
+    @ApiModelProperty(value = "商品ID",dataType = "Integer")
     private Integer mId;
-
+    @ApiModelProperty(value = "冗余",dataType = "String")
     private String fX;
-
+    @ApiModelProperty(value = "冗余",dataType = "String")
     private String fX1;
-
+    @ApiModelProperty(value = "冗余",dataType = "String")
     private String fX2;
 
     public Integer getfId() {

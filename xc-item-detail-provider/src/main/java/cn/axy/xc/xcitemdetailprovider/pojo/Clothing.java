@@ -1,22 +1,27 @@
 package cn.axy.xc.xcitemdetailprovider.pojo;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel(value = "Clothing",description = "服装的SKU表")
 public class Clothing {
+    @ApiModelProperty(value = "服装SKUID",dataType = "Integer")
     private Integer cId;
-
+    @ApiModelProperty(value = "服装SKU库存",dataType = "Double")
     private Double cCount;
-
+    @ApiModelProperty(value = "服装SKU单价",dataType = "Double")
     private Double cPrice;
-
+    @ApiModelProperty(value = "服装SKU大小",dataType = "String")
     private String cSize;
-
+    @ApiModelProperty(value = "服装SKU颜色",dataType = "String")
     private String cColor;
-
+    @ApiModelProperty(value = "商品SKUID",dataType = "Integer")
     private Integer mId;
-
+    @ApiModelProperty(value = "冗余",dataType = "String")
     private String cX;
-
+    @ApiModelProperty(value = "冗余",dataType = "String")
     private String cX1;
-
+    @ApiModelProperty(value = "冗余",dataType = "String")
     private String cX2;
 
     public Integer getcId() {
