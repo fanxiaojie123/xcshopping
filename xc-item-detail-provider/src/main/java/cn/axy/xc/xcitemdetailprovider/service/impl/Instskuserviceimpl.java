@@ -3,6 +3,7 @@ package cn.axy.xc.xcitemdetailprovider.service.impl;
 import cn.axy.xc.xcitemdetailprovider.dao.*;
 import cn.axy.xc.xcitemdetailprovider.pojo.*;
 import cn.axy.xc.xcitemdetailprovider.service.Instskuservice;
+import cn.axy.xc.xcitemdetailprovider.util.IDGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,6 +23,8 @@ public class Instskuserviceimpl implements Instskuservice {
     private OrnamentsMapper om;
     @Autowired
     private MessageMapper mm;
+    @Autowired
+    private IDGenerator idGenerator;
     String count = "";
     @Override
     public String insertSelectiveapp(Appliances record) {
@@ -80,28 +83,38 @@ public class Instskuserviceimpl implements Instskuservice {
 
     @Override
     public String instsku(Integer mid, Appliances app, Clothing clo, Cosmetics cos, Food foo, Ornaments orn) {
+
         if (mid != null){
             Integer midorn = mm.midorn(mid);
             if (midorn != null){
                 if (midorn == 1){
+                    long genItemId = IDGenerator.genItemId(1);
                     clo.setmId(mid);
+                    clo.setcId((int) genItemId);
                     insertSelectiveclo(clo);
                 }else if (midorn == 2){
+                    long genItemId = IDGenerator.genItemId(2);
                     app.setmId(mid);
+                    app.setaId((int) genItemId);
                     insertSelectiveapp(app);
                 }else if (midorn == 3){
-                    insertSelectivefoo(foo);
+                    long genItemId = IDGenerator.genItemId(3);
                     foo.setmId(mid);
+                    foo.setfId((int) genItemId);
+                    insertSelectivefoo(foo);
                 }else if (midorn == 4){
-                    insertSelectiveon(orn);
+                    long genItemId = IDGenerator.genItemId(4);
                     orn.setmId(mid);
+                    orn.setoId((int) genItemId);
+                    insertSelectiveon(orn);
                 }else if (midorn == 5){
-                    insertSelectivecos(cos);
+                    long genItemId = IDGenerator.genItemId(5);
                     cos.setmId(mid);
+                    cos.setCoId((int) genItemId);
+                    insertSelectivecos(cos);
                 }else {
                     count = "403";
                 }
-
             }else {
                 count = "403";
             }
