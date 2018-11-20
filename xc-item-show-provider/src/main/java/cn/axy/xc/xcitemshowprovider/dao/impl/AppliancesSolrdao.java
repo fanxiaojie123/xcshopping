@@ -3,6 +3,7 @@ package cn.axy.xc.xcitemshowprovider.dao.impl;
 import cn.axy.xc.xcitemshowprovider.dao.Skusolrdao;
 import cn.axy.xc.xcitemshowprovider.pojo.Appliances;
 import cn.axy.xc.xcitemshowprovider.pojo.Skusolr;
+import cn.axy.xc.xcitemshowprovider.service.exit.Skuservicepojo;
 import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.impl.HttpSolrClient;
 import org.apache.solr.client.solrj.response.QueryResponse;
@@ -39,7 +40,7 @@ public class AppliancesSolrdao implements Skusolrdao {
         List<Appliances> appliances = new ArrayList<Appliances>();
         for (SolrDocument doc : docs) {
             Appliances appliances1 = new Appliances();
-            appliances1.setId( Integer.parseInt((String) doc.get("id")) );
+            appliances1.setId( Long.parseLong((String) doc.get("id")) );
             appliances1.setaColor((String) doc.get("aColor"));
             appliances1.setaSize((String) doc.get("aSize"));
             appliances1.setaPrice(Double.parseDouble((String) doc.get("aPrice")));
@@ -48,6 +49,39 @@ public class AppliancesSolrdao implements Skusolrdao {
             appliances1.setmPrice(Double.parseDouble((String) doc.get("mPrice")));
             appliances1.setmCount(Double.parseDouble((String) doc.get("mCount")));
             appliances.add(appliances1);
+        }
+        return appliances;
+    }
+
+    public List<Skuservicepojo> searchProductsku(String skuid) throws Exception {
+        SolrQuery solrQuery = new SolrQuery();
+        //设置关键字
+        solrQuery.setQuery(skuid);
+        //设置默认搜索域
+        solrQuery.set("df", "product_keywords");
+        //设置过滤条件
+        if(null != skuid && !"".equals(skuid)){
+            solrQuery.set("fq", "id:" + skuid);
+        }
+        solrQuery.set("fl", "id,aSize,aColor,aPrice,aCount,mPrice,mCount,mId,mPicture,mPoints");
+        // 执行查询
+        QueryResponse response = client1.query(solrQuery);
+        // 文档结果集
+        SolrDocumentList docs = response.getResults();
+        List<Skuservicepojo> appliances = new ArrayList<Skuservicepojo>();
+        for (SolrDocument doc : docs) {
+            Skuservicepojo skuservicepojo = new Skuservicepojo();
+            skuservicepojo.setAid( Long.parseLong((String) doc.get("id")) );
+            skuservicepojo.setaColor((String) doc.get("aColor"));
+            skuservicepojo.setaSize((String) doc.get("aSize"));
+            skuservicepojo.setaPrice(Double.parseDouble((String) doc.get("aPrice")));
+            skuservicepojo.setaCount(Double.parseDouble((String) doc.get("aCount")));
+            skuservicepojo.setmId(Integer.parseInt((String) doc.get("mId")));
+            skuservicepojo.setmPrice(Double.parseDouble((String) doc.get("mPrice")));
+            skuservicepojo.setmCount(Double.parseDouble((String) doc.get("mCount")));
+            skuservicepojo.setmPicture((String) doc.get("mPicture"));
+            skuservicepojo.setmPoints((String) doc.get("mPoints"));
+            appliances.add(skuservicepojo);
         }
         return appliances;
     }

@@ -3,6 +3,7 @@ package cn.axy.xc.xcitemshowprovider.dao.impl;
 import cn.axy.xc.xcitemshowprovider.dao.Clothingsolrdao;
 import cn.axy.xc.xcitemshowprovider.pojo.Clothing;
 import cn.axy.xc.xcitemshowprovider.pojo.Skusolr;
+import cn.axy.xc.xcitemshowprovider.service.exit.Skuservicepojo;
 import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.impl.HttpSolrClient;
 import org.apache.solr.client.solrj.response.QueryResponse;
@@ -38,7 +39,7 @@ public class ClothingSolrimpl implements Clothingsolrdao {
         List<Clothing> clothing = new ArrayList<Clothing>();
         for (SolrDocument doc : docs) {
             Clothing clothing1 = new Clothing();
-            clothing1.setId(Integer.parseInt((String) doc.get("id")) );
+            clothing1.setId(Long.parseLong((String) doc.get("id")) );
             clothing1.setcColor((String) doc.get("cColor"));
             clothing1.setcSize((String) doc.get("cSize"));
             clothing1.setcPrice(Double.parseDouble((String) doc.get("cPrice")));
@@ -46,6 +47,38 @@ public class ClothingSolrimpl implements Clothingsolrdao {
             clothing1.setmId(Integer.parseInt((String) doc.get("mId")));
             clothing1.setmPrice(Double.parseDouble((String) doc.get("mPrice")) );
             clothing1.setmCount(Double.parseDouble((String) doc.get("mCount")));
+            clothing.add(clothing1);
+        }
+        return clothing;
+    }
+    public List<Skuservicepojo> closku(String skuid) throws Exception {
+        SolrQuery solrQuery = new SolrQuery();
+        //设置关键字
+        solrQuery.setQuery(skuid);
+        //设置默认搜索域
+        solrQuery.set("df", "product_keywords");
+        //设置过滤条件
+        if(null != skuid && !"".equals(skuid)){
+            solrQuery.set("fq", "id:" + skuid);
+        }
+        solrQuery.set("fl", "id,cSize,cColor,mId,cPrice,cCount,mPrice,mCount,mPicture,mPoints");
+        // 执行查询
+        QueryResponse response = client1.query(solrQuery);
+        // 文档结果集
+        SolrDocumentList docs = response.getResults();
+        List<Skuservicepojo> clothing = new ArrayList<Skuservicepojo>();
+        for (SolrDocument doc : docs) {
+            Skuservicepojo clothing1 = new Skuservicepojo();
+            clothing1.setCid(Long.parseLong((String) doc.get("id")) );
+            clothing1.setcColor((String) doc.get("cColor"));
+            clothing1.setcSize((String) doc.get("cSize"));
+            clothing1.setcPrice(Double.parseDouble((String) doc.get("cPrice")));
+            clothing1.setcCount(Double.parseDouble((String) doc.get("cCount")));
+            clothing1.setmId(Integer.parseInt((String) doc.get("mId")));
+            clothing1.setmPrice(Double.parseDouble((String) doc.get("mPrice")) );
+            clothing1.setmCount(Double.parseDouble((String) doc.get("mCount")));
+            clothing1.setmPicture((String) doc.get("mPicture"));
+            clothing1.setmPoints((String) doc.get("mPoints"));
             clothing.add(clothing1);
         }
         return clothing;

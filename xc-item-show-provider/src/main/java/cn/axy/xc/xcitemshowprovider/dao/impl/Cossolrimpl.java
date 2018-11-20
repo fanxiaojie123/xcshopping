@@ -4,6 +4,7 @@ import cn.axy.xc.xcitemshowprovider.dao.CosSolrdao;
 import cn.axy.xc.xcitemshowprovider.pojo.Clothing;
 import cn.axy.xc.xcitemshowprovider.pojo.Cosmetics;
 import cn.axy.xc.xcitemshowprovider.pojo.Skusolr;
+import cn.axy.xc.xcitemshowprovider.service.exit.Skuservicepojo;
 import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.impl.HttpSolrClient;
 import org.apache.solr.client.solrj.response.QueryResponse;
@@ -40,7 +41,7 @@ public class Cossolrimpl implements CosSolrdao {
         List<Cosmetics> cosmetics = new ArrayList<Cosmetics>();
         for (SolrDocument doc : docs) {
             Cosmetics cosmetics1 = new Cosmetics();
-            cosmetics1.setId(Integer.parseInt((String) doc.get("id")));
+            cosmetics1.setId(Long.parseLong((String) doc.get("id")));
             cosmetics1.setCoColor((String) doc.get("coColor"));
             cosmetics1.setCoSize((String) doc.get("coSize"));
             cosmetics1.setCoPrice(Double.parseDouble((String) doc.get("coPrice")));
@@ -48,6 +49,38 @@ public class Cossolrimpl implements CosSolrdao {
             cosmetics1.setmId(Integer .parseInt((String) doc.get("mId")));
             cosmetics1.setmPrice(Double.parseDouble((String) doc.get("mPrice")));
             cosmetics1.setmCount(Double.parseDouble((String) doc.get("mCount")));
+            cosmetics.add(cosmetics1);
+        }
+        return cosmetics;
+    }
+    public List<Skuservicepojo> cossku(String skuid) throws Exception {
+        SolrQuery solrQuery = new SolrQuery();
+        //设置关键字
+        solrQuery.setQuery(skuid);
+        //设置默认搜索域
+        solrQuery.set("df", "product_keywords");
+        //设置过滤条件
+        if(null != skuid && !"".equals(skuid)){
+            solrQuery.set("fq", "id:" + skuid);
+        }
+        solrQuery.set("fl", "id,coSize,coColor,coPrice,coCount,mId,mPrice,mCount,mPicture,mPoints");
+        // 执行查询
+        QueryResponse response = client1.query(solrQuery);
+        // 文档结果集
+        SolrDocumentList docs = response.getResults();
+        List<Skuservicepojo> cosmetics = new ArrayList<Skuservicepojo>();
+        for (SolrDocument doc : docs) {
+            Skuservicepojo cosmetics1 = new Skuservicepojo();
+            cosmetics1.setCoid(Long.parseLong((String) doc.get("id")));
+            cosmetics1.setCoColor((String) doc.get("coColor"));
+            cosmetics1.setCoSize((String) doc.get("coSize"));
+            cosmetics1.setCoPrice(Double.parseDouble((String) doc.get("coPrice")));
+            cosmetics1.setCoCount(Double.parseDouble((String) doc.get("coCount")));
+            cosmetics1.setmId(Integer .parseInt((String) doc.get("mId")));
+            cosmetics1.setmPrice(Double.parseDouble((String) doc.get("mPrice")));
+            cosmetics1.setmCount(Double.parseDouble((String) doc.get("mCount")));
+            cosmetics1.setmPicture((String) doc.get("mPicture"));
+            cosmetics1.setmPoints((String) doc.get("mPoints"));
             cosmetics.add(cosmetics1);
         }
         return cosmetics;

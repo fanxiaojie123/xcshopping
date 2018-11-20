@@ -3,6 +3,7 @@ package cn.axy.xc.xcitemshowprovider.dao.impl;
 import cn.axy.xc.xcitemshowprovider.dao.FooSolrdao;
 import cn.axy.xc.xcitemshowprovider.pojo.Food;
 import cn.axy.xc.xcitemshowprovider.pojo.Skusolr;
+import cn.axy.xc.xcitemshowprovider.service.exit.Skuservicepojo;
 import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.impl.HttpSolrClient;
 import org.apache.solr.client.solrj.response.QueryResponse;
@@ -39,7 +40,7 @@ public class FooSolrimpl implements FooSolrdao {
             List<Food> foods = new ArrayList<Food>();
         for (SolrDocument doc : docs) {
             Food food = new Food();
-            food.setId(Integer.parseInt((String) doc.get("id")));
+            food.setId(Long.parseLong((String) doc.get("id")));
             food.setfColor((String) doc.get("fColor"));
             food.setfSize((String) doc.get("fSize"));
             food.setfPrice(Double.parseDouble((String) doc.get("fPrice")));
@@ -47,6 +48,41 @@ public class FooSolrimpl implements FooSolrdao {
             food.setmId(Integer.parseInt((String) doc.get("mId")));
             food.setmPrice(Double.parseDouble((String) doc.get("mPrice")));
             food.setmCount(Double.parseDouble((String) doc.get("mCount")));
+            foods.add(food);
+        }
+        return foods;
+    }
+
+
+
+    public List<Skuservicepojo> foosku(String skuid) throws Exception {
+        SolrQuery solrQuery = new SolrQuery();
+        //设置关键字
+        solrQuery.setQuery(skuid);
+        //设置默认搜索域
+        solrQuery.set("df", "product_keywords");
+        //设置过滤条件
+        if(null != skuid && !"".equals(skuid)){
+            solrQuery.set("fq", "id:" + skuid);
+        }
+        solrQuery.set("fl", "id,fSize,fColor,fPrice,fCount,mId,mPrice,mCount,mPicture,mPoints");
+        // 执行查询
+        QueryResponse response = client1.query(solrQuery);
+        // 文档结果集
+        SolrDocumentList docs = response.getResults();
+        List<Skuservicepojo> foods = new ArrayList<Skuservicepojo>();
+        for (SolrDocument doc : docs) {
+            Skuservicepojo food = new Skuservicepojo();
+            food.setFid(Long.parseLong((String) doc.get("id")));
+            food.setfColor((String) doc.get("fColor"));
+            food.setfSize((String) doc.get("fSize"));
+            food.setfPrice(Double.parseDouble((String) doc.get("fPrice")));
+            food.setfCount(Double.parseDouble((String) doc.get("fCount")));
+            food.setmId(Integer.parseInt((String) doc.get("mId")));
+            food.setmPrice(Double.parseDouble((String) doc.get("mPrice")));
+            food.setmCount(Double.parseDouble((String) doc.get("mCount")));
+            food.setmPicture((String) doc.get("mPicture"));
+            food.setmPoints((String) doc.get("mPoints"));
             foods.add(food);
         }
         return foods;
