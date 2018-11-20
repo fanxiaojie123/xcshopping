@@ -5,8 +5,8 @@ import io.swagger.annotations.ApiModelProperty;
 
 @ApiModel(value = "Cosmetics",description = "化妆品的SKU表")
 public class Cosmetics {
-    @ApiModelProperty(value = "化妆品SKUID",dataType = "Integer")
-    private Integer id;
+    @ApiModelProperty(value = "化妆品SKUID",dataType = "Long")
+    private Long id;
     @ApiModelProperty(value = "化妆品SKU容量",dataType = "String")
     private String coSize;
     @ApiModelProperty(value = "化妆品SKU颜色",dataType = "String")
@@ -25,6 +25,26 @@ public class Cosmetics {
     private String coX2;
     @ApiModelProperty(value = "商品SKU价格",dataType = "Double")
     private Double mPrice;
+    @ApiModelProperty(value = "商品图片",dataType = "Integer")
+    private String mPicture;
+    @ApiModelProperty(value = "商品详情",dataType = "Double")
+    private String mPoints;
+
+    public String getmPicture() {
+        return mPicture;
+    }
+
+    public void setmPicture(String mPicture) {
+        this.mPicture = mPicture;
+    }
+
+    public String getmPoints() {
+        return mPoints;
+    }
+
+    public void setmPoints(String mPoints) {
+        this.mPoints = mPoints;
+    }
 
     public Double getmPrice() {
         return mPrice;
@@ -44,11 +64,11 @@ public class Cosmetics {
     @ApiModelProperty(value = "商品SKU总库存",dataType = "Double")
     private Double mCount;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -5,8 +5,8 @@ import io.swagger.annotations.ApiModelProperty;
 
 @ApiModel(value = "Appliances",description = "家电的SKU表")
 public class Appliances {
-    @ApiModelProperty(value = "家电SKUID",dataType = "Integer")
-    private Integer id;
+    @ApiModelProperty(value = "家电SKUID",dataType = "Long")
+    private Long id;
     @ApiModelProperty(value = "家电SKU型号",dataType = "String")
     private String aSize;
     @ApiModelProperty(value = "家电SKU颜色",dataType = "String")
@@ -19,6 +19,26 @@ public class Appliances {
     private Integer mId;
     @ApiModelProperty(value = "商品价格ID",dataType = "Double")
     private Double mPrice;
+    @ApiModelProperty(value = "商品图片",dataType = "Integer")
+    private String mPicture;
+    @ApiModelProperty(value = "商品详情",dataType = "Double")
+    private String mPoints;
+
+    public String getmPicture() {
+        return mPicture;
+    }
+
+    public void setmPicture(String mPicture) {
+        this.mPicture = mPicture;
+    }
+
+    public String getmPoints() {
+        return mPoints;
+    }
+
+    public void setmPoints(String mPoints) {
+        this.mPoints = mPoints;
+    }
 
     public Double getmPrice() {
         return mPrice;
@@ -40,11 +60,11 @@ public class Appliances {
 
     private String aX2;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

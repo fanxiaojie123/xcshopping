@@ -5,8 +5,8 @@ import io.swagger.annotations.ApiModelProperty;
 
 @ApiModel(value = "Clothing",description = "服装的SKU表")
 public class Clothing {
-    @ApiModelProperty(value = "服装SKUID",dataType = "Integer")
-    private Integer id;
+    @ApiModelProperty(value = "服装SKUID",dataType = "Long")
+    private Long id;
     @ApiModelProperty(value = "服装SKU库存",dataType = "Double")
     private Double cCount;
     @ApiModelProperty(value = "服装SKU单价",dataType = "Double")
@@ -21,10 +21,31 @@ public class Clothing {
     private String cX;
     @ApiModelProperty(value = "冗余",dataType = "String")
     private String cX1;
-    @ApiModelProperty(value = "冗余",dataType = "Integer")
+    @ApiModelProperty(value = "冗余",dataType = "String")
     private String cX2;
     @ApiModelProperty(value = "商品SKU价格",dataType = "Integer")
     private Double mPrice;
+    @ApiModelProperty(value = "商品图片",dataType = "Integer")
+    private String mPicture;
+    @ApiModelProperty(value = "商品详情",dataType = "Double")
+    private String mPoints;
+
+    public String getmPicture() {
+        return mPicture;
+    }
+
+    public void setmPicture(String mPicture) {
+        this.mPicture = mPicture;
+    }
+
+    public String getmPoints() {
+        return mPoints;
+    }
+
+    public void setmPoints(String mPoints) {
+        this.mPoints = mPoints;
+    }
+
 
     public Double getmPrice() {
         return mPrice;
@@ -44,11 +65,11 @@ public class Clothing {
     @ApiModelProperty(value = "商品SKU总库存",dataType = "Integer")
     private Double mCount;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

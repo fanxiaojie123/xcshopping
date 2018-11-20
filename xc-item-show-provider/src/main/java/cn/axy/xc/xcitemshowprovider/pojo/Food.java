@@ -5,8 +5,8 @@ import io.swagger.annotations.ApiModelProperty;
 
 @ApiModel(value = "Food",description = "食品的SKU表")
 public class Food {
-    @ApiModelProperty(value = "食品SKUID",dataType = "Integer")
-    private Integer id;
+    @ApiModelProperty(value = "食品SKUID",dataType = "Long")
+    private Long id;
     @ApiModelProperty(value = "食品SKU大小",dataType = "String")
     private String fSize;
     @ApiModelProperty(value = "食品SKU颜色",dataType = "String")
@@ -25,6 +25,26 @@ public class Food {
     private String fX2;
     @ApiModelProperty(value = "商品价格",dataType = "Double")
     private Double mPrice;
+    @ApiModelProperty(value = "商品图片",dataType = "Integer")
+    private String mPicture;
+    @ApiModelProperty(value = "商品详情",dataType = "Double")
+    private String mPoints;
+
+    public String getmPicture() {
+        return mPicture;
+    }
+
+    public void setmPicture(String mPicture) {
+        this.mPicture = mPicture;
+    }
+
+    public String getmPoints() {
+        return mPoints;
+    }
+
+    public void setmPoints(String mPoints) {
+        this.mPoints = mPoints;
+    }
 
     public Double getmPrice() {
         return mPrice;
@@ -44,11 +64,11 @@ public class Food {
     @ApiModelProperty(value = "商品总库存",dataType = "Double")
     private Double mCount;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

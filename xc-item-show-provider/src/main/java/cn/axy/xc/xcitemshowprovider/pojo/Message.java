@@ -5,8 +5,8 @@ import io.swagger.annotations.ApiModelProperty;
 
 @ApiModel(value = "Message",description = "商品详情表")
 public class Message {
-    @ApiModelProperty(value = "商品ID",dataType = "Integer")
-    private Integer mId;
+    @ApiModelProperty(value = "商品ID",dataType = "Long")
+    private Long mId;
     @ApiModelProperty(value = "商品名字",dataType = "String")
     private String mName;
     @ApiModelProperty(value = "商品图片",dataType = "String")
@@ -32,11 +32,11 @@ public class Message {
     @ApiModelProperty(value = "商品总库存",dataType = "Double")
     private Double mCount;
 
-    public Integer getmId() {
+    public Long getmId() {
         return mId;
     }
 
-    public void setmId(Integer mId) {
+    public void setmId(Long mId) {
         this.mId = mId;
     }
 

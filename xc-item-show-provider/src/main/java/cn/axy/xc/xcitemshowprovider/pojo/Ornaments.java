@@ -5,17 +5,17 @@ import io.swagger.annotations.ApiModelProperty;
 
 @ApiModel(value = "Ornaments",description = "首饰SKU实体类")
 public class Ornaments {
-    @ApiModelProperty(value = "首饰SKUID",dataType = "String")
-    private Integer id;
-    @ApiModelProperty(value = "商品ID",dataType = "String")
+    @ApiModelProperty(value = "首饰SKUID",dataType = "Long")
+    private Long id;
+    @ApiModelProperty(value = "商品ID",dataType = "Integer")
     private Integer mId;
     @ApiModelProperty(value = "首饰SKU大小",dataType = "String")
     private String oSize;
     @ApiModelProperty(value = "首饰SKU颜色",dataType = "String")
     private String oColor;
-    @ApiModelProperty(value = "首饰SKU库存",dataType = "String")
+    @ApiModelProperty(value = "首饰SKU库存",dataType = "Double")
     private Double oCount;
-    @ApiModelProperty(value = "首饰SKU单价",dataType = "String")
+    @ApiModelProperty(value = "首饰SKU单价",dataType = "Double")
     private Double oPrice;
     @ApiModelProperty(value = "首饰SKU冗余",dataType = "String")
     private String oX;
@@ -23,8 +23,28 @@ public class Ornaments {
     private String oX1;
     @ApiModelProperty(value = "首饰SKU冗余",dataType = "String")
     private String oX2;
-    @ApiModelProperty(value = "商品价格",dataType = "String")
+    @ApiModelProperty(value = "商品价格",dataType = "Double")
     private Double mPrice;
+    @ApiModelProperty(value = "商品图片",dataType = "Integer")
+    private String mPicture;
+    @ApiModelProperty(value = "商品详情",dataType = "Double")
+    private String mPoints;
+
+    public String getmPicture() {
+        return mPicture;
+    }
+
+    public void setmPicture(String mPicture) {
+        this.mPicture = mPicture;
+    }
+
+    public String getmPoints() {
+        return mPoints;
+    }
+
+    public void setmPoints(String mPoints) {
+        this.mPoints = mPoints;
+    }
 
     public Double getmPrice() {
         return mPrice;
@@ -44,11 +64,11 @@ public class Ornaments {
 
     private Double mCount;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
