@@ -46,6 +46,8 @@ public class Fooselserviceimpl implements Fooselservice {
             document.addField("mId",foo.getmId());
             document.addField("mPrice",foo.getmPrice());
             document.addField("mCount",foo.getmCount());
+            document.addField("mPicture",foo.getmPicture());
+            document.addField("mPoints",foo.getmPoints());
             client1.add(document);
         }
         client1.commit();

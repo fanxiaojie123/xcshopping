@@ -45,6 +45,8 @@ public class Cosselserviceimpl implements Cosselservice {
             document.addField("mId",cos.getmId());
             document.addField("mPrice",cos.getmPrice());
             document.addField("mCount",cos.getmCount());
+            document.addField("mPicture",cos.getmPicture());
+            document.addField("mPoints",cos.getmPoints());
             client1.add(document);
         }
         client1.commit();

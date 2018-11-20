@@ -46,6 +46,8 @@ public class Closelserviceimpl implements Closelservice {
             document.addField("mId",clo.getmId());
             document.addField("mPrice",clo.getmPrice());
             document.addField("mCount",clo.getmCount());
+            document.addField("mPicture",clo.getmPicture());
+            document.addField("mPoints",clo.getmPoints());
             client1.add(document);
         }
         client1.commit();

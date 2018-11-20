@@ -46,6 +46,8 @@ public class Skuselserviceimpl implements Skuselservice {
             document.addField("mId",app.getmId());
             document.addField("mPrice",app.getmPrice());
             document.addField("mCount",app.getmCount());
+            document.addField("mPicture",app.getmPicture());
+            document.addField("mPoints",app.getmPoints());
             client1.add(document);
         }
 //        List<Clothing> cloall = skusolrMapper.cloall();

@@ -47,6 +47,8 @@ public class Ornselserviceimpl implements Ornselservice {
             document.addField("mId",orn.getmId());
             document.addField("mPrice",orn.getmPrice());
             document.addField("mCount",orn.getmCount());
+            document.addField("mPicture",orn.getmPicture());
+            document.addField("mPoints",orn.getmPoints());
             client1.add(document);
         }
         client1.commit();
