@@ -2,6 +2,7 @@ package cn.axy.xc.xcitemdetailprovider.controller;
 
 import cn.axy.xc.xcitemdetailprovider.pojo.*;
 import cn.axy.xc.xcitemdetailprovider.service.Instskuservice;
+import cn.axy.xc.xcitemdetailprovider.util.IDGenerator;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
