@@ -40,4 +40,11 @@ public interface MessageMapper {
 //            @Result(property = "mUpdated" , column = "m_updated")
 //    })
 //    int upddata(@Param("time") String time);
+    @Select("select m_count from message where m_id=#{mid}")
+    @Results({
+            @Result(property = "mCount" , column = "m_count")
+    })
+    Double selmessageinv(@Param("mid") Integer mid);
+    @Update("update message set m_count=#{count} where m_id=#{mid}")
+    int updmessageinv(@Param("count") Double count , @Param("mid") Integer mid);
 }

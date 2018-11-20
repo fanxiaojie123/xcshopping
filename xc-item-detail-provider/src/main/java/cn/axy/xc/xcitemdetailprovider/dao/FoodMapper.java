@@ -2,10 +2,7 @@ package cn.axy.xc.xcitemdetailprovider.dao;
 
 import cn.axy.xc.xcitemdetailprovider.pojo.Appliances;
 import cn.axy.xc.xcitemdetailprovider.pojo.Food;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -30,4 +27,11 @@ public interface FoodMapper {
             @Result(property = "fCount" , column = "f_count")
     })
     List<Food> selfoo(@Param("mid") Integer mid);
+    @Select("select f_count from food where m_id=#{mid} and f_id=#{fid}")
+    @Results({
+            @Result(property = "fCount" , column = "f_count")
+    })
+    Double selfooinv(@Param("mid") Integer mid,@Param("fid") Integer fid);
+    @Update("update food set f_count=#{count} where m_id=#{mid} and f_id=#{fid}")
+    int updfooinv(@Param("count")Double count,@Param("mid") Integer mid,@Param("fid") Integer fid);
 }

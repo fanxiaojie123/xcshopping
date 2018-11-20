@@ -2,10 +2,7 @@ package cn.axy.xc.xcitemdetailprovider.dao;
 
 import cn.axy.xc.xcitemdetailprovider.pojo.Appliances;
 import cn.axy.xc.xcitemdetailprovider.pojo.Cosmetics;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -30,4 +27,11 @@ public interface CosmeticsMapper {
             @Result(property = "coCount" , column = "co_count")
     })
     List<Cosmetics> selcos(@Param("mid") Integer mid);
+    @Select("select co_count from cosmetics where m_id=#{mid} and co_id=#{coid}")
+    @Results({
+            @Result(property = "cCount" , column = "c_count")
+    })
+    Double selcosinv(@Param("mid") Integer mid,@Param("coid") Integer coid);
+    @Update("update cosmetics set co_count=#{count} where m_id=#{mid} and co_id=#{coid}")
+    int updcosinv(@Param("count")Double count,@Param("mid") Integer mid,@Param("coid") Integer coid);
 }
