@@ -13,7 +13,7 @@ eureka:
 ---
 spring:
   zipkin:
-    base-url: http://60.205.207.9:7777
+    base-url: http://101.132.139.58:7777
   sleuth:
     sampler:
        percentage: 1.0
