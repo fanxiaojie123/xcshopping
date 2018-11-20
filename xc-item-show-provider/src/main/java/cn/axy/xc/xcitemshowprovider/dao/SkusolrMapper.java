@@ -10,7 +10,7 @@ import java.util.List;
 
 @Mapper
 public interface SkusolrMapper {
-    @Select("select c.c_id,c.c_size,c.c_price,c.c_count,c.c_color,c.m_id,m.m_price,m.m_count from clothing c LEFT JOIN message m ON c.m_id = m.m_id")
+    @Select("select c.c_id,c.c_size,c.c_price,c.c_count,c.c_color,c.m_id,m.m_price,m.m_count,m.m_picture,m.m_points from clothing c LEFT JOIN message m ON c.m_id = m.m_id")
     @Results({
             @Result(property = "id" , column = "c_id"),
             @Result(property = "cSize" , column = "c_size"),
@@ -19,11 +19,13 @@ public interface SkusolrMapper {
             @Result(property = "cCount" , column = "c_count"),
             @Result(property = "mId" , column = "m_id"),
             @Result(property = "mPrice" , column = "m_price"),
-            @Result(property = "mCount" , column = "m_count")
+            @Result(property = "mCount" , column = "m_count"),
+            @Result(property = "mPicture" , column = "m_picture"),
+            @Result(property = "mPoints" , column = "m_points")
 
     })
     List<Clothing> cloall();
-    @Select("select co.co_id,co.co_size,co.co_color,co.co_price,co.co_count,co.m_id,m.m_price,m.m_count from cosmetics co LEFT JOIN message m ON co.m_id = m.m_id")
+    @Select("select co.co_id,co.co_size,co.co_color,co.co_price,co.co_count,co.m_id,m.m_price,m.m_count,m.m_picture,m.m_points from cosmetics co LEFT JOIN message m ON co.m_id = m.m_id")
     @Results({
             @Result(property = "id" , column = "co_id"),
             @Result(property = "coSize" , column = "co_size"),
@@ -32,10 +34,12 @@ public interface SkusolrMapper {
             @Result(property = "coCount" , column = "co_count"),
             @Result(property = "mId" , column = "m_id"),
             @Result(property = "mPrice" , column = "m_price"),
-            @Result(property = "mCount" , column = "m_count")
+            @Result(property = "mCount" , column = "m_count"),
+            @Result(property = "mPicture" , column = "m_picture"),
+            @Result(property = "mPoints" , column = "m_points")
     })
     List<Cosmetics> cosall();
-    @Select("select f.f_id,f.f_size,f.f_color,f.f_count,f.f_price,f.m_id,m.m_price,m.m_count from food f LEFT JOIN message m ON f.m_id = m.m_id")
+    @Select("select f.f_id,f.f_size,f.f_color,f.f_count,f.f_price,f.m_id,m.m_price,m.m_count,m.m_picture,m.m_points from food f LEFT JOIN message m ON f.m_id = m.m_id")
     @Results({
             @Result(property = "id" , column = "f_id"),
             @Result(property = "fSize" , column = "f_size"),
@@ -44,10 +48,12 @@ public interface SkusolrMapper {
             @Result(property = "fCount" , column = "f_count"),
             @Result(property = "mId" , column = "m_id"),
             @Result(property = "mPrice" , column = "m_price"),
-            @Result(property = "mCount" , column = "m_count")
+            @Result(property = "mCount" , column = "m_count"),
+            @Result(property = "mPicture" , column = "m_picture"),
+            @Result(property = "mPoints" , column = "m_points")
     })
     List<Food> fooall();
-    @Select("select o.o_id,o.o_size,o.o_color,o.o_price,o.o_count,o.m_id,m.m_price,m.m_count from ornaments o LEFT JOIN message m ON o.m_id = m.m_id")
+    @Select("select o.o_id,o.o_size,o.o_color,o.o_price,o.o_count,o.m_id,m.m_price,m.m_count,m.m_picture,m.m_points from ornaments o LEFT JOIN message m ON o.m_id = m.m_id")
     @Results({
             @Result(property = "id" , column = "o_id"),
             @Result(property = "oSize" , column = "o_size"),
@@ -56,10 +62,12 @@ public interface SkusolrMapper {
             @Result(property = "oCount" , column = "o_count"),
             @Result(property = "mId" , column = "m_id"),
             @Result(property = "mPrice" , column = "m_price"),
-            @Result(property = "mCount" , column = "m_count")
+            @Result(property = "mCount" , column = "m_count"),
+            @Result(property = "mPicture" , column = "m_picture"),
+            @Result(property = "mPoints" , column = "m_points")
     })
     List<Ornaments> ornall();
-    @Select("select a.a_id,a.a_size,a.a_color,a.a_price,a.a_count,a.m_id,m.m_price,m.m_count from appliances a LEFT JOIN message m ON a.m_id = m.m_id")
+    @Select("select a.a_id,a.a_size,a.a_color,a.a_price,a.a_count,a.m_id,m.m_price,m.m_count,m.m_picture,m.m_points from appliances a LEFT JOIN message m ON a.m_id = m.m_id")
     @Results({
             @Result(property = "id" , column = "a_id"),
             @Result(property = "aSize" , column = "a_size"),
@@ -68,7 +76,9 @@ public interface SkusolrMapper {
             @Result(property = "aCount" , column = "a_count"),
             @Result(property = "mId" , column = "m_id"),
             @Result(property = "mPrice" , column = "m_price"),
-            @Result(property = "mCount" , column = "m_count")
+            @Result(property = "mCount" , column = "m_count"),
+            @Result(property = "mPicture" , column = "m_picture"),
+            @Result(property = "mPoints" , column = "m_points")
     })
     List<Appliances> appall();
 }
