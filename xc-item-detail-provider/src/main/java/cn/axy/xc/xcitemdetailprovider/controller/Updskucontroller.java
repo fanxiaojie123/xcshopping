@@ -2,6 +2,7 @@ package cn.axy.xc.xcitemdetailprovider.controller;
 
 import cn.axy.xc.xcitemdetailprovider.pojo.*;
 import cn.axy.xc.xcitemdetailprovider.service.Updskuservice;
+import cn.axy.xc.xcitemdetailprovider.service.exit.Skuserviceimp;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -25,12 +26,8 @@ public class Updskucontroller {
                          @Param("response") HttpServletResponse response,
                          @ApiParam(name = "mid",value = "商品ID",required = true)Integer mid,
                          @ApiParam(name = "skuid",value = "skuID",required = true)Integer skuid,
-                         @ApiParam(name = "app",value = "家电对象")Appliances app,
-                         @ApiParam(name = "clo",value = "服装对象")Clothing clo,
-                         @ApiParam(name = "cos",value = "化妆品对象")Cosmetics cos,
-                         @ApiParam(name = "foo",value = "食品对象")Food foo,
-                         @ApiParam(name = "orn",value = "首饰对象")Ornaments orn){
-        String updsku = uss.updsku(mid, skuid, app, clo, cos, foo, orn);
+                         @ApiParam(name = "skuserviceimp",value = "sku对象")Skuserviceimp skuserviceimp){
+        String updsku = uss.updsku(mid, skuid, skuserviceimp);
         return updsku;
     }
 }

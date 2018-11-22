@@ -2,6 +2,7 @@ package cn.axy.xc.xcitemdetailprovider.controller;
 
 import cn.axy.xc.xcitemdetailprovider.pojo.*;
 import cn.axy.xc.xcitemdetailprovider.service.Instskuservice;
+import cn.axy.xc.xcitemdetailprovider.service.exit.Skuserviceimp;
 import cn.axy.xc.xcitemdetailprovider.util.IDGenerator;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -25,12 +26,8 @@ public class Instskucontroller {
     public String instsku(@Param("request") HttpServletRequest request,
                           @Param("response") HttpServletResponse response,
                           @ApiParam(name = "mid",value = "商品ID",required = true)Integer mid,
-                          @ApiParam(name = "app",value = "家电对象")Appliances app,
-                          @ApiParam(name = "clo",value = "服装对象")Clothing clo,
-                          @ApiParam(name = "cos",value = "化妆品对象")Cosmetics cos,
-                          @ApiParam(name = "foo",value = "食品对象")Food foo,
-                          @ApiParam(name = "orn",value = "首饰对象")Ornaments orn){
-        String instsku = iss.instsku(mid, app, clo, cos, foo, orn);
+                          @ApiParam(name = "skumessage",value = "sku信息")Skuserviceimp skumessage){
+        String instsku = iss.instsku(mid,skumessage);
         return instsku;
     }
 }
