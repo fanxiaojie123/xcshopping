@@ -3,6 +3,7 @@ package cn.axy.xc.xcitemdetailprovider.service.impl;
 import cn.axy.xc.xcitemdetailprovider.dao.*;
 import cn.axy.xc.xcitemdetailprovider.pojo.*;
 import cn.axy.xc.xcitemdetailprovider.service.Instskuservice;
+import cn.axy.xc.xcitemdetailprovider.service.exit.Skuserviceimp;
 import cn.axy.xc.xcitemdetailprovider.util.IDGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -82,36 +83,60 @@ public class Instskuserviceimpl implements Instskuservice {
     }
 
     @Override
-    public String instsku(Integer mid, Appliances app, Clothing clo, Cosmetics cos, Food foo, Ornaments orn) {
-
+    public String instsku(Integer mid, Skuserviceimp skumessage) {
         if (mid != null){
             Integer midorn = mm.midorn(mid);
             if (midorn != null){
                 if (midorn == 1){
                     long genItemId = IDGenerator.genItemId(1);
-                    clo.setmId(mid);
-                    clo.setcId((int) genItemId);
-                    insertSelectiveclo(clo);
+                    Clothing clothing = new Clothing();
+                    clothing.setcColor(skumessage.getcColor());
+                    clothing.setcCount(skumessage.getcCount());
+                    clothing.setcSize(skumessage.getcSize());
+                    clothing.setcPrice(skumessage.getcPrice());
+                    clothing.setmId(mid);
+                    clothing.setcId((int) genItemId);
+                    insertSelectiveclo(clothing);
                 }else if (midorn == 2){
                     long genItemId = IDGenerator.genItemId(2);
-                    app.setmId(mid);
-                    app.setaId((int) genItemId);
-                    insertSelectiveapp(app);
+                    Appliances appliances = new Appliances();
+                    appliances.setaColor(skumessage.getaColor());
+                    appliances.setaCount(skumessage.getaCount());
+                    appliances.setaSize(skumessage.getaSize());
+                    appliances.setaPrice(skumessage.getaPrice());
+                    appliances.setmId(mid);
+                    appliances.setaId((int) genItemId);
+                    insertSelectiveapp(appliances);
                 }else if (midorn == 3){
                     long genItemId = IDGenerator.genItemId(3);
-                    foo.setmId(mid);
-                    foo.setfId((int) genItemId);
-                    insertSelectivefoo(foo);
+                    Food food = new Food();
+                    food.setfColor(skumessage.getfColor());
+                    food.setfCount(skumessage.getfCount());
+                    food.setfPrice(skumessage.getfPrice());
+                    food.setfSize(skumessage.getfSize());
+                    food.setmId(mid);
+                    food.setfId((int) genItemId);
+                    insertSelectivefoo(food);
                 }else if (midorn == 4){
                     long genItemId = IDGenerator.genItemId(4);
-                    orn.setmId(mid);
-                    orn.setoId((int) genItemId);
-                    insertSelectiveon(orn);
+                    Ornaments ornaments = new Ornaments();
+                    ornaments.setoColor(skumessage.getoColor());
+                    ornaments.setoCount(skumessage.getoCount());
+                    ornaments.setoPrice(skumessage.getoPrice());
+                    ornaments.setoSize(skumessage.getoSize());
+                    ornaments.setmId(mid);
+                    ornaments.setoId((int) genItemId);
+                    insertSelectiveon(ornaments);
                 }else if (midorn == 5){
                     long genItemId = IDGenerator.genItemId(5);
-                    cos.setmId(mid);
-                    cos.setCoId((int) genItemId);
-                    insertSelectivecos(cos);
+                    Cosmetics cosmetics = new Cosmetics();
+                    cosmetics.setCoColor(skumessage.getCoColor());
+                    cosmetics.setCoCount(skumessage.getCoCount());
+                    cosmetics.setCoPrice(skumessage.getCoPrice());
+                    cosmetics.setCoSize(skumessage.getCoSize());
+                    cosmetics.setmId(mid);
+                    cosmetics.setCoId((int) genItemId);
+                    insertSelectivecos(cosmetics);
                 }else {
                     count = "403";
                 }

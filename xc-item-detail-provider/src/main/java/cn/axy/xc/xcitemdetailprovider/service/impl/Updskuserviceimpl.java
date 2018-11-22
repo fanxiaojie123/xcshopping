@@ -3,6 +3,7 @@ package cn.axy.xc.xcitemdetailprovider.service.impl;
 import cn.axy.xc.xcitemdetailprovider.dao.*;
 import cn.axy.xc.xcitemdetailprovider.pojo.*;
 import cn.axy.xc.xcitemdetailprovider.service.Updskuservice;
+import cn.axy.xc.xcitemdetailprovider.service.exit.Skuserviceimp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -80,20 +81,45 @@ public class Updskuserviceimpl implements Updskuservice {
     }
 
     @Override
-    public String updsku(Integer mid, Integer skuid, Appliances app, Clothing clo, Cosmetics cos, Food foo, Ornaments orn) {
+    public String updsku(Integer mid, Integer skuid, Skuserviceimp skuserviceimp) {
         if (mid != null){
             Integer midorn = mm.midorn(mid);
             if (midorn != null){
                 if (midorn == 1){
-                    count = updateByPrimaryKeySelectiveclo(clo);
+                    Clothing clothing = new Clothing();
+                    clothing.setcColor(skuserviceimp.getcColor());
+                    clothing.setcCount(skuserviceimp.getcCount());
+                    clothing.setcSize(skuserviceimp.getcSize());
+                    clothing.setcPrice(skuserviceimp.getcPrice());
+                    count = updateByPrimaryKeySelectiveclo(clothing);
                 }else if (midorn == 2){
-                    count = updateByPrimaryKeySelectiveapp(app);
+                    Appliances appliances = new Appliances();
+                    appliances.setaColor(skuserviceimp.getaColor());
+                    appliances.setaCount(skuserviceimp.getaCount());
+                    appliances.setaSize(skuserviceimp.getaSize());
+                    appliances.setaPrice(skuserviceimp.getaPrice());
+                    count = updateByPrimaryKeySelectiveapp(appliances);
                 }else if (midorn == 3){
-                    count = updateByPrimaryKeySelectivefoo(foo);
+                    Food food = new Food();
+                    food.setfColor(skuserviceimp.getfColor());
+                    food.setfCount(skuserviceimp.getfCount());
+                    food.setfPrice(skuserviceimp.getfPrice());
+                    food.setfSize(skuserviceimp.getfSize());
+                    count = updateByPrimaryKeySelectivefoo(food);
                 }else if (midorn == 4){
-                    count = updateByPrimaryKeySelectiveorn(orn);
+                    Ornaments ornaments = new Ornaments();
+                    ornaments.setoColor(skuserviceimp.getoColor());
+                    ornaments.setoCount(skuserviceimp.getoCount());
+                    ornaments.setoPrice(skuserviceimp.getoPrice());
+                    ornaments.setoSize(skuserviceimp.getoSize());
+                    count = updateByPrimaryKeySelectiveorn(ornaments);
                 }else if (midorn == 5){
-                    count = updateByPrimaryKeySelectivecos(cos);
+                    Cosmetics cosmetics = new Cosmetics();
+                    cosmetics.setCoColor(skuserviceimp.getCoColor());
+                    cosmetics.setCoCount(skuserviceimp.getCoCount());
+                    cosmetics.setCoPrice(skuserviceimp.getCoPrice());
+                    cosmetics.setCoSize(skuserviceimp.getCoSize());
+                    count = updateByPrimaryKeySelectivecos(cosmetics);
                 }else {
                     count = "403";
                 }
