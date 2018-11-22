@@ -12,7 +12,7 @@ public class Instmessageserviceimpl implements InstMessageservice {
     }
 
     @Override
-    public String instsku(Integer mid, Appliances app, Clothing clo, Cosmetics cos, Food foo, Ornaments orn) {
+    public String instsku(Integer mid, Skuserviceimp skuserviceimp) {
         return "找不到客户端啊啊啊啊啊啊啊！！！";
     }
 }

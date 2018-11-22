@@ -5,6 +5,7 @@ import cn.axy.xc.xcitemdetailconsumer.service.impl.Delmessageserviceimpl;
 import cn.axy.xc.xcitemdetailconsumer.service.impl.Instmessageserviceimpl;
 import io.swagger.annotations.ApiParam;
 import org.springframework.cloud.netflix.feign.FeignClient;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,10 +25,6 @@ public interface InstMessageservice {
                               @RequestParam("seller")Integer seller);
     @RequestMapping(value = "/instsku",method = RequestMethod.POST)
     public String instsku(
-                          @RequestParam("mid")Integer mid,
-                          @RequestParam("app")Appliances app,
-                          @RequestParam("clo")Clothing clo,
-                          @RequestParam("cos")Cosmetics cos,
-                          @RequestParam("foo")Food foo,
-                          @RequestParam("orn")Ornaments orn);
+            @RequestParam("mid")Integer mid,
+            @RequestBody Skuserviceimp skuserviceimp);
 }

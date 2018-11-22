@@ -12,7 +12,7 @@ public class Updmessageserviceimpl implements Updmessageservice {
     }
 
     @Override
-    public String updsku(Integer mid, Integer skuid, Appliances app, Clothing clo, Cosmetics cos, Food foo, Ornaments orn) {
+    public String updsku(Integer mid, Integer skuid, Skuserviceimp skuserviceimp) {
         return "找不到客户端啊啊啊啊啊啊啊！！！";
     }
 }
