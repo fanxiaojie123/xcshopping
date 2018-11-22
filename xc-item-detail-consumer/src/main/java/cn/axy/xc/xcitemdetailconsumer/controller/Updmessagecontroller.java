@@ -34,16 +34,12 @@ public class Updmessagecontroller {
     }
 
     /**
-     * 修改SKU
+     * 修改SKUid
      * @param request
      * @param response
      * @param mid
      * @param skuid
-     * @param app
-     * @param clo
-     * @param cos
-     * @param foo
-     * @param orn
+     * @param skuserviceimp
      * @return
      */
     @ApiOperation(value="更新sku", notes = "更新sku")
@@ -51,11 +47,7 @@ public class Updmessagecontroller {
     public String updsku(@Param("request") HttpServletRequest request,
                          @Param("response") HttpServletResponse response,@ApiParam(name = "mid",value = "商品ID",required = true)Integer mid,
                          @ApiParam(name = "skuid",value = "skuID",required = true)Integer skuid,
-                         @ApiParam(name = "app",value = "家电对象")Appliances app,
-                         @ApiParam(name = "clo",value = "服装对象")Clothing clo,
-                         @ApiParam(name = "cos",value = "化妆品对象")Cosmetics cos,
-                         @ApiParam(name = "foo",value = "食品对象")Food foo,
-                         @ApiParam(name = "orn",value = "首饰对象")Ornaments orn){
-        return updmessageservice.updsku(mid, skuid, app, clo, cos, foo, orn);
+                         @ApiParam(name = "skuserviceimp",value = "sku信息")Skuserviceimp skuserviceimp){
+        return updmessageservice.updsku(mid, skuid,skuserviceimp);
     }
 }

@@ -46,15 +46,11 @@ public class Instmessagecontroller {
     }
 
     /**
-     * 添加SKU
+     * 增加sku商品
      * @param request
      * @param response
      * @param mid
-     * @param app
-     * @param clo
-     * @param cos
-     * @param foo
-     * @param orn
+     * @param skuserviceimp
      * @return
      */
     @ApiOperation(value="增加sku车商品", notes = "增加sku商品")
@@ -62,11 +58,7 @@ public class Instmessagecontroller {
     public String instsku(@Param("request") HttpServletRequest request,
                           @Param("response") HttpServletResponse response,
             @ApiParam(name = "mid",value = "商品ID",required = true)Integer mid,
-            @ApiParam(name = "app",value = "家电对象")Appliances app,
-            @ApiParam(name = "clo",value = "服装对象")Clothing clo,
-            @ApiParam(name = "cos",value = "化妆品对象")Cosmetics cos,
-            @ApiParam(name = "foo",value = "食品对象")Food foo,
-            @ApiParam(name = "orn",value = "首饰对象")Ornaments orn){
-        return instMessageservice.instsku(mid, app, clo, cos, foo, orn);
+            @ApiParam(name = "skuserviceimp",value = "sku信息")Skuserviceimp skuserviceimp){
+        return instMessageservice.instsku(mid, skuserviceimp);
     }
 }

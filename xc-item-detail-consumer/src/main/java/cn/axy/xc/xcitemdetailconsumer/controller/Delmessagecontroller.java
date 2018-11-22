@@ -26,7 +26,7 @@ public class Delmessagecontroller {
      * @return
      */
     @ApiOperation(value="删除商品详情", notes = "删除商品详情")
-    @RequestMapping(value = "/delmessage1")
+    @RequestMapping(value = "/delmessage")
     String delmessage(@Param("request") HttpServletRequest request,
                       @Param("response") HttpServletResponse response,
                       @ApiParam(name = "mid",value = "商品ID",required = true)Integer mid){
