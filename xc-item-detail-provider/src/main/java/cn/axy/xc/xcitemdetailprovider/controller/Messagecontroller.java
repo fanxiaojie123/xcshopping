@@ -1,13 +1,12 @@
 package cn.axy.xc.xcitemdetailprovider.controller;
 
 import cn.axy.xc.xcitemdetailprovider.service.Messageservice;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.*;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,10 +18,13 @@ public class Messagecontroller {
     @Autowired
     private Messageservice ms;
     @ApiOperation(value="查询商家商品接口", notes = "查询商家商品接口")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name="mid", value="商品ID", dataType = "商品ID")
+    })
     @RequestMapping(value = "/getall",method = RequestMethod.POST)
     public String Messagegetall(@Param("request") HttpServletRequest request,
                                 @Param("response") HttpServletResponse response,
-                                @ApiParam(name = "sid",value = "商家ID",required = true)Integer sid){
+                                @RequestParam("sid")Integer sid){
         String sellgetall = ms.sellgetall(sid);
         return sellgetall;
     }

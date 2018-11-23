@@ -3,14 +3,10 @@ package cn.axy.xc.xcitemdetailprovider.controller;
 import cn.axy.xc.xcitemdetailprovider.pojo.*;
 import cn.axy.xc.xcitemdetailprovider.service.Updskuservice;
 import cn.axy.xc.xcitemdetailprovider.service.exit.Skuserviceimp;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.*;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,12 +17,18 @@ public class Updskucontroller {
     @Autowired
     private Updskuservice uss;
     @ApiOperation(value="更新sku", notes = "更新sku")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name="mid", value="商品ID", dataType = "ShoppingCart")
+            ,@ApiImplicitParam(name="skuid", value="skuID", dataType = "java.lang.Long")
+           // ,@ApiImplicitParam(name="skuserviceimp", value="sku对象")
+
+    })
     @RequestMapping(value = "/updsku",method = RequestMethod.POST)
     public String updsku(@Param("request") HttpServletRequest request,
                          @Param("response") HttpServletResponse response,
-                         @ApiParam(name = "mid",value = "商品ID",required = true)Integer mid,
-                         @ApiParam(name = "skuid",value = "skuID",required = true)Integer skuid,
-                         @ApiParam(name = "skuserviceimp",value = "sku对象")Skuserviceimp skuserviceimp){
+                        @RequestParam("mid") Integer mid,
+                         @RequestParam("skuid")Long skuid,
+                         @ApiParam(name = "skuserviceimp",value = "sku对象") Skuserviceimp skuserviceimp){
         String updsku = uss.updsku(mid, skuid, skuserviceimp);
         return updsku;
     }
