@@ -31,6 +31,16 @@ public class Messagesolrpojo {
     private String sDescribe;
     @ApiModelProperty(value = "商家图片",dataType = "String")
     private String sPicture;
+    @ApiModelProperty(value = "商品状态",dataType = "Integer")
+    private Integer mStatus;
+
+    public Integer getmStatus() {
+        return mStatus;
+    }
+
+    public void setmStatus(Integer mStatus) {
+        this.mStatus = mStatus;
+    }
 
     public String getsAddress() {
         return sAddress;
