@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 @FeignClient(name = "xc-item-detail-provider",fallback = Updmessageserviceimpl.class)
 public interface Updmessageservice {
     @RequestMapping(value = "/updmessage",method = RequestMethod.POST)
-    public String updmessage(@RequestParam("mes")Message mes);
+    String updmessage(@RequestBody Message mes);
+
+
     @RequestMapping(value = "/updsku",method = RequestMethod.POST)
-    public String updsku(@RequestParam("mid")Integer mid,
-                         @RequestParam("skuid")Integer skuid,
+    String updsku(@RequestParam("mid")Integer mid,
+                         @RequestParam("skuid")Long skuid,
                          @RequestBody Skuserviceimp skuserviceimp);
 }

@@ -11,7 +11,7 @@ public class Delmessageserviceimpl implements Delmessageservice {
     }
 
     @Override
-    public String delsku(Integer mid, Integer skuid) {
+    public String delsku(Integer mid, Long skuid) {
         return "找不到客户端啊啊啊啊啊啊啊！！！";
     }
 }

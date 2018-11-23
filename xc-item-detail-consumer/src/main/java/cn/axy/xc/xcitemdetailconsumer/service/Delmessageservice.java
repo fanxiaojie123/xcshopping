@@ -13,5 +13,5 @@ public interface Delmessageservice {
     String delmessage( @RequestParam("mid")Integer mid);
     @RequestMapping(value = "/delsku",method = RequestMethod.POST)
     public String delsku(@RequestParam("mid")Integer mid,
-                         @RequestParam("skuid")Integer skuid);
+                         @RequestParam("skuid")Long skuid);
 }
