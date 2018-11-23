@@ -1,6 +1,7 @@
 package cn.axy.xc.xcitemshowprovider.dao.impl;
 
 import cn.axy.xc.xcitemshowprovider.dao.MessageSolrdao;
+import cn.axy.xc.xcitemshowprovider.pojo.Messagegetallsolr;
 import cn.axy.xc.xcitemshowprovider.pojo.Messagesolr;
 import cn.axy.xc.xcitemshowprovider.pojo.Messagesolrpojo;
 import org.apache.solr.client.solrj.SolrQuery;
@@ -114,6 +115,34 @@ public class MessageSolrimpl implements MessageSolrdao {
             }else {
                 messagesolrpojo.setsName((String) doc.get("sName"));
             }
+            messagesolrpojos.add(messagesolrpojo);
+        }
+        return messagesolrpojos;
+    }
+
+    public List<Messagesolrpojo> searchProduct1(String mStatus) throws Exception {
+        SolrQuery solrQuery = new SolrQuery();
+        //设置关键字
+        solrQuery.setQuery(mStatus);
+        //设置默认搜索域
+        solrQuery.set("df", "product_keyword");
+        //设置过滤条件
+        if(null != mStatus && !"".equals(mStatus)){
+            solrQuery.set("fq", "mStatus:" + mStatus);
+        }
+        solrQuery.set("fl", "id,mStatus,mPrice,mPicture,mCount");
+        // 执行查询
+        QueryResponse response = client.query(solrQuery);
+        // 文档结果集
+        SolrDocumentList docs = response.getResults();
+        List<Messagesolrpojo> messagesolrpojos = new ArrayList<Messagesolrpojo>();
+        for (SolrDocument doc : docs) {
+            Messagesolrpojo messagesolrpojo = new Messagesolrpojo();
+            messagesolrpojo.setId((String) doc.get("id"));
+            messagesolrpojo.setmPoints((String) doc.get("mPoints"));
+            messagesolrpojo.setmPicture((String) doc.get("mPicture"));
+            messagesolrpojo.setmPrice((String) doc.get("mPrice"));
+            messagesolrpojo.setmStatus(Integer.parseInt((String) doc.get("mStatus")));
             messagesolrpojos.add(messagesolrpojo);
         }
         return messagesolrpojos;

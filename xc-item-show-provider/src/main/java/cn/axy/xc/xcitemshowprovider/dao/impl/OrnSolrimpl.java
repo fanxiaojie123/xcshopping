@@ -44,7 +44,7 @@ public class OrnSolrimpl implements OrnSolrdao {
             ornaments1.setId(Long.parseLong((String) doc.get("id")) );
             ornaments1.setoColor((String) doc.get("oColor"));
             ornaments1.setoSize((String) doc.get("oSize"));
-            ornaments1.setmId((Integer) doc.get("mId"));
+            ornaments1.setmId(Integer.parseInt((String) doc.get("mId")) );
             ornaments1.setoPrice(Double.parseDouble((String) doc.get("oPrice")));
             ornaments1.setoCount(Double.parseDouble((String) doc.get("oCount")));
             ornaments1.setmPrice(Double.parseDouble((String) doc.get("mPrice")));
@@ -75,7 +75,7 @@ public class OrnSolrimpl implements OrnSolrdao {
             ornaments1.setOid(Long.parseLong((String) doc.get("id")) );
             ornaments1.setoColor((String) doc.get("oColor"));
             ornaments1.setoSize((String) doc.get("oSize"));
-            ornaments1.setmId((Integer) doc.get("mId"));
+            ornaments1.setmId(Integer.parseInt((String)  doc.get("mId")));
             ornaments1.setoPrice(Double.parseDouble((String) doc.get("oPrice")));
             ornaments1.setoCount(Double.parseDouble((String) doc.get("oCount")));
             ornaments1.setmPrice(Double.parseDouble((String) doc.get("mPrice")));
