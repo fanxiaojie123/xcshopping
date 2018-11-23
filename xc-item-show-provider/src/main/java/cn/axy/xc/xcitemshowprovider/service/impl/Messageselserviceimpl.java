@@ -51,6 +51,7 @@ public class Messageselserviceimpl implements Messageselservice {
             document1.addField("sPhone",uo.getsPhone());
             document1.addField("sDescribe",uo.getsDescribe());
             document1.addField("sPicture",uo.getsPicture());
+            document1.addField("mStatus",uo.getmStatus());
             client.add(document1);
         }
         client.commit();

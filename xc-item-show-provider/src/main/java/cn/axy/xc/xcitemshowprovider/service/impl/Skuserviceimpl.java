@@ -27,13 +27,17 @@ public class Skuserviceimpl implements SkuidAll {
     public String Skuservice(Long skuid) throws Exception {
 
         Long num = 100000000000000L;
-
+        System.out.println(skuid);
         if (skuid != null && skuid != 0) {
             long l = skuid / num;
+            System.out.println(l);
             if(l == 1){
+                System.out.println(skuid);
                 List<Skuservicepojo> closku = clothingSolrimpl.closku(String.valueOf(skuid));
+                System.out.println(closku);
                 count = JSON.toJSONString(closku);
             }else if (l == 2){
+                System.out.println(skuid);
                 List<Skuservicepojo> appliances = appliancesSolrdao.searchProductsku(String.valueOf(skuid));
                 count = JSON.toJSONString(appliances);
             }else if (l == 3){
