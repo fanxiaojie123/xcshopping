@@ -42,8 +42,8 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                // 自行修改为自己的包路径
-                .apis(RequestHandlerSelectors.basePackage("cn.axy.xc.xcorderprovider.controller"))
+                // 自行修改为自己的包路径cn.axy.xc.xcitemshowconsumer.controller
+                .apis(RequestHandlerSelectors.basePackage("cn.axy.xc.xcitemshowconsumer.controller"))
                 .paths(PathSelectors.any())
                 .build()
                 .globalOperationParameters(pars);//把消息头添加
