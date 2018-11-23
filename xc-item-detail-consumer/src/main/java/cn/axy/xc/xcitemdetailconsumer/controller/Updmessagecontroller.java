@@ -2,13 +2,12 @@ package cn.axy.xc.xcitemdetailconsumer.controller;
 
 import cn.axy.xc.xcitemdetailconsumer.pojo.*;
 import cn.axy.xc.xcitemdetailconsumer.service.Updmessageservice;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.*;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,33 +20,35 @@ public class Updmessagecontroller {
 
     /**
      * 修改商品
-     * @param request
-     * @param response
      * @param mes
      * @return
      */
     @ApiOperation(value="更新商品信息接口", notes = "更新商品信息接口")
-    public String updmessage(@Param("request") HttpServletRequest request,
-                             @Param("response") HttpServletResponse response,
+    @RequestMapping(value = "/updmessage",method = RequestMethod.POST)
+    public String updmessage(
                              @ApiParam(name = "mes",value = "商品对象")Message mes){
         return updmessageservice.updmessage(mes);
     }
 
     /**
      * 修改SKUid
-     * @param request
-     * @param response
      * @param mid
      * @param skuid
      * @param skuserviceimp
      * @return
      */
     @ApiOperation(value="更新sku", notes = "更新sku")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name="mid", value="商品ID", dataType = "ShoppingCart")
+            ,@ApiImplicitParam(name="skuid", value="skuID", dataType = "java.lang.Long")
+            // ,@ApiImplicitParam(name="skuserviceimp", value="sku对象")
+
+    })
     @RequestMapping(value = "/updsku",method = RequestMethod.POST)
-    public String updsku(@Param("request") HttpServletRequest request,
-                         @Param("response") HttpServletResponse response,@ApiParam(name = "mid",value = "商品ID",required = true)Integer mid,
-                         @ApiParam(name = "skuid",value = "skuID",required = true)Integer skuid,
-                         @ApiParam(name = "skuserviceimp",value = "sku信息")Skuserviceimp skuserviceimp){
+    public String updsku(
+                         @RequestParam("mid") Integer mid,
+                         @RequestParam("skuid")Long skuid,
+                         @ApiParam(name="skuserviceimp", value="sku对象")Skuserviceimp skuserviceimp){
         return updmessageservice.updsku(mid, skuid,skuserviceimp);
     }
 }
