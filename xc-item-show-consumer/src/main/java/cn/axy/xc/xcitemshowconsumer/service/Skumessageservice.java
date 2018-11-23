@@ -8,6 +8,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 @FeignClient(name = "xc-item-show-provider",fallback = Skumessageserviceimpl.class)
 public interface Skumessageservice {
     @RequestMapping(value = "/skuidall",method = RequestMethod.POST)
-    public String skuidall(
+    String skuidall(
             @RequestParam("skuid")Long skuid) throws Exception;
 }
