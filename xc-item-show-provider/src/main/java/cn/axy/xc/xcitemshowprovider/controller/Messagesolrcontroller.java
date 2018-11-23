@@ -8,6 +8,7 @@ import io.swagger.annotations.*;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,33 +23,24 @@ public class Messagesolrcontroller {
     private Messagesolrservice messagesolrservice;
     /**
      * 全文检索
-     * @param request
-     * @param response
      * @param messagesolr
-     * @param model
      * @return
      * @throws Exception
      */
     @ApiOperation(value="查询商品详情", notes = "查询商品详情")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name="messagesolr", value="messagesolr", dataType = "Long"),
-            @ApiImplicitParam(name="model", value="model", dataType = "Long")
-    })
-    @RequestMapping(value="/list",method = RequestMethod.GET)
-    public String searchProduct(@Param("request") HttpServletRequest request,
-                                @Param("response") HttpServletResponse response,
-                                @ApiParam(name = "messagesolr",value = "查询输入字段",required = true)Messagesolr messagesolr ,
-                                @ApiParam(name = "model",value = "页面数据",required = true)Model model) throws Exception{
+    @RequestMapping(value="/list",method = RequestMethod.POST)
+    public String searchProduct(
+                                @RequestBody Messagesolr messagesolr ) throws Exception{
         //获取到检索的所有结果
         List<Messagesolrpojo> searchProducts = messagesolrservice.searchProduct(messagesolr);
-        //设置回显内容
-        model.addAttribute("productModels", searchProducts);
-        model.addAttribute("queryString", messagesolr.getQueryString());
-        model.addAttribute("catalog_name", messagesolr.getCatalog_name());
-        model.addAttribute("sort", messagesolr.getSort());
-        model.addAttribute("seller", messagesolr.getSeller());
-        model.addAttribute("points", messagesolr.getPoints());
-        model.addAttribute("type", messagesolr.getType());
+//        //设置回显内容
+//        model.addAttribute("productModels", searchProducts);
+//        model.addAttribute("queryString", messagesolr.getQueryString());
+//        model.addAttribute("catalog_name", messagesolr.getCatalog_name());
+//        model.addAttribute("sort", messagesolr.getSort());
+//        model.addAttribute("seller", messagesolr.getSeller());
+//        model.addAttribute("points", messagesolr.getPoints());
+//        model.addAttribute("type", messagesolr.getType());
         return JSON.toJSONString(searchProducts);
     }
 }
