@@ -47,6 +47,8 @@ public class Instmessageserviceimpl implements Instmessageservice {
         mes.setmPicture(record.getmPicture());
         mes.setsId(record.getSeller());
         mes.setmParticulars(record.getmParticulars());
+        mes.setmPrice(record.getmPrice());
+        mes.setmCount(record.getmCount());
         int insertSelective = mm.insertSelective(mes);
         if (insertSelective > 0){
             count = "200";

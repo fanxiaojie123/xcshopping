@@ -95,7 +95,7 @@ public class Instskuserviceimpl implements Instskuservice {
                     clothing.setcSize(skumessage.getcSize());
                     clothing.setcPrice(skumessage.getcPrice());
                     clothing.setmId(mid);
-                    clothing.setcId((int) genItemId);
+                    clothing.setcId(genItemId);
                     insertSelectiveclo(clothing);
                 }else if (midorn == 2){
                     long genItemId = IDGenerator.genItemId(2);
@@ -105,7 +105,7 @@ public class Instskuserviceimpl implements Instskuservice {
                     appliances.setaSize(skumessage.getaSize());
                     appliances.setaPrice(skumessage.getaPrice());
                     appliances.setmId(mid);
-                    appliances.setaId((int) genItemId);
+                    appliances.setaId( genItemId);
                     insertSelectiveapp(appliances);
                 }else if (midorn == 3){
                     long genItemId = IDGenerator.genItemId(3);
@@ -115,7 +115,7 @@ public class Instskuserviceimpl implements Instskuservice {
                     food.setfPrice(skumessage.getfPrice());
                     food.setfSize(skumessage.getfSize());
                     food.setmId(mid);
-                    food.setfId((int) genItemId);
+                    food.setfId(genItemId);
                     insertSelectivefoo(food);
                 }else if (midorn == 4){
                     long genItemId = IDGenerator.genItemId(4);
@@ -125,7 +125,7 @@ public class Instskuserviceimpl implements Instskuservice {
                     ornaments.setoPrice(skumessage.getoPrice());
                     ornaments.setoSize(skumessage.getoSize());
                     ornaments.setmId(mid);
-                    ornaments.setoId((int) genItemId);
+                    ornaments.setoId(genItemId);
                     insertSelectiveon(ornaments);
                 }else if (midorn == 5){
                     long genItemId = IDGenerator.genItemId(5);
@@ -135,7 +135,7 @@ public class Instskuserviceimpl implements Instskuservice {
                     cosmetics.setCoPrice(skumessage.getCoPrice());
                     cosmetics.setCoSize(skumessage.getCoSize());
                     cosmetics.setmId(mid);
-                    cosmetics.setCoId((int) genItemId);
+                    cosmetics.setCoId(genItemId);
                     insertSelectivecos(cosmetics);
                 }else {
                     count = "403";

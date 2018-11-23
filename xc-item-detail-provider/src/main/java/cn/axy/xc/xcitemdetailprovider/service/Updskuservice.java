@@ -10,5 +10,5 @@ public interface Updskuservice {
     String updateByPrimaryKeySelectivecos(Cosmetics record);
     String updateByPrimaryKeySelectivefoo(Food record);
     String updateByPrimaryKeySelectiveorn(Ornaments record);
-    String updsku(Integer mid, Integer skuid, Skuserviceimp skuserviceimp);
+    String updsku(Integer mid, Long skuid, Skuserviceimp skuserviceimp);
 }

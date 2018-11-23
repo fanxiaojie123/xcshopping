@@ -23,7 +23,7 @@ public class Delskuserviceimpl implements Delskuservice {
     private MessageMapper mm;
     String count = "";
     @Override
-    public String deleteByPrimaryKeyapp(Integer aId) {
+    public String deleteByPrimaryKeyapp(Long aId) {
         if (aId != null){
             int deleteByPrimaryKey = am.deleteByPrimaryKey(aId);
             if (deleteByPrimaryKey > 0){
@@ -38,7 +38,7 @@ public class Delskuserviceimpl implements Delskuservice {
     }
 
     @Override
-    public String deleteByPrimaryKeyclo(Integer cId) {
+    public String deleteByPrimaryKeyclo(Long cId) {
         if (cId != null){
             int deleteByPrimaryKey = cm.deleteByPrimaryKey(cId);
             if (deleteByPrimaryKey > 0){
@@ -53,7 +53,7 @@ public class Delskuserviceimpl implements Delskuservice {
     }
 
     @Override
-    public String deleteByPrimaryKeycos(Integer coId) {
+    public String deleteByPrimaryKeycos(Long coId) {
         if (coId != null){
             int deleteByPrimaryKey = com.deleteByPrimaryKey(coId);
             if (deleteByPrimaryKey > 0){
@@ -68,7 +68,7 @@ public class Delskuserviceimpl implements Delskuservice {
     }
 
     @Override
-    public String deleteByPrimaryKeyfoo(Integer fId) {
+    public String deleteByPrimaryKeyfoo(Long fId) {
         if (fId != null){
             int deleteByPrimaryKey = fm.deleteByPrimaryKey(fId);
             if (deleteByPrimaryKey > 0){
@@ -83,7 +83,7 @@ public class Delskuserviceimpl implements Delskuservice {
     }
 
     @Override
-    public String deleteByPrimaryKeyorn(Integer oId) {
+    public String deleteByPrimaryKeyorn(Long oId) {
         if (oId != null){
             int deleteByPrimaryKey = om.deleteByPrimaryKey(oId);
             if (deleteByPrimaryKey > 0){
@@ -98,7 +98,7 @@ public class Delskuserviceimpl implements Delskuservice {
     }
 
     @Override
-    public String delsku(Integer mid , Integer skuid) {
+    public String delsku(Integer mid , Long skuid) {
         if (mid == null){
             count = "403";
         }else{

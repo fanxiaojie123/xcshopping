@@ -43,7 +43,7 @@ public class Updinvserviceimpl implements Updinvservice {
     }
 
     @Override
-    public String updskuinv(Integer mid, Integer skuid,Integer psc) {
+    public String updskuinv(Integer mid, Long skuid,Integer psc) {
         if (mid != null){
             Integer midorn = mm.midorn(mid);
             if (midorn == 1){

@@ -8,6 +8,24 @@ public class Messageservicepojo {
     private Integer seller;
     private String searchCategoryId;
     private String searchCategoryParentId;
+    private Double mPrice;
+    private Double mCount;
+
+    public Double getmPrice() {
+        return mPrice;
+    }
+
+    public void setmPrice(Double mPrice) {
+        this.mPrice = mPrice;
+    }
+
+    public Double getmCount() {
+        return mCount;
+    }
+
+    public void setmCount(Double mCount) {
+        this.mCount = mCount;
+    }
 
     public String getmName() {
         return mName;

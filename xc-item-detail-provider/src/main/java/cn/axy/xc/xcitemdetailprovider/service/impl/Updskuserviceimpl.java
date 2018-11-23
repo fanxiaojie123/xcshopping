@@ -81,12 +81,13 @@ public class Updskuserviceimpl implements Updskuservice {
     }
 
     @Override
-    public String updsku(Integer mid, Integer skuid, Skuserviceimp skuserviceimp) {
+    public String updsku(Integer mid, Long skuid, Skuserviceimp skuserviceimp) {
         if (mid != null){
             Integer midorn = mm.midorn(mid);
             if (midorn != null){
                 if (midorn == 1){
                     Clothing clothing = new Clothing();
+                    clothing.setcId(skuid);
                     clothing.setcColor(skuserviceimp.getcColor());
                     clothing.setcCount(skuserviceimp.getcCount());
                     clothing.setcSize(skuserviceimp.getcSize());
@@ -94,6 +95,7 @@ public class Updskuserviceimpl implements Updskuservice {
                     count = updateByPrimaryKeySelectiveclo(clothing);
                 }else if (midorn == 2){
                     Appliances appliances = new Appliances();
+                    appliances.setaId(skuid);
                     appliances.setaColor(skuserviceimp.getaColor());
                     appliances.setaCount(skuserviceimp.getaCount());
                     appliances.setaSize(skuserviceimp.getaSize());
@@ -101,6 +103,7 @@ public class Updskuserviceimpl implements Updskuservice {
                     count = updateByPrimaryKeySelectiveapp(appliances);
                 }else if (midorn == 3){
                     Food food = new Food();
+                    food.setfId(skuid);
                     food.setfColor(skuserviceimp.getfColor());
                     food.setfCount(skuserviceimp.getfCount());
                     food.setfPrice(skuserviceimp.getfPrice());
@@ -108,6 +111,7 @@ public class Updskuserviceimpl implements Updskuservice {
                     count = updateByPrimaryKeySelectivefoo(food);
                 }else if (midorn == 4){
                     Ornaments ornaments = new Ornaments();
+                    ornaments.setoId(skuid);
                     ornaments.setoColor(skuserviceimp.getoColor());
                     ornaments.setoCount(skuserviceimp.getoCount());
                     ornaments.setoPrice(skuserviceimp.getoPrice());
@@ -115,20 +119,20 @@ public class Updskuserviceimpl implements Updskuservice {
                     count = updateByPrimaryKeySelectiveorn(ornaments);
                 }else if (midorn == 5){
                     Cosmetics cosmetics = new Cosmetics();
+                    cosmetics.setCoId(skuid);
                     cosmetics.setCoColor(skuserviceimp.getCoColor());
                     cosmetics.setCoCount(skuserviceimp.getCoCount());
                     cosmetics.setCoPrice(skuserviceimp.getCoPrice());
                     cosmetics.setCoSize(skuserviceimp.getCoSize());
                     count = updateByPrimaryKeySelectivecos(cosmetics);
                 }else {
-                    count = "403";
+                    count = "4033";
                 }
             }else {
-
+                count = "4032";
             }
-
         }else {
-            count = "403";
+            count = "4031";
         }
         return count;
     }
