@@ -13,8 +13,6 @@ public class Skuserviceimp {
     private Double aPrice;
     @ApiModelProperty(value = "家电SKU数量",dataType = "Double")
     private Double aCount;
-    @ApiModelProperty(value = "商品ID",dataType = "Integer")
-    private Integer mId;
     @ApiModelProperty(value = "服装SKU库存",dataType = "Double")
     private Double cCount;
     @ApiModelProperty(value = "服装SKU单价",dataType = "Double")
@@ -78,14 +76,6 @@ public class Skuserviceimp {
 
     public void setaCount(Double aCount) {
         this.aCount = aCount;
-    }
-
-    public Integer getmId() {
-        return mId;
-    }
-
-    public void setmId(Integer mId) {
-        this.mId = mId;
     }
 
     public Double getcCount() {
