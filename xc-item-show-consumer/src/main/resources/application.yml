@@ -3,6 +3,31 @@ server:
 spring:
   application:
     name: xc-item-show-consumer
+  datasource:
+    url: jdbc:mysql://localhost:3306/vip?charecterEncoding=UTF-8&useSSL=false
+    username: root
+    password: root
+    # 使用druid数据源
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    filters: stat
+    maxActive: 20
+    initialSize: 1
+    maxWait: 60000
+    minIdle: 1
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: select 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxOpenPreparedStatements: 20
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+  mvc:
+    static-path-pattern: /static/**
 eureka:
   instance:
     instance-id: xc-item-show-consumer
@@ -13,11 +38,10 @@ eureka:
 feign:
   hystrix:
     enabled: true
-
 ---
 spring:
   zipkin:
-    base-url: http://60.205.207.9:7777
+    base-url: http://101.132.139.58:7777
   sleuth:
     sampler:
        percentage: 1.0
