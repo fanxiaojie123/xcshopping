@@ -2,36 +2,36 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.axy.xc.xcitemdetailprovider.dao.AppliancesMapper">
   <resultMap id="BaseResultMap" type="cn.axy.xc.xcitemdetailprovider.pojo.Appliances">
-    <id column="a_id" jdbcType="INTEGER" property="aId" />
+    <id column="a_id" jdbcType="BIGINT" property="aId" />
     <result column="a_size" jdbcType="VARCHAR" property="aSize" />
     <result column="a_color" jdbcType="VARCHAR" property="aColor" />
     <result column="a_price" jdbcType="DOUBLE" property="aPrice" />
     <result column="a_count" jdbcType="DOUBLE" property="aCount" />
     <result column="m_id" jdbcType="INTEGER" property="mId" />
-    <result column="a_x" jdbcType="VARCHAR" property="aX" />
+    <result column="a_picture" jdbcType="VARCHAR" property="aPicture" />
     <result column="a_x1" jdbcType="VARCHAR" property="aX1" />
     <result column="a_x2" jdbcType="VARCHAR" property="aX2" />
   </resultMap>
   <sql id="Base_Column_List">
-    a_id, a_size, a_color, a_price, a_count, m_id, a_x, a_x1, a_x2
+    a_id, a_size, a_color, a_price, a_count, m_id, a_picture, a_x1, a_x2
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from appliances
-    where a_id = #{aId,jdbcType=INTEGER}
+    where a_id = #{aId,jdbcType=BIGINT}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from appliances
-    where a_id = #{aId,jdbcType=INTEGER}
+    where a_id = #{aId,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="cn.axy.xc.xcitemdetailprovider.pojo.Appliances">
     insert into appliances (a_id, a_size, a_color, 
       a_price, a_count, m_id, 
-      a_x, a_x1, a_x2)
-    values (#{aId,jdbcType=INTEGER}, #{aSize,jdbcType=VARCHAR}, #{aColor,jdbcType=VARCHAR}, 
+      a_picture, a_x1, a_x2)
+    values (#{aId,jdbcType=BIGINT}, #{aSize,jdbcType=VARCHAR}, #{aColor,jdbcType=VARCHAR}, 
       #{aPrice,jdbcType=DOUBLE}, #{aCount,jdbcType=DOUBLE}, #{mId,jdbcType=INTEGER}, 
-      #{aX,jdbcType=VARCHAR}, #{aX1,jdbcType=VARCHAR}, #{aX2,jdbcType=VARCHAR})
+      #{aPicture,jdbcType=VARCHAR}, #{aX1,jdbcType=VARCHAR}, #{aX2,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="cn.axy.xc.xcitemdetailprovider.pojo.Appliances">
     insert into appliances
@@ -54,8 +54,8 @@
       <if test="mId != null">
         m_id,
       </if>
-      <if test="aX != null">
-        a_x,
+      <if test="aPicture != null">
+        a_picture,
       </if>
       <if test="aX1 != null">
         a_x1,
@@ -66,7 +66,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="aId != null">
-        #{aId,jdbcType=INTEGER},
+        #{aId,jdbcType=BIGINT},
       </if>
       <if test="aSize != null">
         #{aSize,jdbcType=VARCHAR},
@@ -83,8 +83,8 @@
       <if test="mId != null">
         #{mId,jdbcType=INTEGER},
       </if>
-      <if test="aX != null">
-        #{aX,jdbcType=VARCHAR},
+      <if test="aPicture != null">
+        #{aPicture,jdbcType=VARCHAR},
       </if>
       <if test="aX1 != null">
         #{aX1,jdbcType=VARCHAR},
@@ -112,8 +112,8 @@
       <if test="mId != null">
         m_id = #{mId,jdbcType=INTEGER},
       </if>
-      <if test="aX != null">
-        a_x = #{aX,jdbcType=VARCHAR},
+      <if test="aPicture != null">
+        a_picture = #{aPicture,jdbcType=VARCHAR},
       </if>
       <if test="aX1 != null">
         a_x1 = #{aX1,jdbcType=VARCHAR},
@@ -122,7 +122,7 @@
         a_x2 = #{aX2,jdbcType=VARCHAR},
       </if>
     </set>
-    where a_id = #{aId,jdbcType=INTEGER}
+    where a_id = #{aId,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="cn.axy.xc.xcitemdetailprovider.pojo.Appliances">
     update appliances
@@ -131,9 +131,9 @@
       a_price = #{aPrice,jdbcType=DOUBLE},
       a_count = #{aCount,jdbcType=DOUBLE},
       m_id = #{mId,jdbcType=INTEGER},
-      a_x = #{aX,jdbcType=VARCHAR},
+      a_picture = #{aPicture,jdbcType=VARCHAR},
       a_x1 = #{aX1,jdbcType=VARCHAR},
       a_x2 = #{aX2,jdbcType=VARCHAR}
-    where a_id = #{aId,jdbcType=INTEGER}
+    where a_id = #{aId,jdbcType=BIGINT}
   </update>
 </mapper>

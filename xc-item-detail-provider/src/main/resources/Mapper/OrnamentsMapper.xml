@@ -2,36 +2,36 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.axy.xc.xcitemdetailprovider.dao.OrnamentsMapper">
   <resultMap id="BaseResultMap" type="cn.axy.xc.xcitemdetailprovider.pojo.Ornaments">
-    <id column="o_id" jdbcType="INTEGER" property="oId" />
+    <id column="o_id" jdbcType="BIGINT" property="oId" />
     <result column="m_id" jdbcType="INTEGER" property="mId" />
     <result column="o_size" jdbcType="VARCHAR" property="oSize" />
     <result column="o_color" jdbcType="VARCHAR" property="oColor" />
     <result column="o_count" jdbcType="DOUBLE" property="oCount" />
     <result column="o_price" jdbcType="DOUBLE" property="oPrice" />
-    <result column="o_x" jdbcType="VARCHAR" property="oX" />
+    <result column="o_picture" jdbcType="VARCHAR" property="oPicture" />
     <result column="o_x1" jdbcType="VARCHAR" property="oX1" />
     <result column="o_x2" jdbcType="VARCHAR" property="oX2" />
   </resultMap>
   <sql id="Base_Column_List">
-    o_id, m_id, o_size, o_color, o_count, o_price, o_x, o_x1, o_x2
+    o_id, m_id, o_size, o_color, o_count, o_price, o_picture, o_x1, o_x2
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from ornaments
-    where o_id = #{oId,jdbcType=INTEGER}
+    where o_id = #{oId,jdbcType=BIGINT}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from ornaments
-    where o_id = #{oId,jdbcType=INTEGER}
+    where o_id = #{oId,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="cn.axy.xc.xcitemdetailprovider.pojo.Ornaments">
     insert into ornaments (o_id, m_id, o_size, 
       o_color, o_count, o_price, 
-      o_x, o_x1, o_x2)
-    values (#{oId,jdbcType=INTEGER}, #{mId,jdbcType=INTEGER}, #{oSize,jdbcType=VARCHAR}, 
+      o_picture, o_x1, o_x2)
+    values (#{oId,jdbcType=BIGINT}, #{mId,jdbcType=INTEGER}, #{oSize,jdbcType=VARCHAR}, 
       #{oColor,jdbcType=VARCHAR}, #{oCount,jdbcType=DOUBLE}, #{oPrice,jdbcType=DOUBLE}, 
-      #{oX,jdbcType=VARCHAR}, #{oX1,jdbcType=VARCHAR}, #{oX2,jdbcType=VARCHAR})
+      #{oPicture,jdbcType=VARCHAR}, #{oX1,jdbcType=VARCHAR}, #{oX2,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="cn.axy.xc.xcitemdetailprovider.pojo.Ornaments">
     insert into ornaments
@@ -54,8 +54,8 @@
       <if test="oPrice != null">
         o_price,
       </if>
-      <if test="oX != null">
-        o_x,
+      <if test="oPicture != null">
+        o_picture,
       </if>
       <if test="oX1 != null">
         o_x1,
@@ -66,7 +66,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="oId != null">
-        #{oId,jdbcType=INTEGER},
+        #{oId,jdbcType=BIGINT},
       </if>
       <if test="mId != null">
         #{mId,jdbcType=INTEGER},
@@ -83,8 +83,8 @@
       <if test="oPrice != null">
         #{oPrice,jdbcType=DOUBLE},
       </if>
-      <if test="oX != null">
-        #{oX,jdbcType=VARCHAR},
+      <if test="oPicture != null">
+        #{oPicture,jdbcType=VARCHAR},
       </if>
       <if test="oX1 != null">
         #{oX1,jdbcType=VARCHAR},
@@ -112,8 +112,8 @@
       <if test="oPrice != null">
         o_price = #{oPrice,jdbcType=DOUBLE},
       </if>
-      <if test="oX != null">
-        o_x = #{oX,jdbcType=VARCHAR},
+      <if test="oPicture != null">
+        o_picture = #{oPicture,jdbcType=VARCHAR},
       </if>
       <if test="oX1 != null">
         o_x1 = #{oX1,jdbcType=VARCHAR},
@@ -122,7 +122,7 @@
         o_x2 = #{oX2,jdbcType=VARCHAR},
       </if>
     </set>
-    where o_id = #{oId,jdbcType=INTEGER}
+    where o_id = #{oId,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="cn.axy.xc.xcitemdetailprovider.pojo.Ornaments">
     update ornaments
@@ -131,9 +131,9 @@
       o_color = #{oColor,jdbcType=VARCHAR},
       o_count = #{oCount,jdbcType=DOUBLE},
       o_price = #{oPrice,jdbcType=DOUBLE},
-      o_x = #{oX,jdbcType=VARCHAR},
+      o_picture = #{oPicture,jdbcType=VARCHAR},
       o_x1 = #{oX1,jdbcType=VARCHAR},
       o_x2 = #{oX2,jdbcType=VARCHAR}
-    where o_id = #{oId,jdbcType=INTEGER}
+    where o_id = #{oId,jdbcType=BIGINT}
   </update>
 </mapper>

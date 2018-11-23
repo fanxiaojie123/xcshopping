@@ -2,36 +2,38 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.axy.xc.xcitemdetailprovider.dao.CosmeticsMapper">
   <resultMap id="BaseResultMap" type="cn.axy.xc.xcitemdetailprovider.pojo.Cosmetics">
-    <id column="co_id" jdbcType="INTEGER" property="coId" />
+    <id column="co_id" jdbcType="BIGINT" property="coId" />
     <result column="co_size" jdbcType="VARCHAR" property="coSize" />
     <result column="co_color" jdbcType="VARCHAR" property="coColor" />
     <result column="co_count" jdbcType="DOUBLE" property="coCount" />
     <result column="co_price" jdbcType="DOUBLE" property="coPrice" />
     <result column="m_id" jdbcType="INTEGER" property="mId" />
-    <result column="co_x" jdbcType="VARCHAR" property="coX" />
+    <result column="co_picture" jdbcType="VARCHAR" property="coPicture" />
     <result column="co_x1" jdbcType="VARCHAR" property="coX1" />
     <result column="co_x2" jdbcType="VARCHAR" property="coX2" />
   </resultMap>
   <sql id="Base_Column_List">
-    co_id, co_size, co_color, co_count, co_price, m_id, co_x, co_x1, co_x2
+    co_id, co_size, co_color, co_count, co_price, m_id, co_picture, co_x1, co_x2
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from cosmetics
-    where co_id = #{coId,jdbcType=INTEGER}
+    where co_id = #{coId,jdbcType=BIGINT}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from cosmetics
-    where co_id = #{coId,jdbcType=INTEGER}
+    where co_id = #{coId,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="cn.axy.xc.xcitemdetailprovider.pojo.Cosmetics">
     insert into cosmetics (co_id, co_size, co_color, 
       co_count, co_price, m_id, 
-      co_x, co_x1, co_x2)
-    values (#{coId,jdbcType=INTEGER}, #{coSize,jdbcType=VARCHAR}, #{coColor,jdbcType=VARCHAR}, 
+      co_picture, co_x1, co_x2
+      )
+    values (#{coId,jdbcType=BIGINT}, #{coSize,jdbcType=VARCHAR}, #{coColor,jdbcType=VARCHAR}, 
       #{coCount,jdbcType=DOUBLE}, #{coPrice,jdbcType=DOUBLE}, #{mId,jdbcType=INTEGER}, 
-      #{coX,jdbcType=VARCHAR}, #{coX1,jdbcType=VARCHAR}, #{coX2,jdbcType=VARCHAR})
+      #{coPicture,jdbcType=VARCHAR}, #{coX1,jdbcType=VARCHAR}, #{coX2,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="cn.axy.xc.xcitemdetailprovider.pojo.Cosmetics">
     insert into cosmetics
@@ -54,8 +56,8 @@
       <if test="mId != null">
         m_id,
       </if>
-      <if test="coX != null">
-        co_x,
+      <if test="coPicture != null">
+        co_picture,
       </if>
       <if test="coX1 != null">
         co_x1,
@@ -66,7 +68,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="coId != null">
-        #{coId,jdbcType=INTEGER},
+        #{coId,jdbcType=BIGINT},
       </if>
       <if test="coSize != null">
         #{coSize,jdbcType=VARCHAR},
@@ -83,8 +85,8 @@
       <if test="mId != null">
         #{mId,jdbcType=INTEGER},
       </if>
-      <if test="coX != null">
-        #{coX,jdbcType=VARCHAR},
+      <if test="coPicture != null">
+        #{coPicture,jdbcType=VARCHAR},
       </if>
       <if test="coX1 != null">
         #{coX1,jdbcType=VARCHAR},
@@ -112,8 +114,8 @@
       <if test="mId != null">
         m_id = #{mId,jdbcType=INTEGER},
       </if>
-      <if test="coX != null">
-        co_x = #{coX,jdbcType=VARCHAR},
+      <if test="coPicture != null">
+        co_picture = #{coPicture,jdbcType=VARCHAR},
       </if>
       <if test="coX1 != null">
         co_x1 = #{coX1,jdbcType=VARCHAR},
@@ -122,7 +124,7 @@
         co_x2 = #{coX2,jdbcType=VARCHAR},
       </if>
     </set>
-    where co_id = #{coId,jdbcType=INTEGER}
+    where co_id = #{coId,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="cn.axy.xc.xcitemdetailprovider.pojo.Cosmetics">
     update cosmetics
@@ -131,9 +133,9 @@
       co_count = #{coCount,jdbcType=DOUBLE},
       co_price = #{coPrice,jdbcType=DOUBLE},
       m_id = #{mId,jdbcType=INTEGER},
-      co_x = #{coX,jdbcType=VARCHAR},
+      co_picture = #{coPicture,jdbcType=VARCHAR},
       co_x1 = #{coX1,jdbcType=VARCHAR},
       co_x2 = #{coX2,jdbcType=VARCHAR}
-    where co_id = #{coId,jdbcType=INTEGER}
+    where co_id = #{coId,jdbcType=BIGINT}
   </update>
 </mapper>

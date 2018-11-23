@@ -2,36 +2,36 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.axy.xc.xcitemdetailprovider.dao.FoodMapper">
   <resultMap id="BaseResultMap" type="cn.axy.xc.xcitemdetailprovider.pojo.Food">
-    <id column="f_id" jdbcType="INTEGER" property="fId" />
+    <id column="f_id" jdbcType="BIGINT" property="fId" />
     <result column="f_size" jdbcType="VARCHAR" property="fSize" />
     <result column="f_color" jdbcType="VARCHAR" property="fColor" />
     <result column="f_count" jdbcType="DOUBLE" property="fCount" />
     <result column="f_price" jdbcType="DOUBLE" property="fPrice" />
     <result column="m_id" jdbcType="INTEGER" property="mId" />
-    <result column="f_x" jdbcType="VARCHAR" property="fX" />
+    <result column="f_picture" jdbcType="VARCHAR" property="fPicture" />
     <result column="f_x1" jdbcType="VARCHAR" property="fX1" />
     <result column="f_x2" jdbcType="VARCHAR" property="fX2" />
   </resultMap>
   <sql id="Base_Column_List">
-    f_id, f_size, f_color, f_count, f_price, m_id, f_x, f_x1, f_x2
+    f_id, f_size, f_color, f_count, f_price, m_id, f_picture, f_x1, f_x2
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from food
-    where f_id = #{fId,jdbcType=INTEGER}
+    where f_id = #{fId,jdbcType=BIGINT}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from food
-    where f_id = #{fId,jdbcType=INTEGER}
+    where f_id = #{fId,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="cn.axy.xc.xcitemdetailprovider.pojo.Food">
     insert into food (f_id, f_size, f_color, 
       f_count, f_price, m_id, 
-      f_x, f_x1, f_x2)
-    values (#{fId,jdbcType=INTEGER}, #{fSize,jdbcType=VARCHAR}, #{fColor,jdbcType=VARCHAR}, 
+      f_picture, f_x1, f_x2)
+    values (#{fId,jdbcType=BIGINT}, #{fSize,jdbcType=VARCHAR}, #{fColor,jdbcType=VARCHAR}, 
       #{fCount,jdbcType=DOUBLE}, #{fPrice,jdbcType=DOUBLE}, #{mId,jdbcType=INTEGER}, 
-      #{fX,jdbcType=VARCHAR}, #{fX1,jdbcType=VARCHAR}, #{fX2,jdbcType=VARCHAR})
+      #{fPicture,jdbcType=VARCHAR}, #{fX1,jdbcType=VARCHAR}, #{fX2,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="cn.axy.xc.xcitemdetailprovider.pojo.Food">
     insert into food
@@ -54,8 +54,8 @@
       <if test="mId != null">
         m_id,
       </if>
-      <if test="fX != null">
-        f_x,
+      <if test="fPicture != null">
+        f_picture,
       </if>
       <if test="fX1 != null">
         f_x1,
@@ -66,7 +66,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="fId != null">
-        #{fId,jdbcType=INTEGER},
+        #{fId,jdbcType=BIGINT},
       </if>
       <if test="fSize != null">
         #{fSize,jdbcType=VARCHAR},
@@ -83,8 +83,8 @@
       <if test="mId != null">
         #{mId,jdbcType=INTEGER},
       </if>
-      <if test="fX != null">
-        #{fX,jdbcType=VARCHAR},
+      <if test="fPicture != null">
+        #{fPicture,jdbcType=VARCHAR},
       </if>
       <if test="fX1 != null">
         #{fX1,jdbcType=VARCHAR},
@@ -112,8 +112,8 @@
       <if test="mId != null">
         m_id = #{mId,jdbcType=INTEGER},
       </if>
-      <if test="fX != null">
-        f_x = #{fX,jdbcType=VARCHAR},
+      <if test="fPicture != null">
+        f_picture = #{fPicture,jdbcType=VARCHAR},
       </if>
       <if test="fX1 != null">
         f_x1 = #{fX1,jdbcType=VARCHAR},
@@ -122,7 +122,7 @@
         f_x2 = #{fX2,jdbcType=VARCHAR},
       </if>
     </set>
-    where f_id = #{fId,jdbcType=INTEGER}
+    where f_id = #{fId,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="cn.axy.xc.xcitemdetailprovider.pojo.Food">
     update food
@@ -131,9 +131,9 @@
       f_count = #{fCount,jdbcType=DOUBLE},
       f_price = #{fPrice,jdbcType=DOUBLE},
       m_id = #{mId,jdbcType=INTEGER},
-      f_x = #{fX,jdbcType=VARCHAR},
+      f_picture = #{fPicture,jdbcType=VARCHAR},
       f_x1 = #{fX1,jdbcType=VARCHAR},
       f_x2 = #{fX2,jdbcType=VARCHAR}
-    where f_id = #{fId,jdbcType=INTEGER}
+    where f_id = #{fId,jdbcType=BIGINT}
   </update>
 </mapper>
