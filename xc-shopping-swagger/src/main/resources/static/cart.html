@@ -77,6 +77,59 @@
 
 </head>
 
+<script type="text/javascript" src="js/jquery-1.8.3.min.js" ></script>
+<script>
+
+
+    window.onload=function(){
+
+        alert("bbbbb");
+        var url = "http://localhost:7001/showShopping";
+        alert(url);
+        $.ajax(url, {
+            type: 'post',
+            data: {},
+            headers: { code: '200' ,userId :'250'},
+            datatype: "json",
+            success: function(result){
+
+                if (result.code != "200"){
+
+                     alert(result.info);
+                    // 跳转到登陆页面
+                    // location.href = "login.html?back_act=http%3A%2F%2Fm.vip.com%2Fcart-usebouns.html";
+                }else {
+                    var re = result.result;
+                    alert(re.shoppingCartMap);
+                    alert("hahahaah");
+                }
+
+
+
+            },
+            error: function () {
+                alert("error");
+            }
+        });
+
+
+    }
+
+
+
+    $(function () {
+
+
+
+
+
+
+
+    })
+
+
+</script>
+
 <body>
 	<script src="js/562a4c0e89.jquery-2.1.0.min.js"></script>
 
@@ -103,8 +156,8 @@
   </h2>
   <div class="cartdiv">
             <div class="cartlist clearfix">
-            <p class="clearfix protips">
-      	<span class="cl_sp_type_r">再购1件即可参与购物满2件即享9折，满3件即享8.5折 
+      <p class="clearfix protips">
+          <span class="cl_sp_type_r">再购1件即可参与购物满2件即享9折，满3件即享8.5折 </span>
 	  </p>
 	        <!-- 分组品牌开始 -->
       <div class="space10"></div>

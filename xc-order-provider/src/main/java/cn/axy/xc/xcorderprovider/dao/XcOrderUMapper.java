@@ -12,13 +12,21 @@ public interface XcOrderUMapper {
 
     int deleteByExample(XcOrderUExample example);
 
+    int deleteByPrimaryKey(String orderId);
+
     int insert(XcOrderU record);
 
     int insertSelective(XcOrderU record);
 
     List<XcOrderU> selectByExample(XcOrderUExample example);
 
+    XcOrderU selectByPrimaryKey(String orderId);
+
     int updateByExampleSelective(@Param("record") XcOrderU record, @Param("example") XcOrderUExample example);
 
     int updateByExample(@Param("record") XcOrderU record, @Param("example") XcOrderUExample example);
+
+    int updateByPrimaryKeySelective(XcOrderU record);
+
+    int updateByPrimaryKey(XcOrderU record);
 }

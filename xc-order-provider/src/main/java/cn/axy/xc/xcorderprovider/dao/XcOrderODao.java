@@ -19,13 +19,6 @@ public interface XcOrderODao {
     int selectAll();
 
     /**
-     * 增加商家订单表中的信息
-     * @param xcOrderO
-     * @return
-     */
-    int addOrderO(XcOrderO xcOrderO);
-
-    /**
      * 修改商家订单信息
      * @param xcOrderO
      * @return

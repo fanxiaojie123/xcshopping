@@ -46,11 +46,12 @@ public class ShoppingController {
             ,@ApiImplicitParam(name="itemIdKey", value="itemIdKey", dataType = "java.lang.Long")
     })*/
     @RequestMapping(value = "/addShopping",method = RequestMethod.POST)
-    public String addShopping(@Param("request") HttpServletRequest request,
-                              @Param("response") HttpServletResponse response,
+    public String addShopping( HttpServletRequest request,
+                               HttpServletResponse response,
                               @ApiParam(name = "shoppingCart",value = "购物车对象") ShoppingCart shoppingCart,
 
                               @ApiParam(name = "itemIdKey",value = "商品ID",required = true) Long itemIdKey)  {
+        response.setHeader("Access-Control-Allow-Origin", "*");
         String re = null;
         log.info(JSON.toJSONString(shoppingCart));
         try {
@@ -72,9 +73,10 @@ public class ShoppingController {
             @ApiImplicitParam(name="itmeId", value="itmeId", dataType = "List")
     })
     @RequestMapping(value = "/deleteShopping",method = RequestMethod.POST)
-    public String deleteShopping(@Param("request") HttpServletRequest request,
-                                 @Param("response") HttpServletResponse response,
+    public String deleteShopping(@RequestParam("request") HttpServletRequest request,
+                                 @RequestParam("response") HttpServletResponse response,
                                @RequestBody List<Long> itmeId)  {
+        response.setHeader("Access-Control-Allow-Origin", "*");
         String re = null;
         try {
             re = shoppingCartDeleteService.deleteItemInCard(request,response,itmeId);
@@ -90,9 +92,10 @@ public class ShoppingController {
      * @return
      */
     @ApiOperation(value="显示购物车商品", notes = "显示购物车商品")
-    @RequestMapping(value = "/showShopping",method = RequestMethod.POST)
-    public String showShopping(@Param("request") HttpServletRequest request,
-                               @Param("response") HttpServletResponse response)  {
+    @RequestMapping(value = "/showShopping",method = {RequestMethod.POST,RequestMethod.GET})
+    public String showShopping( HttpServletRequest request,
+                               HttpServletResponse response)  {
+        response.setHeader("Access-Control-Allow-Origin", "*");
         String re = null;
         try {
             re = shoppingCartShowService.showItemInCard(request,response);
@@ -116,10 +119,11 @@ public class ShoppingController {
             ,@ApiImplicitParam(name="itmeId", value="itmeId", dataType = "Long")
     })
     @RequestMapping(value = "/changeShopping",method = RequestMethod.POST)
-    public String changeShopping(@Param("request") HttpServletRequest request,
-                                 @Param("response") HttpServletResponse response,
+    public String changeShopping(@RequestParam("request") HttpServletRequest request,
+                                 @RequestParam("response") HttpServletResponse response,
                                @RequestParam Long itmeId ,
                                @RequestParam Integer num)  {
+        response.setHeader("Access-Control-Allow-Origin", "*");
         String re = null;
         try {
             re = shoppingCartChangeService.changeItemInCard(request,response,itmeId,num);

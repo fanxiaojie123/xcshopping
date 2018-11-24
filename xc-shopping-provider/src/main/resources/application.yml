@@ -21,4 +21,5 @@ spring:
        percentage: 1.0
 logging:
     level: info
+    file: log-shopping-provider.txt
 

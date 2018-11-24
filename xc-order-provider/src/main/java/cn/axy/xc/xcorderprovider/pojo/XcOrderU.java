@@ -5,9 +5,6 @@ import io.swagger.annotations.ApiModelProperty;
 
 import java.util.Date;
 
-/**
- * 用户订单表实体类，用户在这个表中查询，根据用户id取模，用户id设为整数
- */
 @ApiModel(value = "XcOrderU",description = "记录一条用户订单信息，用户订单从这个订单表里面查询，字段与商家订单表一样")
 public class XcOrderU {
     @ApiModelProperty(value = "订单ID",dataType = "String")

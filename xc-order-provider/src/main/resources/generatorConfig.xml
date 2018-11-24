@@ -35,10 +35,11 @@
             <property  name="enableSubPackages"  value="true"/>
         </javaClientGenerator>
 
-        <table tableName="xc_order_item" ></table>
-        <table tableName="xc_order_shipping" ></table>
-        <table tableName="xc_order_o" ></table>
         <table tableName="xc_order_u" ></table>
+        <!--<table tableName="xc_order_shipping" ></table>
+        <table tableName="xc_order_o" ></table>
+        <table tableName="xc_order_item" ></table>
+        -->
 
     </context>
 </generatorConfiguration>
