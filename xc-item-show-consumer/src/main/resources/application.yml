@@ -23,9 +23,6 @@ spring:
     testOnReturn: false
     poolPreparedStatements: true
     maxOpenPreparedStatements: 20
-  thymeleaf:
-    prefix: classpath:/templates/
-    suffix: .html
   mvc:
     static-path-pattern: /static/**
 eureka:
@@ -47,3 +44,8 @@ spring:
        percentage: 1.0
 logging:
     level: info
+---
+spring:
+  thymeleaf:
+      prefix: classpath:/static/html/
+      suffix: .html
