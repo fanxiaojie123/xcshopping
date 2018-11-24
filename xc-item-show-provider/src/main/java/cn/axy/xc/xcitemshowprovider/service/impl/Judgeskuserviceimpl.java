@@ -7,6 +7,7 @@ import cn.axy.xc.xcitemshowprovider.util.SkuList;
 import com.alibaba.fastjson.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -24,23 +25,55 @@ public class Judgeskuserviceimpl implements Judgeskuservice {
             String value = String.valueOf(mid);
             ss.setSkuid(value);
             Integer scid = messageSolrMapper.scid(mid);
-            if (scid != null){
-                if (scid == 1){
-                    count = skuList.closolr(ss);
-                }else if (scid == 2){
-                    count = skuList.appsolr(ss);
-                }else if (scid == 3){
-                    count = skuList.foosolr(ss);
-                }else if (scid == 4){
-                    count = skuList.ornsolr(ss);
-                }else if (scid == 5){
-                    count = skuList.cossolr(ss);
-                }else{
-                    count = "500";
+            System.out.println(scid);
+//            if (scid != null){
+//                if (scid == 1){
+//                    count = skuList.closolr(ss);
+//                    System.out.println(ss.getSkuid()+"clo");
+//                }else if (scid == 2){
+//                    count = skuList.appsolr(ss);
+//                    System.out.println(ss.getSkuid()+"app");
+//                }else if (scid == 3){
+//                    count = skuList.foosolr(ss);
+//                    System.out.println(ss.getSkuid()+"foo");
+//                }else if (scid == 4){
+//                    count = skuList.ornsolr(ss);
+//                    System.out.println(ss.getSkuid()+"orn");
+//                }else if (scid == 5){
+//                    count = skuList.cossolr(ss);
+//                    System.out.println(ss.getSkuid()+"cos");
+//                }else{
+//                    count = "500";
+//                }
+                switch (scid){
+                    case 1:
+                        count = skuList.closolr(ss);
+                        System.out.println(ss.getSkuid()+"clo");
+                        break;
+                    case 2:
+                        count = skuList.appsolr(ss);
+                        System.out.println(ss.getSkuid()+"app");
+                        break;
+                    case 3:
+                        count = skuList.foosolr(ss);
+                        System.out.println(ss.getSkuid()+"foo");
+                        break;
+                    case 4:
+                        count = skuList.ornsolr(ss);
+                        System.out.println(ss.getSkuid()+"orn");
+                        break;
+                    case 5:
+                        count = skuList.cossolr(ss);
+                        System.out.println(ss.getSkuid()+"cos");
+                        break;
+                        default:
+                            count = "500";
+                            break;
+
                 }
-            }else {
-                count = "500";
-            }
+//            }else {
+//                count = "500";
+//            }
         }else {
             count = "500";
         }
