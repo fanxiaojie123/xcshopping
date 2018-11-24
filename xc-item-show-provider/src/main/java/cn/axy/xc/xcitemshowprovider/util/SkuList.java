@@ -23,11 +23,6 @@ public class SkuList {
     private FooSolrimpl fooSolrimpl;
     @Autowired
     private OrnSolrimpl ornSolrimpl;
-    Map<String,List<String>> skumap = new HashMap<>();
-    List<String> skucolorlist = new ArrayList<String>();
-    List<String> skusizelist = new ArrayList<String>();
-    List<String> skumlist = new ArrayList<>();
-    List<String> skualist = new ArrayList<>();
 
     /**
      * 家电
@@ -36,6 +31,11 @@ public class SkuList {
      * @throws Exception
      */
     public String appsolr(Skusolr skusolr) throws Exception {
+        Map<String,List<String>> skumap = new HashMap<>();
+        List<String> skucolorlist = new ArrayList<String>();
+        List<String> skusizelist = new ArrayList<String>();
+        List<String> skumlist = new ArrayList<>();
+        List<String> skualist = new ArrayList<>();
         List<Appliances> appliances = appliancesSolrdao.searchProduct(skusolr);
         for (Appliances app:appliances) {
             String getaColor = app.getaColor();
@@ -57,11 +57,9 @@ public class SkuList {
                 }
             }
             String mcountapp = String.valueOf(app.getmCount());
-            System.out.println(mcountapp);
             String mpriceapp = String.valueOf(app.getmPrice());
-            System.out.println(mpriceapp);
-            skumlist.add(mcountapp);
-            skumlist.add(mpriceapp);
+            skumlist.add("库存" + mcountapp + "件");
+            skumlist.add("￥" + mpriceapp);
             for  ( int  i = 0 ; i < skumlist.size() - 1 ; i ++ )  {
                 for  ( int j = skumlist.size() - 1 ; j > i; j -- )  {
                     if  (skumlist.get(j).equals(skumlist.get(i)))  {
@@ -71,8 +69,10 @@ public class SkuList {
             }
             String acount = String.valueOf(app.getaCount());
             String aprice = String.valueOf(app.getaPrice());
-            skualist.add(acount);
-            skualist.add(aprice);
+            skualist.add(getaColor);
+            skualist.add(getaSize);
+            skualist.add("库存" + acount + "件");
+            skualist.add("￥" + aprice);
 
         }
         skumap.put("acolor",skucolorlist);
@@ -89,7 +89,18 @@ public class SkuList {
      * @throws Exception
      */
     public String closolr(Skusolr skusolr) throws Exception {
+        Map<String,List<String>> skumap = new HashMap<>();
+        List<String> skucolorlist = new ArrayList<String>();
+        List<String> skusizelist = new ArrayList<String>();
+        List<String> skumlist = new ArrayList<>();
+        List<String> skualist = new ArrayList<>();
+        System.out.println(skusolr.getSkuid());
         List<Clothing> clo = clothingSolrimpl.clo(skusolr);
+
+        for (Clothing cl:clo
+             ) {
+            System.out.println(cl.getcCount());
+        }
         for (Clothing c:clo) {
             String getcSize = c.getcSize();
             skusizelist.add(getcSize);
@@ -110,11 +121,9 @@ public class SkuList {
                 }
             }
             String mcountclo = String.valueOf(c.getmCount());
-            System.out.println(mcountclo);
             String mpriceclo = String.valueOf(c.getmPrice());
-            System.out.println(mpriceclo);
-            skumlist.add(mcountclo);
-            skumlist.add(mpriceclo);
+            skumlist.add("库存" + mcountclo + "件");
+            skumlist.add("￥" + mpriceclo);
             for( int i = 0 ; i < skumlist.size() - 1 ; i ++ )  {
                 for( int j = skumlist.size() - 1 ; j > i; j -- )  {
                     if  (skumlist.get(j).equals(skumlist.get(i)))  {
@@ -124,8 +133,10 @@ public class SkuList {
             }
             String ccount = String.valueOf(c.getcCount());
             String cprice = String.valueOf(c.getcPrice());
-            skualist.add(ccount);
-            skualist.add(cprice);
+            skualist.add(getcSize);
+            skualist.add(getcColor);
+            skualist.add("库存" + ccount + "件");
+            skualist.add("￥" + cprice);
         }
         skumap.put("ccolor",skucolorlist);
         skumap.put("csize",skusizelist);
@@ -141,8 +152,15 @@ public class SkuList {
      * @throws Exception
      */
     public String cossolr(Skusolr skusolr) throws Exception {
+        Map<String,List<String>> skumap = new HashMap<>();
+        List<String> skucolorlist = new ArrayList<String>();
+        List<String> skusizelist = new ArrayList<String>();
+        List<String> skumlist = new ArrayList<>();
+        List<String> skualist = new ArrayList<>();
+        System.out.println(skusolr.getSkuid());
         List<Cosmetics> cos = cossolrimpl.cos(skusolr);
         for (Cosmetics co:cos) {
+            System.out.println(co.getCoCount());
             String getcSize = co.getCoSize();
             skusizelist.add(getcSize);
             for( int i = 0 ; i < skusizelist.size() - 1 ; i ++ )  {
@@ -163,8 +181,8 @@ public class SkuList {
             }
             String mcountcos = String.valueOf(co.getmCount());
             String mpricecos = String.valueOf(co.getmPrice());
-            skumlist.add(mcountcos);
-            skumlist.add(mpricecos);
+            skumlist.add("库存" + mcountcos + "件");
+            skumlist.add("￥" + mpricecos);
             for( int i = 0 ; i < skumlist.size() - 1 ; i ++ )  {
                 for( int j = skumlist.size() - 1 ; j > i; j -- )  {
                     if  (skumlist.get(j).equals(skumlist.get(i)))  {
@@ -174,8 +192,10 @@ public class SkuList {
             }
             String cocount = String.valueOf(co.getCoColor());
             String coprice = String.valueOf(co.getCoPrice());
-            skualist.add(cocount);
-            skualist.add(coprice);
+            skualist.add(getcSize);
+            skualist.add(getcColor);
+            skualist.add("库存" + cocount + "件");
+            skualist.add("￥" + coprice);
         }
         skumap.put("cocolor",skucolorlist);
         skumap.put("cosize",skusizelist);
@@ -191,8 +211,15 @@ public class SkuList {
      * @throws Exception
      */
     public String ornsolr(Skusolr skusolr) throws Exception {
+        Map<String,List<String>> skumap = new HashMap<>();
+        List<String> skucolorlist = new ArrayList<String>();
+        List<String> skusizelist = new ArrayList<String>();
+        List<String> skumlist = new ArrayList<>();
+        List<String> skualist = new ArrayList<>();
+        System.out.println(skusolr.getSkuid());
         List<Ornaments> orn = ornSolrimpl.orn(skusolr);
         for (Ornaments or:orn) {
+            System.out.println(or.getmCount());
             String getcSize = or.getoSize();
             skusizelist.add(getcSize);
             for( int i = 0 ; i < skusizelist.size() - 1 ; i ++ )  {
@@ -213,8 +240,8 @@ public class SkuList {
             }
             String mcountorn = String.valueOf(or.getmCount());
             String mpriceorn = String.valueOf(or.getmPrice());
-            skumlist.add(mcountorn);
-            skumlist.add(mpriceorn);
+            skumlist.add("库存" + mcountorn + "件");
+            skumlist.add("￥" + mpriceorn);
             for( int i = 0 ; i < skumlist.size() - 1 ; i ++ )  {
                 for( int j = skumlist.size() - 1 ; j > i; j -- )  {
                     if  (skumlist.get(j).equals(skumlist.get(i)))  {
@@ -224,8 +251,10 @@ public class SkuList {
             }
             String ocount = String.valueOf(or.getoCount());
             String oprice = String.valueOf(or.getoPrice());
-            skualist.add(ocount);
-            skualist.add(oprice);
+            skualist.add(getcSize);
+            skualist.add(getcColor);
+            skualist.add("库存" + ocount + "件");
+            skualist.add("￥" + oprice);
         }
         skumap.put("ocolor",skucolorlist);
         skumap.put("osize",skusizelist);
@@ -241,8 +270,15 @@ public class SkuList {
      * @throws Exception
      */
     public String foosolr(Skusolr skusolr) throws Exception {
+        Map<String,List<String>> skumap = new HashMap<>();
+        List<String> skucolorlist = new ArrayList<String>();
+        List<String> skusizelist = new ArrayList<String>();
+        List<String> skumlist = new ArrayList<>();
+        List<String> skualist = new ArrayList<>();
+        System.out.println(skusolr.getSkuid());
         List<Food> foo = fooSolrimpl.foo(skusolr);
         for (Food fo:foo) {
+            System.out.println(fo.getfCount());
             String getcSize = fo.getfSize();
             skusizelist.add(getcSize);
             for( int i = 0 ; i < skusizelist.size() - 1 ; i ++ )  {
@@ -263,8 +299,8 @@ public class SkuList {
             }
             String mcountfoo = String.valueOf(fo.getmCount());
             String mpricefoo = String.valueOf(fo.getmPrice());
-            skumlist.add(mcountfoo);
-            skumlist.add(mpricefoo);
+            skumlist.add("库存" + mcountfoo + "件");
+            skumlist.add("￥" + mpricefoo);
             for( int i = 0 ; i < skumlist.size() - 1 ; i ++ )  {
                 for( int j = skumlist.size() - 1 ; j > i; j -- )  {
                     if  (skumlist.get(j).equals(skumlist.get(i)))  {
@@ -274,8 +310,10 @@ public class SkuList {
             }
             String fcount = String.valueOf(fo.getfCount());
             String fprice = String.valueOf(fo.getfPrice());
-            skualist.add(fcount);
-            skualist.add(fprice);
+            skualist.add(getcSize);
+            skualist.add(getcColor);
+            skualist.add("库存" + fcount + "件");
+            skualist.add("￥" + fprice);
         }
         skumap.put("fcolor",skucolorlist);
         skumap.put("fsize",skusizelist);
