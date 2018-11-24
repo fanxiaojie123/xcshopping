@@ -27,9 +27,9 @@ public interface MessageSolrMapper {
             @Result(property = "mStatus" , column = "m_status")
     })
     List<Messagesolrpojo> messageall();
-    @Select("select search_category_parent_id from message where m_id=#{mid}")
+    @Select("select search_category_id from message where m_id=#{mid}")
     @Results({
-            @Result(property = "searchCategoryParentId" , column = "search_category_parent_id")
+            @Result(property = "searchCategoryId" , column = "search_category_id")
     })
     Integer scid(@Param("mid") Integer mid);
 }
