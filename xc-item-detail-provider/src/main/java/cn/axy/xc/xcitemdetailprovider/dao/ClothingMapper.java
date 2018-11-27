@@ -6,13 +6,13 @@ import org.apache.ibatis.annotations.*;
 import java.util.List;
 
 public interface ClothingMapper {
-    int deleteByPrimaryKey(Integer cId);
+    int deleteByPrimaryKey(Long cId);
 
     int insert(Clothing record);
 
     int insertSelective(Clothing record);
 
-    Clothing selectByPrimaryKey(Integer cId);
+    Clothing selectByPrimaryKey(Long cId);
 
     int updateByPrimaryKeySelective(Clothing record);
 
@@ -30,7 +30,7 @@ public interface ClothingMapper {
     @Results({
             @Result(property = "cCount" , column = "c_count")
     })
-    Double selcloinv(@Param("mid") Integer mid,@Param("cid") Integer cid);
+    Double selcloinv(@Param("mid") Integer mid,@Param("cid") Long cid);
     @Update("update clothing set c_count=#{count} where m_id=#{mid} and c_id=#{cid}")
-    int updcloinv(@Param("count")Double count,@Param("mid") Integer mid,@Param("cid") Integer cid);
+    int updcloinv(@Param("count")Double count,@Param("mid") Integer mid,@Param("cid") Long cid);
 }

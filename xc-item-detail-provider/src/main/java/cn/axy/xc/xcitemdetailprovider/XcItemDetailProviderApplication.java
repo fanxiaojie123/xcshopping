@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableDiscoveryClient
 @EnableTransactionManagement
 @MapperScan("cn.axy.xc.xcitemdetailprovider.dao")
-public class XcItemDetailProviderApplication {
+public class  XcItemDetailProviderApplication {
     public static void main(String[] args) {
         SpringApplication.run(XcItemDetailProviderApplication.class, args);
     }

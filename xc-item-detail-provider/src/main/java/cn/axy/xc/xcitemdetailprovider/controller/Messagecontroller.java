@@ -19,11 +19,10 @@ public class Messagecontroller {
     private Messageservice ms;
     @ApiOperation(value="查询商家商品接口", notes = "查询商家商品接口")
     @ApiImplicitParams({
-            @ApiImplicitParam(name="mid", value="商品ID", dataType = "商品ID")
+            @ApiImplicitParam(name="sid", value="商家ID", dataType = "商家 ID")
     })
     @RequestMapping(value = "/getall",method = RequestMethod.POST)
-    public String Messagegetall(@Param("request") HttpServletRequest request,
-                                @Param("response") HttpServletResponse response,
+    public String Messagegetall(
                                 @RequestParam("sid")Integer sid){
         String sellgetall = ms.sellgetall(sid);
         return sellgetall;

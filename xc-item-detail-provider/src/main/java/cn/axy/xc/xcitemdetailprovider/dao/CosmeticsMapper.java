@@ -1,19 +1,18 @@
 package cn.axy.xc.xcitemdetailprovider.dao;
 
-import cn.axy.xc.xcitemdetailprovider.pojo.Appliances;
 import cn.axy.xc.xcitemdetailprovider.pojo.Cosmetics;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
 public interface CosmeticsMapper {
-    int deleteByPrimaryKey(Integer coId);
+    int deleteByPrimaryKey(Long coId);
 
     int insert(Cosmetics record);
 
     int insertSelective(Cosmetics record);
 
-    Cosmetics selectByPrimaryKey(Integer coId);
+    Cosmetics selectByPrimaryKey(Long coId);
 
     int updateByPrimaryKeySelective(Cosmetics record);
 
@@ -31,7 +30,7 @@ public interface CosmeticsMapper {
     @Results({
             @Result(property = "cCount" , column = "c_count")
     })
-    Double selcosinv(@Param("mid") Integer mid,@Param("coid") Integer coid);
+    Double selcosinv(@Param("mid") Integer mid,@Param("coid") Long coid);
     @Update("update cosmetics set co_count=#{count} where m_id=#{mid} and co_id=#{coid}")
-    int updcosinv(@Param("count")Double count,@Param("mid") Integer mid,@Param("coid") Integer coid);
+    int updcosinv(@Param("count")Double count,@Param("mid") Integer mid,@Param("coid") Long coid);
 }

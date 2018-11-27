@@ -22,8 +22,7 @@ public class Selskucontroller {
             @ApiImplicitParam(name="mid", value="商品ID", dataType = "商品ID")
     })
     @RequestMapping(value = "/selsku",method = RequestMethod.POST)
-    public String selsku(@Param("request") HttpServletRequest request,
-                         @Param("response") HttpServletResponse response,
+    public String selsku(
                          @RequestParam("mid")Integer mid){
         return sss.selsku(mid);
     }

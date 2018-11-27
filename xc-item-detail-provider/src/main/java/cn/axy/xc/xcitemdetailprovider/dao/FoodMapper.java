@@ -1,19 +1,18 @@
 package cn.axy.xc.xcitemdetailprovider.dao;
 
-import cn.axy.xc.xcitemdetailprovider.pojo.Appliances;
 import cn.axy.xc.xcitemdetailprovider.pojo.Food;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
 public interface FoodMapper {
-    int deleteByPrimaryKey(Integer fId);
+    int deleteByPrimaryKey(Long fId);
 
     int insert(Food record);
 
     int insertSelective(Food record);
 
-    Food selectByPrimaryKey(Integer fId);
+    Food selectByPrimaryKey(Long fId);
 
     int updateByPrimaryKeySelective(Food record);
 
@@ -31,7 +30,7 @@ public interface FoodMapper {
     @Results({
             @Result(property = "fCount" , column = "f_count")
     })
-    Double selfooinv(@Param("mid") Integer mid,@Param("fid") Integer fid);
+    Double selfooinv(@Param("mid") Integer mid,@Param("fid") Long fid);
     @Update("update food set f_count=#{count} where m_id=#{mid} and f_id=#{fid}")
-    int updfooinv(@Param("count")Double count,@Param("mid") Integer mid,@Param("fid") Integer fid);
+    int updfooinv(@Param("count")Double count,@Param("mid") Integer mid,@Param("fid") Long fid);
 }

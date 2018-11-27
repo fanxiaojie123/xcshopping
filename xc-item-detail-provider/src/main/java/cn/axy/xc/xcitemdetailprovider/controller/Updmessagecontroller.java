@@ -7,6 +7,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,9 +22,8 @@ public class Updmessagecontroller {
     private Updmessageservice uss;
     @ApiOperation(value="更新商品信息接口", notes = "更新商品信息接口")
     @RequestMapping(value = "/updmessage",method = RequestMethod.POST)
-    public String updmessage(@Param("request") HttpServletRequest request,
-                             @Param("response") HttpServletResponse response,
-                             @ApiParam(name = "mes",value = "商品对象")Message mes){
+    public String updmessage(
+                             @RequestBody  Message mes){
         String updateByPrimaryKeySelective = uss.updateByPrimaryKeySelective(mes);
         return updateByPrimaryKeySelective;
     }

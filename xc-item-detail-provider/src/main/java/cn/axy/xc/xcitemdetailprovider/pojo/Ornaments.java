@@ -1,34 +1,29 @@
 package cn.axy.xc.xcitemdetailprovider.pojo;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-
-@ApiModel(value = "Ornaments",description = "首饰SKU实体类")
 public class Ornaments {
-    @ApiModelProperty(value = "首饰SKUID",dataType = "String")
-    private Integer oId;
-    @ApiModelProperty(value = "商品ID",dataType = "String")
+    private Long oId;
+
     private Integer mId;
-    @ApiModelProperty(value = "首饰SKU大小",dataType = "String")
+
     private String oSize;
-    @ApiModelProperty(value = "首饰SKU颜色",dataType = "String")
+
     private String oColor;
-    @ApiModelProperty(value = "首饰SKU库存",dataType = "String")
+
     private Double oCount;
-    @ApiModelProperty(value = "首饰SKU单价",dataType = "String")
+
     private Double oPrice;
-    @ApiModelProperty(value = "首饰SKU冗余",dataType = "String")
-    private String oX;
-    @ApiModelProperty(value = "首饰SKU冗余",dataType = "String")
+
+    private String oPicture;
+
     private String oX1;
-    @ApiModelProperty(value = "首饰SKU冗余",dataType = "String")
+
     private String oX2;
 
-    public Integer getoId() {
+    public Long getoId() {
         return oId;
     }
 
-    public void setoId(Integer oId) {
+    public void setoId(Long oId) {
         this.oId = oId;
     }
 
@@ -72,12 +67,12 @@ public class Ornaments {
         this.oPrice = oPrice;
     }
 
-    public String getoX() {
-        return oX;
+    public String getoPicture() {
+        return oPicture;
     }
 
-    public void setoX(String oX) {
-        this.oX = oX;
+    public void setoPicture(String oPicture) {
+        this.oPicture = oPicture;
     }
 
     public String getoX1() {

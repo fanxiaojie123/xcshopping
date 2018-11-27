@@ -29,18 +29,21 @@ public class Instmessagecontroller {
             @ApiImplicitParam(name="mPoints", value="商品卖点", dataType = "商品卖点"),
             @ApiImplicitParam(name="searchCategoryId", value="商品小类", dataType = "商品小类"),
             @ApiImplicitParam(name="searchCategoryParentId", value="商品大类", dataType = "商品大类"),
-            @ApiImplicitParam(name="seller", value="商家ID", dataType = "商家ID")
+            @ApiImplicitParam(name="seller", value="商家ID", dataType = "商家ID"),
+            @ApiImplicitParam(name="mPrice", value="单价", dataType = "单价"),
+            @ApiImplicitParam(name="mCount", value="总库存", dataType = "总库存")
     })
     @RequestMapping(value = "/instmessage",method = RequestMethod.POST)
-    public String instmessage(@Param("request") HttpServletRequest request,
-                              @Param("response") HttpServletResponse response,
+    public String instmessage(
                               @RequestParam("mName") String mName ,
                               @RequestParam("mPicture") String mPicture,
                               @RequestParam("mParticulars") String mParticulars,
                               @RequestParam("mPoints") String mPoints,
                               @RequestParam("searchCategoryId") String searchCategoryId,
                               @RequestParam("searchCategoryParentId") String searchCategoryParentId,
-                              @RequestParam("seller") Integer seller){
+                              @RequestParam("seller") Integer seller,
+                              @RequestParam("mPrice") Double mPrice,
+                              @RequestParam("mCount") Double mCount){
         Messageservicepojo mes = new Messageservicepojo();
         mes.setmName(mName);
         mes.setmPicture(mPicture);
@@ -49,6 +52,8 @@ public class Instmessagecontroller {
         mes.setSearchCategoryId(searchCategoryId);
         mes.setSearchCategoryParentId(searchCategoryParentId);
         mes.setSeller(seller);
+        mes.setmCount(mCount);
+        mes.setmPrice(mPrice);
         String insertSelective = ims.insertSelective(mes);
         return insertSelective;
     }

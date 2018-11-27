@@ -1,42 +1,41 @@
 package cn.axy.xc.xcitemdetailprovider.pojo;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-
-@ApiModel(value = "Message",description = "商品详情表")
 public class Message {
-    @ApiModelProperty(value = "商品ID",dataType = "Integer")
-    private Integer mId;
-    @ApiModelProperty(value = "商品名字",dataType = "String")
+    private Long mId;
+
     private String mName;
-    @ApiModelProperty(value = "商品图片",dataType = "String")
+
     private String mPicture;
-    @ApiModelProperty(value = "商品参数",dataType = "String")
+
     private String mParticulars;
-    @ApiModelProperty(value = "商品状态",dataType = "Integer")
+
     private Integer mStatus;
-    @ApiModelProperty(value = "商品买点",dataType = "String")
+
     private String mPoints;
-    @ApiModelProperty(value = "商品创建时间",dataType = "String")
+
     private String mCreated;
-    @ApiModelProperty(value = "商品更新时间",dataType = "String")
+
     private String mUpdated;
-    @ApiModelProperty(value = "商家ID",dataType = "Integer")
+
     private Integer sId;
-    @ApiModelProperty(value = "商品类型ID",dataType = "Integer")
+
     private Integer searchCategoryId;
-    @ApiModelProperty(value = "商品大类型ID",dataType = "Integer")
+
     private Integer searchCategoryParentId;
-    @ApiModelProperty(value = "商品价格",dataType = "Double")
+
     private Double mPrice;
-    @ApiModelProperty(value = "商品总库存",dataType = "Double")
+
     private Double mCount;
 
-    public Integer getmId() {
+    private String mX;
+
+    private String mX1;
+
+    public Long getmId() {
         return mId;
     }
 
-    public void setmId(Integer mId) {
+    public void setmId(Long mId) {
         this.mId = mId;
     }
 
@@ -134,5 +133,21 @@ public class Message {
 
     public void setmCount(Double mCount) {
         this.mCount = mCount;
+    }
+
+    public String getmX() {
+        return mX;
+    }
+
+    public void setmX(String mX) {
+        this.mX = mX;
+    }
+
+    public String getmX1() {
+        return mX1;
+    }
+
+    public void setmX1(String mX1) {
+        this.mX1 = mX1;
     }
 }

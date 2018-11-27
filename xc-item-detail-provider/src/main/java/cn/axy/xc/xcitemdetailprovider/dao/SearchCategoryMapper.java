@@ -21,7 +21,7 @@ public interface SearchCategoryMapper {
 
     @Select("select search_category_id from search_category where search_category_name=#{name}")
     @Results({
-            @Result(property = "searchCategoryParentId" , column = "search_category_parent_id")
+            @Result(property = "searchCategoryId" , column = "search_category_id")
     })
     SearchCategory searchcategoryid(@Param("name") String name);
 }

@@ -38,8 +38,7 @@ public class Messageinvcontroller {
             @ApiImplicitParam(name="psc", value="购买的数量", dataType = "购买的数量")
     })
     @RequestMapping(value = "/updskuinv",method = RequestMethod.POST)
-    public String updskuinv(@Param("request") HttpServletRequest request,
-                            @Param("response") HttpServletResponse response,
+    public String updskuinv(
                             @RequestParam("mid")Integer mid,
                             @RequestParam("skuid")Long skuid,
                             @RequestParam("psc")Integer psc){

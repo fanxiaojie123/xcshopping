@@ -22,8 +22,7 @@ public class Delmessagecontroller {
             @ApiImplicitParam(name="mid", value="商品ID", dataType = "删除商品")
     })
     @RequestMapping(value = "/delmessage",method = RequestMethod.POST)
-    public String delmessage(@Param("request") HttpServletRequest request,
-                             @Param("response") HttpServletResponse response,
+    public String delmessage(
                              @RequestParam("mid") Integer mid){
         String delmessage = dms.delmessage(mid);
         return delmessage;

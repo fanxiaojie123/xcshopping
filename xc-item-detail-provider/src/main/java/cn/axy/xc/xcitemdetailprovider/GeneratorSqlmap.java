@@ -14,7 +14,7 @@ public class GeneratorSqlmap {
     List<String> warnings = new ArrayList<String>();
     boolean overwrite = true;
     // 加载配置文件
-    File configFile = new File("D:\\Mexid\\小城购物\\XCShopping\\xc-item\\xc-item-detail-provider\\src\\main\\resources\\generatorConfig.xml");
+    File configFile = new File("D:\\小城购物\\XCShopping\\xc-item\\xc-item-detail-provider\\src\\main\\resources\\generatorConfig.xml");
     ConfigurationParser cp = new ConfigurationParser(warnings);
     Configuration config = cp.parseConfiguration(configFile);
     DefaultShellCallback callback = new DefaultShellCallback(overwrite);

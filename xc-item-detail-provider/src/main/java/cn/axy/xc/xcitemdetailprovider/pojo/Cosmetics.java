@@ -1,34 +1,29 @@
 package cn.axy.xc.xcitemdetailprovider.pojo;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-
-@ApiModel(value = "Cosmetics",description = "化妆品的SKU表")
 public class Cosmetics {
-    @ApiModelProperty(value = "化妆品SKUID",dataType = "Integer")
-    private Integer coId;
-    @ApiModelProperty(value = "化妆品SKU容量",dataType = "String")
+    private Long coId;
+
     private String coSize;
-    @ApiModelProperty(value = "化妆品SKU颜色",dataType = "String")
+
     private String coColor;
-    @ApiModelProperty(value = "化妆品SKU库存",dataType = "Double")
+
     private Double coCount;
-    @ApiModelProperty(value = "化妆品SKU单价",dataType = "Double")
+
     private Double coPrice;
-    @ApiModelProperty(value = "商品SKUID",dataType = "Integer")
+
     private Integer mId;
-    @ApiModelProperty(value = "冗余",dataType = "String")
-    private String coX;
-    @ApiModelProperty(value = "冗余",dataType = "String")
+
+    private String coPicture;
+
     private String coX1;
-    @ApiModelProperty(value = "冗余",dataType = "String")
+
     private String coX2;
 
-    public Integer getCoId() {
+    public Long getCoId() {
         return coId;
     }
 
-    public void setCoId(Integer coId) {
+    public void setCoId(Long coId) {
         this.coId = coId;
     }
 
@@ -72,12 +67,12 @@ public class Cosmetics {
         this.mId = mId;
     }
 
-    public String getCoX() {
-        return coX;
+    public String getCoPicture() {
+        return coPicture;
     }
 
-    public void setCoX(String coX) {
-        this.coX = coX;
+    public void setCoPicture(String coPicture) {
+        this.coPicture = coPicture;
     }
 
     public String getCoX1() {

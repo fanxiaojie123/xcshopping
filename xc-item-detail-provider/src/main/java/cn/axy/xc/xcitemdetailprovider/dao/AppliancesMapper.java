@@ -6,13 +6,13 @@ import org.apache.ibatis.annotations.*;
 import java.util.List;
 
 public interface AppliancesMapper {
-    int deleteByPrimaryKey(Integer aId);
+    int deleteByPrimaryKey(Long aId);
 
     int insert(Appliances record);
 
     int insertSelective(Appliances record);
 
-    Appliances selectByPrimaryKey(Integer aId);
+    Appliances selectByPrimaryKey(Long aId);
 
     int updateByPrimaryKeySelective(Appliances record);
 
@@ -30,7 +30,7 @@ public interface AppliancesMapper {
     @Results({
             @Result(property = "aCount" , column = "a_count")
     })
-    Double selappinv(@Param("mid") Integer mid,@Param("aid")Integer aid);
+    Double selappinv(@Param("mid") Integer mid,@Param("aid")Long aid);
     @Update("update appliances set a_count=#{count} where m_id=#{mid} and a_id=#{aid}")
-    int updappinv(@Param("count")Double count,@Param("mid") Integer mid,@Param("aid")Integer aid);
+    int updappinv(@Param("count")Double count,@Param("mid") Integer mid,@Param("aid")Long aid);
 }

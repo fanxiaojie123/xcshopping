@@ -7,10 +7,7 @@ import cn.axy.xc.xcitemdetailprovider.util.IDGenerator;
 import io.swagger.annotations.*;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,10 +22,9 @@ public class Instskucontroller {
             @ApiImplicitParam(name="mid", value="商品ID", dataType = "商品ID")
     })
     @RequestMapping(value = "/instsku",method = RequestMethod.POST)
-    public String instsku(@Param("request") HttpServletRequest request,
-                          @Param("response") HttpServletResponse response,
+    public String instsku(
                           @RequestParam("mid")Integer mid,
-                          @ApiParam(name = "skumessage",value = "sku信息")Skuserviceimp skumessage){
+                          @RequestBody  Skuserviceimp skumessage){
         String instsku = iss.instsku(mid,skumessage);
         return instsku;
     }

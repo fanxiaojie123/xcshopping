@@ -24,12 +24,13 @@ public class Updskucontroller {
 
     })
     @RequestMapping(value = "/updsku",method = RequestMethod.POST)
-    public String updsku(@Param("request") HttpServletRequest request,
-                         @Param("response") HttpServletResponse response,
+    public String updsku(
                         @RequestParam("mid") Integer mid,
                          @RequestParam("skuid")Long skuid,
-                         @ApiParam(name = "skuserviceimp",value = "sku对象") Skuserviceimp skuserviceimp){
+                         @RequestBody Skuserviceimp skuserviceimp){
+        System.out.println(skuid);
         String updsku = uss.updsku(mid, skuid, skuserviceimp);
+
         return updsku;
     }
 }

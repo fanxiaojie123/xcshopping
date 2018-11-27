@@ -1,19 +1,18 @@
 package cn.axy.xc.xcitemdetailprovider.dao;
 
-import cn.axy.xc.xcitemdetailprovider.pojo.Appliances;
 import cn.axy.xc.xcitemdetailprovider.pojo.Ornaments;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
 public interface OrnamentsMapper {
-    int deleteByPrimaryKey(Integer oId);
+    int deleteByPrimaryKey(Long oId);
 
     int insert(Ornaments record);
 
     int insertSelective(Ornaments record);
 
-    Ornaments selectByPrimaryKey(Integer oId);
+    Ornaments selectByPrimaryKey(Long oId);
 
     int updateByPrimaryKeySelective(Ornaments record);
 
@@ -31,7 +30,7 @@ public interface OrnamentsMapper {
     @Results({
             @Result(property = "oCount" , column = "o_count")
     })
-    Double selorninv(@Param("mid") Integer mid ,@Param("oid")Integer oid);
+    Double selorninv(@Param("mid") Integer mid ,@Param("oid")Long oid);
     @Update("update ornaments set o_count=#{count} where m_id=#{mid} and o_id=#{oid}")
-    int updorninv(@Param("count")Double count,@Param("mid") Integer mid,@Param("oid")Integer oid);
+    int updorninv(@Param("count")Double count,@Param("mid") Integer mid,@Param("oid")Long oid);
 }

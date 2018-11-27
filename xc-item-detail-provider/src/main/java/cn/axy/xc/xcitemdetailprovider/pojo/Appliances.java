@@ -1,34 +1,29 @@
 package cn.axy.xc.xcitemdetailprovider.pojo;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-
-@ApiModel(value = "Appliances",description = "家电的SKU表")
 public class Appliances {
-    @ApiModelProperty(value = "家电SKUID",dataType = "Integer")
-    private Integer aId;
-    @ApiModelProperty(value = "家电SKU型号",dataType = "String")
+    private Long aId;
+
     private String aSize;
-    @ApiModelProperty(value = "家电SKU颜色",dataType = "String")
+
     private String aColor;
-    @ApiModelProperty(value = "家电SKU价格",dataType = "Double")
+
     private Double aPrice;
-    @ApiModelProperty(value = "家电SKU数量",dataType = "Double")
+
     private Double aCount;
-    @ApiModelProperty(value = "商品ID",dataType = "Integer")
+
     private Integer mId;
-    @ApiModelProperty(value = "冗余",dataType = "String")
-    private String aX;
-    @ApiModelProperty(value = "冗余",dataType = "String")
+
+    private String aPicture;
+
     private String aX1;
-    @ApiModelProperty(value = "冗余",dataType = "String")
+
     private String aX2;
 
-    public Integer getaId() {
+    public Long getaId() {
         return aId;
     }
 
-    public void setaId(Integer aId) {
+    public void setaId(Long aId) {
         this.aId = aId;
     }
 
@@ -72,12 +67,12 @@ public class Appliances {
         this.mId = mId;
     }
 
-    public String getaX() {
-        return aX;
+    public String getaPicture() {
+        return aPicture;
     }
 
-    public void setaX(String aX) {
-        this.aX = aX;
+    public void setaPicture(String aPicture) {
+        this.aPicture = aPicture;
     }
 
     public String getaX1() {

@@ -6,13 +6,13 @@ import org.apache.ibatis.annotations.*;
 import java.util.List;
 
 public interface MessageMapper {
-    int deleteByPrimaryKey(Integer mId);
+    int deleteByPrimaryKey(Long mId);
 
     int insert(Message record);
 
     int insertSelective(Message record);
 
-    Message selectByPrimaryKey(Integer mId);
+    Message selectByPrimaryKey(Long mId);
 
     int updateByPrimaryKeySelective(Message record);
 
@@ -35,7 +35,7 @@ public interface MessageMapper {
     Integer midorn(@Param("mid") Integer mid);
     @Update("update message set m_status=0 where m_id=#{mid}")
     int delmessage(@Param("mid") Integer mid);
-//    @Update("update message set m_updated=#{time} where m_id=#{mid}")
+    //    @Update("update message set m_updated=#{time} where m_id=#{mid}")
 //    @Results({
 //            @Result(property = "mUpdated" , column = "m_updated")
 //    })
