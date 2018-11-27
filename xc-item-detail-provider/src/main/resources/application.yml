@@ -12,6 +12,17 @@ spring:
         max-file-size: 100MB # 设置单个文件的最大长度
         max-request-size: 100MB # 设置最大的请求文件的大小
         file-size-threshold: 1MB  # 当上传文件达到1MB的时候进行磁盘写入
+  rabbitmq:
+      host: 47.94.201.44
+      port: 15672
+      username: xiaocheng
+      password:  xiaocheng
+      virtual-host: /xiaocheng
+      publisher-confirms: true
+      publisher-returns: true
+      listener:
+        simple:
+          prefetch: 1
   datasource:
     url: jdbc:mysql://localhost:3306/vip?charecterEncoding=UTF-8&useSSL=false
     username: root
