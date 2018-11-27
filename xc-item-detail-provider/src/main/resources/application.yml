@@ -14,7 +14,7 @@ spring:
         file-size-threshold: 1MB  # 当上传文件达到1MB的时候进行磁盘写入
   rabbitmq:
       host: 47.94.201.44
-      port: 15672
+      port: 5672
       username: xiaocheng
       password:  xiaocheng
       virtual-host: /xiaocheng
