@@ -15,4 +15,11 @@ public class Updmessageserviceimpl implements Updmessageservice {
     public String updsku(Integer mid, Long skuid, Skuserviceimp skuserviceimp) {
         return "找不到客户端啊啊啊啊啊啊啊！！！";
     }
+
+    @Override
+    public void invsend(String invMQ) {
+        System.out.println("找不到客户端啊啊啊啊啊啊啊！！！");
+    }
+
+
 }
