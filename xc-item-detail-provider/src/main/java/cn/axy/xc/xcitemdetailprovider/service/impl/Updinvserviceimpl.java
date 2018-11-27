@@ -49,7 +49,7 @@ public class Updinvserviceimpl implements Updinvservice {
             if (midorn == 1){
                 Double selcloinv = cm.selcloinv(mid, skuid);
                 if (selcloinv > 0){
-                    number = selcloinv -psc;
+                    number = selcloinv + psc;
                     cm.updcloinv(number,mid,skuid);
                 }else {
                     count = "500";
@@ -57,7 +57,7 @@ public class Updinvserviceimpl implements Updinvservice {
             }else if (midorn == 2){
                 Double selappinv = am.selappinv(mid, skuid);
                 if (selappinv > 0){
-                    number = selappinv - psc;
+                    number = selappinv + psc;
                     am.updappinv(number,mid,skuid);
                 }else {
                     count = "500";
@@ -65,7 +65,7 @@ public class Updinvserviceimpl implements Updinvservice {
             }else if (midorn == 3){
                 Double selfooinv = fm.selfooinv(mid, skuid);
                 if (selfooinv > 0){
-                    number = selfooinv - psc;
+                    number = selfooinv + psc;
                     fm.updfooinv(number,mid,skuid);
                 }else {
                     count = "500";
@@ -73,7 +73,7 @@ public class Updinvserviceimpl implements Updinvservice {
             }else if (midorn == 4){
                 Double selorninv = om.selorninv(mid, skuid);
                 if (selorninv > 0){
-                    number = selorninv - psc;
+                    number = selorninv + psc;
                     om.updorninv(number,mid,skuid);
                 }else {
                     count = "500";
@@ -81,7 +81,7 @@ public class Updinvserviceimpl implements Updinvservice {
             }else if (midorn == 5){
                 Double selcosinv = com.selcosinv(mid, skuid);
                 if (selcosinv > 0 ){
-                    number = selcosinv - psc;
+                    number = selcosinv + psc;
                     com.updcosinv(number,mid,skuid);
                 }else {
                     count = "500";
