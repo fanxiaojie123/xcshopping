@@ -26,7 +26,7 @@ public class Updinvserviceimpl implements Updinvservice {
         if (mid != null){
             Double selmessageinv = mm.selmessageinv(mid);
             if (selmessageinv > 0){
-                number = selmessageinv - psc;
+                number = selmessageinv + psc;
                 int updmessageinv = mm.updmessageinv(number, mid);
                 if (updmessageinv > 0){
                     count = "200";
