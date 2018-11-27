@@ -23,6 +23,21 @@ spring:
     testOnReturn: false
     poolPreparedStatements: true
     maxOpenPreparedStatements: 20
+
+
+  rabbitmq:
+    host: 47.94.201.44
+    port: 15672
+    username: xiaocheng
+    password:  xiaocheng
+    virtual-host: /xiaocheng
+    publisher-confirms: true
+    publisher-returns: true
+    listener:
+      simple:
+        prefetch: 1
+
+
 eureka:
   instance:
     instance-id: xc-item-detail-consumer
@@ -30,6 +45,9 @@ eureka:
   client:
     service-url:
       defaultZone: http://101.132.139.58:6001/eureka/
+
 feign:
   hystrix:
     enabled: true
+---
+
