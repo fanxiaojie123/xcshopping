@@ -24,8 +24,7 @@ public class Messageinvcontroller {
             @ApiImplicitParam(name="psc", value="购买的数量", dataType = "购买的数量")
     })
     @RequestMapping(value = "/updmessageinv",method = RequestMethod.POST)
-    public String updmessageinv(@Param("request") HttpServletRequest request,
-                                @Param("response") HttpServletResponse response,
+    public String updmessageinv(
                                 @RequestParam("mid")Integer mid,
                                 @RequestParam("psc")Integer psc){
         count = updinvservice.updmessageinv(mid,psc);
@@ -45,4 +44,13 @@ public class Messageinvcontroller {
         count = updinvservice.updskuinv(mid,skuid,psc);
         return count;
     }
+    @ApiOperation(value="库存mq接口", notes = "库存mq接口")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name="invMQ", value="商品ID Integer mid,SKUID Long skuid,增减数量 Integer psc的JSON", dataType = "商品ID"),
+    })
+    @RequestMapping(value = "/invsend",method = RequestMethod.POST)
+    public void invsend(@RequestParam("invMQ") String invMQ){
+        updinvservice.send(invMQ);
+    }
+
 }
