@@ -1,7 +1,6 @@
 package cn.axy.xc.xcitemdetailprovider.service.impl;
 
 import cn.axy.xc.xcitemdetailprovider.dao.*;
-import cn.axy.xc.xcitemdetailprovider.pojo.InvMQ;
 import cn.axy.xc.xcitemdetailprovider.service.Updinvservice;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
@@ -139,7 +138,6 @@ public class Updinvserviceimpl implements Updinvservice {
         List<JSONObject> lists = JSONArray.parseObject(invMQ, List.class);
         String re = null;
         for (JSONObject jsonObject : lists) {
-            if (jsonObject.get("position_name") == null) {
 
                 String mid = jsonObject.get("mid").toString();
                 Integer mid1 = Integer.valueOf(mid);
@@ -151,7 +149,7 @@ public class Updinvserviceimpl implements Updinvservice {
                 Integer psc1 = Integer.valueOf(psc);
                 updskuinv(mid1,skuid1,psc1);
                 updmessageinv(mid1,psc1);
-            }
+
         }
     }
 }
