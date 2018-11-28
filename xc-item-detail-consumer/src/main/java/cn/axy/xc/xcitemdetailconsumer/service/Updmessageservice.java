@@ -20,6 +20,6 @@ public interface Updmessageservice {
     String updsku(@RequestParam("mid")Integer mid,
                          @RequestParam("skuid")Long skuid,
                          @RequestBody Skuserviceimp skuserviceimp);
-    @RequestMapping(value = "/invsend",method = RequestMethod.POST)
-    void invsend(@RequestParam("invMQ") String invMQ);
+//    @RequestMapping(value = "/invsend",method = RequestMethod.POST)
+//    void invsend(@RequestParam("invMQ") String invMQ);
 }

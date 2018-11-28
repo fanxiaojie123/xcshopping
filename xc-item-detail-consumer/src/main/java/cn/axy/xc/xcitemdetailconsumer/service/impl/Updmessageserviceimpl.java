@@ -16,10 +16,10 @@ public class Updmessageserviceimpl implements Updmessageservice {
         return "找不到客户端啊啊啊啊啊啊啊！！！";
     }
 
-    @Override
-    public void invsend(String invMQ) {
-        System.out.println("找不到客户端啊啊啊啊啊啊啊！！！");
-    }
+//    @Override
+//    public void invsend(String invMQ) {
+//        System.out.println("找不到客户端啊啊啊啊啊啊啊！！！");
+//    }
 
 
 }

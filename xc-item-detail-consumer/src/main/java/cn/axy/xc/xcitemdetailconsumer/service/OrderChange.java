@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@FeignClient(name = "xc-order-provider",fallback = Updmessageserviceimpl.class)
+@FeignClient(name = "XC-ORDER-PROVIDER",fallback = Updmessageserviceimpl.class)
 public interface OrderChange {
     @RequestMapping(value = "orderChangetoClose",method = RequestMethod.POST)
     String orderChangetoClose(@RequestParam("orderid") String orderid);

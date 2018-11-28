@@ -12,27 +12,11 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class OrderChangeimpl implements Updmessageservice {
-    @Autowired
-    private OrderChange orderChange;
+public class OrderChangeimpl implements OrderChange {
+
 
     @Override
-    public String updmessage(Message mes) {
-        return null;
-    }
-
-    @Override
-    public String updsku(Integer mid, Long skuid, Skuserviceimp skuserviceimp) {
-        return null;
-    }
-
-    @Override
-    public void invsend(String invMQ) {
-        List<JSONObject> lists = JSONArray.parseObject(invMQ, List.class);
-        String re = null;
-        for (JSONObject jsonObject : lists) {
-                String orderid = jsonObject.get("orderid").toString();
-                orderChange.orderChangetoClose(orderid);
-        }
+    public String orderChangetoClose(String orderid) {
+        return "没了";
     }
 }
