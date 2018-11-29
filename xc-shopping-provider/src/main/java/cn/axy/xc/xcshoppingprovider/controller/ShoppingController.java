@@ -41,16 +41,15 @@ public class ShoppingController {
      */
     @ApiOperation(value="增加购物车商品", notes = "增加购物车商品")
 
-    /*@ApiImplicitParams({
-            @ApiImplicitParam(name="shoppingCart", value="shoppingCart", dataType = "ShoppingCart")
-            ,@ApiImplicitParam(name="itemIdKey", value="itemIdKey", dataType = "java.lang.Long")
-    })*/
+    @ApiImplicitParams({
+            @ApiImplicitParam(name="shoppingCart", value="购物车对象", dataType = "ShoppingCart")
+            ,@ApiImplicitParam(name="itemIdKey", value="商品ID", dataType = "java.lang.Long")
+    })
     @RequestMapping(value = "/addShopping",method = RequestMethod.POST)
     public String addShopping( HttpServletRequest request,
                                HttpServletResponse response,
-                              @ApiParam(name = "shoppingCart",value = "购物车对象") ShoppingCart shoppingCart,
-
-                              @ApiParam(name = "itemIdKey",value = "商品ID",required = true) Long itemIdKey)  {
+                                @RequestBody ShoppingCart shoppingCart,
+                                @RequestParam("itemIdKey") Long itemIdKey)  {
         response.setHeader("Access-Control-Allow-Origin", "*");
         String re = null;
         log.info(JSON.toJSONString(shoppingCart));
@@ -121,8 +120,8 @@ public class ShoppingController {
     @RequestMapping(value = "/changeShopping",method = RequestMethod.POST)
     public String changeShopping(@RequestParam("request") HttpServletRequest request,
                                  @RequestParam("response") HttpServletResponse response,
-                               @RequestParam Long itmeId ,
-                               @RequestParam Integer num)  {
+                                 @RequestParam("itmeId") Long itmeId ,
+                                 @RequestParam("num") Integer num)  {
         response.setHeader("Access-Control-Allow-Origin", "*");
         String re = null;
         try {

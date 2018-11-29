@@ -4,7 +4,6 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 import java.util.Date;
-
 @ApiModel(value = "XcOrderItem",description = "订单商品表，记录该订单的商品信息")
 public class XcOrderItem {
     @ApiModelProperty(value = "商品id",dataType = "String")
@@ -39,6 +38,9 @@ public class XcOrderItem {
 
     @ApiModelProperty(value = "信息创建时间",dataType = "Date")
     private Date created;
+
+    @ApiModelProperty(value = "skuID" ,dataType = "Long")
+    private Long skuid;
 
     public String getOrderId() {
         return orderId;
@@ -126,5 +128,13 @@ public class XcOrderItem {
 
     public void setExtend3(String extend3) {
         this.extend3 = extend3 == null ? null : extend3.trim();
+    }
+
+    public Long getSkuid() {
+        return skuid;
+    }
+
+    public void setSkuid(Long skuid) {
+        this.skuid = skuid;
     }
 }

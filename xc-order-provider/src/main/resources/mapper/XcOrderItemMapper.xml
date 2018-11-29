@@ -13,6 +13,7 @@
     <result column="extend1" jdbcType="VARCHAR" property="extend1" />
     <result column="extend2" jdbcType="VARCHAR" property="extend2" />
     <result column="extend3" jdbcType="VARCHAR" property="extend3" />
+    <result column="skuid" jdbcType="BIGINT" property="skuid" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -74,7 +75,7 @@
   </sql>
   <sql id="Base_Column_List">
     order_id, item_id, num, title, price, total_fee, pic_path, created, extend1, extend2, 
-    extend3
+    extend3, skuid
   </sql>
   <select id="selectByExample" parameterType="cn.axy.xc.xcorderprovider.pojo.XcOrderItemExample" resultMap="BaseResultMap">
     select
@@ -110,11 +111,13 @@
     insert into xc_order_item (order_id, item_id, num, 
       title, price, total_fee, 
       pic_path, created, extend1, 
-      extend2, extend3)
+      extend2, extend3, skuid
+      )
     values (#{orderId,jdbcType=VARCHAR}, #{itemId,jdbcType=VARCHAR}, #{num,jdbcType=INTEGER}, 
       #{title,jdbcType=VARCHAR}, #{price,jdbcType=DOUBLE}, #{totalFee,jdbcType=DOUBLE}, 
       #{picPath,jdbcType=VARCHAR}, #{created,jdbcType=TIMESTAMP}, #{extend1,jdbcType=VARCHAR}, 
-      #{extend2,jdbcType=VARCHAR}, #{extend3,jdbcType=VARCHAR})
+      #{extend2,jdbcType=VARCHAR}, #{extend3,jdbcType=VARCHAR}, #{skuid,jdbcType=BIGINT}
+      )
   </insert>
   <insert id="insertSelective" parameterType="cn.axy.xc.xcorderprovider.pojo.XcOrderItem">
     insert into xc_order_item
@@ -152,6 +155,9 @@
       <if test="extend3 != null">
         extend3,
       </if>
+      <if test="skuid != null">
+        skuid,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="orderId != null">
@@ -186,6 +192,9 @@
       </if>
       <if test="extend3 != null">
         #{extend3,jdbcType=VARCHAR},
+      </if>
+      <if test="skuid != null">
+        #{skuid,jdbcType=BIGINT},
       </if>
     </trim>
   </insert>
@@ -231,6 +240,9 @@
       <if test="record.extend3 != null">
         extend3 = #{record.extend3,jdbcType=VARCHAR},
       </if>
+      <if test="record.skuid != null">
+        skuid = #{record.skuid,jdbcType=BIGINT},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -248,7 +260,8 @@
       created = #{record.created,jdbcType=TIMESTAMP},
       extend1 = #{record.extend1,jdbcType=VARCHAR},
       extend2 = #{record.extend2,jdbcType=VARCHAR},
-      extend3 = #{record.extend3,jdbcType=VARCHAR}
+      extend3 = #{record.extend3,jdbcType=VARCHAR},
+      skuid = #{record.skuid,jdbcType=BIGINT}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -286,6 +299,9 @@
       <if test="extend3 != null">
         extend3 = #{extend3,jdbcType=VARCHAR},
       </if>
+      <if test="skuid != null">
+        skuid = #{skuid,jdbcType=BIGINT},
+      </if>
     </set>
     where order_id = #{orderId,jdbcType=VARCHAR}
   </update>
@@ -300,7 +316,8 @@
       created = #{created,jdbcType=TIMESTAMP},
       extend1 = #{extend1,jdbcType=VARCHAR},
       extend2 = #{extend2,jdbcType=VARCHAR},
-      extend3 = #{extend3,jdbcType=VARCHAR}
+      extend3 = #{extend3,jdbcType=VARCHAR},
+      skuid = #{skuid,jdbcType=BIGINT}
     where order_id = #{orderId,jdbcType=VARCHAR}
   </update>
 </mapper>

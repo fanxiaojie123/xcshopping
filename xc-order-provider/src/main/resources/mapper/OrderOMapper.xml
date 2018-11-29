@@ -27,4 +27,13 @@
   <select id="selectAll" resultType="int">
     select count(1) from xc_order_o;
   </select>
+
+  <select id="getShopOrder" parameterType="String" resultType="cn.axy.xc.xcorderprovider.pojo.XcOrderO">
+
+    select  order_id, payment, payment_type, post_fee, status, create_time, update_time, payment_time,
+    consign_time, end_time, close_time, shipping_name, shipping_code, user_id, buyer_message,
+    buyer_nick, buyer_rate from `xc_order_o` where
+    user_id = #{0}
+
+  </select>
 </mapper>

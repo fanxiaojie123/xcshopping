@@ -18,4 +18,7 @@ public class Sender {
         this.rabbitTemplate.convertAndSend(RabbitConfig.ORDER_DELY_QUEUE,msg);
     }
 
+    public void sendStore(String msg) {
+        this.rabbitTemplate.convertAndSend(RabbitConfig.ORDER_DELY_QUEUE,msg);
+    }
 }

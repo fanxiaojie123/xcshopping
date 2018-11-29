@@ -18,12 +18,7 @@ public interface XcOrderODao {
      */
     int selectAll();
 
-    /**
-     * 修改商家订单信息
-     * @param xcOrderO
-     * @return
-     */
-    int updateOrder(XcOrderO xcOrderO);
+
 
     /**
      * 获得本月订单信息
@@ -39,10 +34,10 @@ public interface XcOrderODao {
     List<XcOrderO> getStoreOrder(int storeId);
 
     /**
-     * 根据用户id获得订单列表
+     * 商家根据用户id获得订单列表
      * @param userId
      * @return
      */
-    XcOrderO getOrder(int userId);
+    List<XcOrderO> getShopOrder(String userId);
 
 }

@@ -4,9 +4,7 @@ import cn.axy.xc.xcorderprovider.pojo.XcOrderItem;
 import cn.axy.xc.xcorderprovider.pojo.XcOrderItemExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Repository;
 
-@Repository
 public interface XcOrderItemMapper {
     long countByExample(XcOrderItemExample example);
 

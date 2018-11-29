@@ -140,6 +140,14 @@ public class CreateServiceImpl implements CreateService {
                 return string;
             }
 
+            //判断skuid不能为空
+            if(orderItem.getSkuid() == null || "".equals(orderItem.getSkuid())){
+                reMap.put("code",500);
+                reMap.put("info","订单skuid不能为空");
+                String string = JSON.toJSONString(reMap);
+                log.info(string);
+                return string;
+            }
 
             //判断商品购买商品数量不能为空 大于0
             if(orderItem.getNum() == null || orderItem.getNum() <= 0){
@@ -215,6 +223,7 @@ public class CreateServiceImpl implements CreateService {
             Map<String,Object> re = new HashMap<>();
             re.put("ORDERLIST",orderlist);
             re.put("ORDERITEM",orderItemList);
+            re.put("ORDERID",orderId);
 
             reMap.put("code",200);
             reMap.put("info","添加商品到redis成功");

@@ -1,10 +1,14 @@
 package cn.axy.xc.xcorderconsumer.service;
 
+import cn.axy.xc.xcorderconsumer.pojo.OrderInfo;
 import cn.axy.xc.xcorderconsumer.service.impl.OrderServiceImpl;
 import org.springframework.cloud.netflix.feign.FeignClient;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.servlet.http.HttpServletRequest;
 
 @FeignClient(name = "xc-order-provider",fallback = OrderServiceImpl.class)
 public interface OrderService {
@@ -27,5 +31,15 @@ public interface OrderService {
     @RequestMapping(value = "orderChangetoPaid",method = RequestMethod.POST)
     public String orderChangetoPaid(@RequestParam("orderid") String orderid);
 
-
+    /**
+     * 创建一个订单，首先存在redis中，
+     * 若支付成功，redis中删除，存到mysql中
+     * 若支付失败，或没有进行支付，留在redis中30分钟，
+     * 若在未支付期间支付成功了，redis中删除，存到mysql中
+     * @param orderInfo
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "create",method = RequestMethod.POST,produces = {"application/json;charset=UTF-8"})
+    public String createOrder(@RequestBody OrderInfo orderInfo, HttpServletRequest request);
 }
